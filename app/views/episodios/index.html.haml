@@ -1,23 +1,22 @@
-%h1 Listing episodios
+%h1 Episodios
 
 %table
   %tr
-    %th Resumo
-    %th Sinopse
     %th Titulo
+    %th Sinopse
+    %th Resumo
     %th
     %th
     %th
 
   - @episodios.each do |episodio|
     %tr
-      %td= episodio.resumo
+      %td= link_to episodio.titulo, episodio
       %td= episodio.sinopse
-      %td= episodio.titulo
-      %td= link_to 'Show', episodio
-      %td= link_to 'Edit', edit_episodio_path(episodio)
-      %td= link_to 'Destroy', episodio, :confirm => 'Are you sure?', :method => :delete
+      %td= episodio.resumo
+      %td= link_to 'Edita', edit_episodio_path(episodio)
+      %td= link_to 'Exclui', episodio, :confirm => 'mesmo?', :method => :delete
 
 %br
 
-= link_to 'New Episodio', new_episodio_path
+= link_to 'Novo Episodio', new_episodio_path

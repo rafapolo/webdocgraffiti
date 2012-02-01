@@ -1,9 +1,9 @@
-= form_for @capitulo do |f|
-  -if @capitulo.errors.any?
+= form_for @bloco do |f|
+  -if @bloco.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@capitulo.errors.count, "error")} prohibited this capitulo from being saved:"
+      %h2= "#{pluralize(@bloco.errors.count, "error")} prohibited this bloco from being saved:"
       %ul
-        - @capitulo.errors.full_messages.each do |msg|
+        - @bloco.errors.full_messages.each do |msg|
           %li= msg
 
   .field

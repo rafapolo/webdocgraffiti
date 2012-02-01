@@ -12,10 +12,10 @@
     %tr
       %td= georef.lat
       %td= georef.long
-      %td= link_to 'Show', georef
-      %td= link_to 'Edit', edit_georef_path(georef)
-      %td= link_to 'Destroy', georef, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Mostra', georef
+      %td= link_to 'Edita', edit_georef_path(georef)
+      %td= link_to 'Exclui', georef, :confirm => 'mesmo?', :method => :delete
 
 %br
 
-= link_to 'New Georef', new_georef_path
+= link_to 'Novo Georef', new_georef_path

@@ -1,0 +1,14 @@
+%p#notice= notice
+
+%p
+  = player(@bloco.video_url)
+%p
+  %b Titulo:
+  = @bloco.titulo
+%p
+  %b Info:
+  = @bloco.info
+
+= link_to 'Edita', edit_bloco_path(@bloco)
+\|
+= link_to 'Volta', blocos_path
