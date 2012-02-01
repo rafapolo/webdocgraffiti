@@ -1,0 +1,2 @@
+module EnsaiosHelper
+end

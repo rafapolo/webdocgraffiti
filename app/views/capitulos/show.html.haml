@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Video url:
+  = @capitulo.video_url
+%p
+  %b Titulo:
+  = @capitulo.titulo
+%p
+  %b Info:
+  = @capitulo.info
+
+= link_to 'Edit', edit_capitulo_path(@capitulo)
+\|
+= link_to 'Back', capitulos_path
