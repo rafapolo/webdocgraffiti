@@ -1,0 +1,19 @@
+= form_for @episodio do |f|
+  -if @episodio.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@episodio.errors.count, "error")} prohibited this episodio from being saved:"
+      %ul
+        - @episodio.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :resumo
+    = f.text_field :resumo
+  .field
+    = f.label :sinopse
+    = f.text_field :sinopse
+  .field
+    = f.label :titulo
+    = f.text_field :titulo
+  .actions
+    = f.submit 'Save'

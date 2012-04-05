@@ -1,0 +1,21 @@
+%h1 Listing georefs
+
+%table
+  %tr
+    %th Lat
+    %th Long
+    %th
+    %th
+    %th
+
+  - @georefs.each do |georef|
+    %tr
+      %td= georef.lat
+      %td= georef.long
+      %td= link_to 'Show', georef
+      %td= link_to 'Edit', edit_georef_path(georef)
+      %td= link_to 'Destroy', georef, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Georef', new_georef_path

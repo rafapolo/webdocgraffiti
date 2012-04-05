@@ -1,0 +1,21 @@
+%h1 Listing ensaios
+
+%table
+  %tr
+    %th Video url
+    %th Titulo
+    %th
+    %th
+    %th
+
+  - @ensaios.each do |ensaio|
+    %tr
+      %td= ensaio.video_url
+      %td= ensaio.titulo
+      %td= link_to 'Show', ensaio
+      %td= link_to 'Edit', edit_ensaio_path(ensaio)
+      %td= link_to 'Destroy', ensaio, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Ensaio', new_ensaio_path

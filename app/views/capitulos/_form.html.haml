@@ -1,0 +1,19 @@
+= form_for @capitulo do |f|
+  -if @capitulo.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@capitulo.errors.count, "error")} prohibited this capitulo from being saved:"
+      %ul
+        - @capitulo.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :video_url
+    = f.text_field :video_url
+  .field
+    = f.label :titulo
+    = f.text_field :titulo
+  .field
+    = f.label :info
+    = f.text_field :info
+  .actions
+    = f.submit 'Save'

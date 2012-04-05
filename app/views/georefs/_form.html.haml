@@ -1,0 +1,16 @@
+= form_for @georef do |f|
+  -if @georef.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@georef.errors.count, "error")} prohibited this georef from being saved:"
+      %ul
+        - @georef.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :lat
+    = f.text_field :lat
+  .field
+    = f.label :long
+    = f.text_field :long
+  .actions
+    = f.submit 'Save'

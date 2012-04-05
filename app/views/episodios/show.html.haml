@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Resumo:
+  = @episodio.resumo
+%p
+  %b Sinopse:
+  = @episodio.sinopse
+%p
+  %b Titulo:
+  = @episodio.titulo
+
+= link_to 'Edit', edit_episodio_path(@episodio)
+\|
+= link_to 'Back', episodios_path
