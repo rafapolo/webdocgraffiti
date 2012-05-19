@@ -5,6 +5,7 @@ gem 'rails', '3.2'
 gem 'sqlite3'
 gem 'json'
 gem "haml-rails"
+gem "pg"
 
 group :development do
 	gem 'pry'
