@@ -12,7 +12,7 @@ group :development do
 	gem 'pry-nav'
 	gem 'capistrano'
 	gem 'unicorn'
-  	gem "rails-erd"
+  gem "rails-erd"
 end	
 
 group :assets do
