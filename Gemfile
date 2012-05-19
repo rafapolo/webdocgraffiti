@@ -6,7 +6,7 @@ gem 'sqlite3'
 gem 'json'
 gem "haml-rails"
 gem "pg"
-gem "execjs"
+gem 'therubyracer'
 
 group :development do
 	gem 'pry'
