@@ -1,0 +1,10 @@
+!!!
+%html{:lang => "pt-br"}
+  %head
+    %title WEBDOC GRAFFITI
+    %meta{:content => "text/html;charset=UTF-8", "http-equiv" => "content-type"}    
+    %link{:type => "image/x-icon", :rel=>"icon", :href=>"/assets/favicon.ico"}
+    = javascript_include_tag "jquery171", "webdoc"
+    = stylesheet_link_tag "webdoc"
+  %body
+    = yield

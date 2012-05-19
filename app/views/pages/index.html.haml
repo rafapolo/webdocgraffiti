@@ -1,0 +1,28 @@
+= #javascript_include_tag "fullvideo"
+
+#fundo
+	= image_tag "http://hello.eboy.com/eboy/wp-content/uploads/2012/04/EBY-Rio-Poster-34k-WIGGLE-fullsize.gif", :class=>"background"
+	.grid-layer
+
+#menu.box
+	.right-box
+	.right-box VIDEOS
+	.right-box MAPA
+	.right-box INFO	
+	.right-box{:style=>"width: 40px"}
+	.right-box
+		= link_to (image_tag "/assets/wdg_ico_twit.gif", :class=>"s"), "http://twitter.com", :target=>"_blank"
+		= link_to (image_tag "/assets/wdg_ico_face.gif", :class=>"s"), "http://facebook.com", :target=>"_blank"
+		= link_to (image_tag "/assets/wdg_ico_orkut.gif", :class=>"s"), "http://orkut.com", :target=>"_blank"
+	.right-box{:style=>"border-right: 0px"}
+
+.container
+	.logo
+		= image_tag "wdg_logo_home.gif"
+	= image_tag "/assets/wdg_seta_e.gif", :class=>"nav"
+	.info-container		
+		.info-box EPISODIO 2: DIA INTERNACIONAL DO GRAFFITI
+	= image_tag "/assets/wdg_seta_d.gif", :class=>"nav esq"
+
+:javascript
+	$('body').css("overflow", "hidden")

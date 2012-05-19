@@ -5,11 +5,14 @@ gem 'rails', '3.2'
 gem 'sqlite3'
 gem 'json'
 gem "haml-rails"
-gem 'unicorn'
 
 group :development do
 	gem 'pry'
+	gem 'pry-remote'
+	gem 'pry-nav'
 	gem 'capistrano'
+	gem 'unicorn'
+  	gem "rails-erd"
 end	
 
 group :assets do
