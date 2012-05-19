@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 %h1 Listing ensaios
 
 %table
@@ -5,11 +6,20 @@
     %th Video url
     %th Titulo
     %th
+=======
+%h1 Ensaios
+
+%table
+  %tr
+    %th Titulo
+    %th Video URL
+>>>>>>> c8c5b1115815bf373e07331566c176a09fcef29b
     %th
     %th
 
   - @ensaios.each do |ensaio|
     %tr
+<<<<<<< HEAD
       %td= ensaio.video_url
       %td= ensaio.titulo
       %td= link_to 'Show', ensaio
@@ -19,3 +29,13 @@
 %br
 
 = link_to 'New Ensaio', new_ensaio_path
+=======
+      %td= link_to ensaio.titulo, ensaio
+      %td= ensaio.video_url
+      %td= link_to 'Editar', edit_ensaio_path(ensaio)
+      %td= link_to 'Excluir', ensaio, :confirm => 'mesmo?', :method => :delete
+
+%br
+
+= link_to 'Novo', new_ensaio_path
+>>>>>>> c8c5b1115815bf373e07331566c176a09fcef29b

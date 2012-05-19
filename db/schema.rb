@@ -29,12 +29,20 @@ ActiveRecord::Schema.define(:version => 20120131015950) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   create_table "blocos_tags", :force => true do |t|
+=======
+  create_table "blocos_tags", :id => false, :force => true do |t|
+>>>>>>> c8c5b1115815bf373e07331566c176a09fcef29b
     t.belongs_to   "bloco"
     t.belongs_to   "tag"
   end
 
+<<<<<<< HEAD
   create_table "ensaios_tags", :force => true do |t|
+=======
+  create_table "ensaios_tags", :id => false, :force => true do |t|
+>>>>>>> c8c5b1115815bf373e07331566c176a09fcef29b
     t.belongs_to   "ensaio"
     t.belongs_to   "tag"
   end
