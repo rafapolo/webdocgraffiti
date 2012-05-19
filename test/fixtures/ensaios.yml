@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
-
-one:
-  video_url: MyString
-  titulo: MyString
-
-two:
-  video_url: MyString
-  titulo: MyString

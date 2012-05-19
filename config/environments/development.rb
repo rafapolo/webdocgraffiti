@@ -23,11 +23,7 @@ Webdoc::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 
   # Do not compress assets
-<<<<<<< HEAD
-  config.assets.compress = true
-=======
   config.assets.compress = false
->>>>>>> c8c5b1115815bf373e07331566c176a09fcef29b
 
   # Expands the lines which load the assets
   config.assets.debug = true
