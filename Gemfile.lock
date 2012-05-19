@@ -148,6 +148,7 @@ PLATFORMS
 DEPENDENCIES
   capistrano
   coffee-rails (~> 3.2)
+  execjs
   haml-rails
   json
   pg
