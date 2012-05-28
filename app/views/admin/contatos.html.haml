@@ -1,0 +1,27 @@
+.navbar
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.brand{:href => "/admin"} VictorHaim
+      .nav-collapse
+        %ul.nav
+          %li
+            = link_to "Biografia", "/admin/arquivos"
+          %li
+            = link_to "Galeria", "/admin/galerias"
+          %li
+            = link_to "Arquivos", "/admin/arquivos"
+          %li.active
+            = link_to "Contatos", "/admin/contatos"
+          %li
+            = link_to "Blog", "/admin/blog"
+
+#galerias{:style=>"padding:50px"}
+  %a{:class=>"btn btn-primary"}Nova Galeria
+  %br
+  %br
+  %h3 Galeria1
+  %h3 Galeria2
