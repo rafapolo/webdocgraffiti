@@ -18,7 +18,7 @@
 :coffeescript
 	$ ->
 		$("body").css "overflow", "hidden" 
-
+			
 		$("img.nav").hover(
 			-> $(this).attr "src", "/assets/seta_e2.png", 
 			-> $(this).attr "src", "/assets/seta_e.png"
@@ -27,3 +27,9 @@
 			-> $(this).attr "src", "/assets/seta_d2.png", 
 			-> $(this).attr "src", "/assets/seta_d.png"
 		)
+		$(window).resize ->
+			metade = ($(window).width()/2 - $(".logos").width()/2)
+			$('.logos').css("margin-left", metade)
+
+		$("img.logos").load ->
+			$(window).resize()

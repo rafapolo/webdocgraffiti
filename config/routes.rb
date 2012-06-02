@@ -9,6 +9,8 @@ Webdoc::Application.routes.draw do
   match "/mapa" => "pages#mapa"
   match "/info" => "pages#info"
 
+  match "/player" => "pages#player"
+
   match "/admin" => "admin#episodios"
 	match "/admin/galerias" => "admin#galerias"
 	match "/admin/arquivos" => "admin#arquivos"
