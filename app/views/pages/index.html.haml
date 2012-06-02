@@ -1,31 +1,29 @@
-= #javascript_include_tag "fullvideo"
-
-#fundo
-	= image_tag "/assets/protocapa.gif", :class=>"background"
-	.grid-layer
-
-#menu.box
-	.right-box
-	.right-box VIDEOS
-	.right-box MAPA
-	.right-box INFO	
-	.right-box{:style=>"width: 40px"}
-	.right-box{:style=>"font-size:8px"}
-		= link_to (image_tag "/assets/wdg_ico_twit.gif", :class=>"s"), "http://twitter.com", :target=>"_blank"
-		= link_to (image_tag "/assets/wdg_ico_face.gif", :class=>"s"), "http://facebook.com", :target=>"_blank"
-		= link_to (image_tag "/assets/wdg_ico_orkut.gif", :class=>"s"), "http://orkut.com", :target=>"_blank"
-	.right-box{:style=>"border-right: 0px"}
+= render :partial => "pages/fundo"
+= render :partial => "pages/menu"
 
 .container
 	.logo
 		= image_tag "/assets/wdg_logo_home.gif"
-	= image_tag "/assets/wdg_seta_e.gif", :class=>"nav"
+	
+	%img.nav{:src=>"/assets/seta_e.png"}
 	.info-container		
 		.info-box EPISODIO 2: DIA INTERNACIONAL DO GRAFFITI
-	= image_tag "/assets/wdg_seta_d.gif", :class=>"nav esq"
+	%img.nav.dir{:src=>"/assets/seta_d.png"}
 
-= image_tag "/assets/wdg_home_footer.png", :class=>"footer"
-= image_tag "/assets/para_home2.png", :class=>"footer-logos"
+#base
+	%img.base{:src=>"/assets/wdg_home_footer.png"}
+	%img.logos{:src=>"/assets/para_home2.png"}
 
-:javascript
-	$('body').css("overflow", "hidden")
+
+:coffeescript
+	$ ->
+		$("body").css "overflow", "hidden" 
+
+		$("img.nav").hover(
+			-> $(this).attr "src", "/assets/seta_e2.png", 
+			-> $(this).attr "src", "/assets/seta_e.png"
+		)
+		$("img.nav.dir").hover(
+			-> $(this).attr "src", "/assets/seta_d2.png", 
+			-> $(this).attr "src", "/assets/seta_d.png"
+		)
