@@ -1,2 +1,117 @@
-#mapa
-	.box videos
+= render :partial => "pages/fundo"
+= render :partial => "pages/menu"
+
+.container
+
+	#marcadores.box
+		.boxr{:style=>"width: 31px"}
+		.boxr.item
+			MARCADORES
+		.boxr{:style=>"border-right: 0px; width: 19px;"}
+			%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".marcadores"}
+	.box.in
+		.marcadores		
+			.coluna
+				.tag
+					%input{:type=>"checkbox"}			
+						%span.branco
+							PINHEIROS
+				.tag
+					%input{:type=>"checkbox"}			
+						%span.branco
+							OS GÊMEOS
+				.tag
+					%input{:type=>"checkbox"}			
+						%span.branco
+							REPÚBLICA
+				.tag
+					%input{:type=>"checkbox"}			
+						%span.branco
+							CHIVITZ
+				.tag
+					%input{:type=>"checkbox"}			
+						%span.branco
+							BINHO
+				.tag
+					%input{:type=>"checkbox"}			
+						%span.branco
+							AKENI			
+			.coluna
+				.tag
+					%input{:type=>"checkbox"}			
+						%span.branco
+							PINHEIROS
+				.tag
+					%input{:type=>"checkbox"}			
+						%span.branco
+							OS GÊMEOS
+				.tag
+					%input{:type=>"checkbox"}			
+						%span.branco
+							REPÚBLICA
+				.tag
+					%input{:type=>"checkbox"}			
+						%span.branco
+							CHIVITZ
+				.tag
+					%input{:type=>"checkbox"}			
+						%span.branco
+							BINHO
+				.tag
+					%input{:type=>"checkbox"}			
+						%span.branco
+							AKENI
+			.coluna
+				.tag
+					%input{:type=>"checkbox"}			
+						%span.branco
+							NUNCA
+
+	#videos.box
+		.boxr{:style=>"font-size: 23px"}
+			02
+		.boxr.item
+			UMA CIDADE CHEIA DE CORES
+		.boxr{:style=>"border-right: 0px; width: 19px;"}
+			%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".videos"}
+	.box.in
+		.videos
+			.video{:style=>"padding-left: 9px"}
+				%img{:src=>"/assets/vid.jpg"}
+				.titulo
+					PRIMEIRA PARTE
+			.video
+				%img{:src=>"/assets/vid.jpg"}
+				.titulo
+					SEGUNDA PARTE				
+			.video
+				%img{:src=>"/assets/vid.jpg"}
+				.titulo
+					MAIS UMA
+			.video
+				%img{:src=>"/assets/vid.jpg"}
+				.titulo
+					OUTRA PARTE						
+			.ensaio
+				.video{:style=>"border-left: 1px; padding-left: 8px"}
+					%img{:src=>"/assets/vid.jpg"}
+					.titulo
+						OUTRA PARTE				
+
+:coffeescript
+
+	abre = (id) ->
+		seta = $(id)
+		$(seta.attr("toggle")).parent().slideToggle()
+		fechado = "/assets/seta_d_p.png"
+		src = seta.attr("src")
+		gira = if fechado==src then "/assets/seta_b_p.png" else fechado
+		seta.attr("src", gira)
+
+	$ ->
+		$(".abre").click -> 
+			abre($(this))
+				
+		setTimeout(->
+			abre($("img.abre")[1])
+		, 1000)
