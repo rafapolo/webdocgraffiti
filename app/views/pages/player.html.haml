@@ -1,36 +1,11 @@
+= javascript_include_tag "jquery.rotate"
+
 #mapa
 	%iframe{:allowfullscreen => "", :frameborder => "0", :height => "100%", :src => "http://www.youtube.com/embed/2-V9knhF6RU", :width => "100%"}
 
 #lateral	
 	#opaco
-	#topo{:style=>"margin-left: 30px; position: absolute; top: 20px; height: 100%"}
+	#menul
 		= render :partial => "pages/menu"
-%img{:src=>"/assets/seta_d.png", :id=>"togglao"}
-	
 
-:coffeescript
-	$ ->
-		$("body").css "overflow", "hidden" 
-
-		$(window).resize ->			
-			$('#lateral').css("height", $(document).height())
-			$('#togglao').css("left", $(document).width()-40)
-		$(window).resize()
-
-		$("#togglao").hover(
-			-> 
-				a = if $("#lateral").is(':visible') then "d" else "e"
-				o = "/assets/seta_"+ a + "2.png"
-				$("#togglao").attr("src", o)
-			-> 
-				a = if $("#lateral").is(':visible') then "d" else "e"
-				o = "/assets/seta_"+ a + ".png"
-				$("#togglao").attr("src", o)
-
-		).click -> 
-			$("#lateral").animate({width: 'toggle'})
-			seta = $("#togglao")			
-			fechado = "/assets/seta_d2.png"
-			src = seta.attr("src")
-			gira = if fechado==src then "/assets/seta_e2.png" else fechado
-			seta.attr("src", gira)
+= render :partial=>"pages/toggle"

@@ -12,8 +12,7 @@
 
 #base
 	%img.base{:src=>"/assets/wdg_home_footer.png"}
-	%img.logos{:src=>"/assets/para_home2.png"}
-
+	%img.logos{:src=>"/assets/logos.png"}
 
 :coffeescript
 	$ ->
@@ -27,6 +26,10 @@
 			-> $(this).attr "src", "/assets/seta_d2.png", 
 			-> $(this).attr "src", "/assets/seta_d.png"
 		)
+
+		$(".nav.dir").click ->
+			$(".container").animate({width: 'toggle'})
+
 		$(window).resize ->
 			metade = ($(window).width()/2 - $(".logos").width()/2)
 			$('.logos').css("margin-left", metade)

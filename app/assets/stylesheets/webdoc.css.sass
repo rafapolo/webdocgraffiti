@@ -9,6 +9,8 @@
 body	
 	font-family: Tombo
 	font-size: 19px	
+	background-color: #F4F3F0
+	margin-bottom: 20px
 
 img
 	#border: 1px solid red
@@ -60,8 +62,7 @@ img
 	background-image: url(/assets/seta_d.png)
 
 #togglao
-	position: absolute
-	top: 45%
+	position: fixed
 
 .ensaio
 	width: 189px
@@ -73,7 +74,7 @@ img
 	position: absolute
 	top: 274px
 .nav.dir
-	margin-left: 902px
+	margin-left: 907px
 
 .info-box
 	font-weight: bold
@@ -115,6 +116,12 @@ img
 	width: 750px
 	margin: 0px auto
 
+#wdg_logo
+	width: 175px
+	margin: 25px
+	z-index: 1
+	position: absolute
+
 .logo
 	width: 600px
 	margin: 0px auto
@@ -143,28 +150,36 @@ img
 
 .box.in
 	display: none
-	border-top: 0px
 	width: 925px
 	height: 173px
+
+
+.caixa
+	height: 173px	
+	color: white
+	font-size: 17px	
 
 #mapa
 	height: 100%
 	width: 100%
+	background-color: blue
 
 iframe
 	height: inherit
 	width: inherit
 	position: fixed
+	display: none	
 
 .marcadores
 	margin: 7px	
+	padding-left: 12px
 
 .branco
 	color: white
 
 .coluna
 	float: left
-	width: 303px
+	width: 299px
 
 .titulo
 	color: white
@@ -176,9 +191,10 @@ iframe
 	padding: 4px	
 	letter-spacing: 1px
 
-#videos
-	margin-top: 20px	
-
+.videos
+	width: 925px
+	height: 173px
+	margin-top: -4px
 .video
 	padding: 10px 5px 0px 3px
 	width: 173px
@@ -190,6 +206,14 @@ iframe
 	background-color: #313138
 	opacity: 0.9
 	height: 100%
+
+#menul
+	margin-left: 30px
+	position: absolute
+	top: 20px
+	height: 100%	
+
 #lateral	
 	width: 485px
 	float: right
+	display: none

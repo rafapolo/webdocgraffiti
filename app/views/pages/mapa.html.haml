@@ -1,37 +1,14 @@
+= javascript_include_tag "jquery.rotate"
+
+%a{:href=>"/"}
+	%img{:src=>"/assets/wdg_logo_wdg.gif", :id=>"wdg_logo"}
+
 #mapa
-	%iframe{:frameborder => "0", :height => "350", :marginheight => "0", :marginwidth => "0", :scrolling => "no", :src => "https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Rua+da+Consola%C3%A7%C3%A3o,+S%C3%A3o+Paulo,+Brasil&aq=0&oq=rua+da+consolac&sll=-22.92677,-43.176591&sspn=0.023794,0.038538&t=m&ie=UTF8&hq=&hnear=R.+da+Consola%C3%A7%C3%A3o+-+S%C3%A3o+Paulo,+Brazil&ll=-23.550278,-46.654458&spn=0.011842,0.019269&z=14&output=embed", :width => "425"}	
+	%iframe{:frameborder => "0", :height => "350", :allowtransparency=>"true", :marginheight => "0", :marginwidth => "0", :scrolling => "no", :src => "https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Rua+da+Consola%C3%A7%C3%A3o,+S%C3%A3o+Paulo,+Brasil&aq=0&oq=rua+da+consolac&sll=-22.92677,-43.176591&sspn=0.023794,0.038538&t=m&ie=UTF8&hq=&hnear=R.+da+Consola%C3%A7%C3%A3o+-+S%C3%A3o+Paulo,+Brazil&ll=-23.550278,-46.654458&spn=0.011842,0.019269&z=14&output=embed", :width => "425"}	
 
 #lateral	
 	#opaco
-	#topo{:style=>"margin-left: 30px; position: absolute; top: 20px; height: 100%"}
+	#menul
 		= render :partial => "pages/menu"
 		
-%img{:src=>"/assets/seta_d.png", :id=>"togglao"}
-	
-
-:coffeescript
-	$ ->
-		$("body").css "overflow", "hidden" 
-
-		$(window).resize ->			
-			$('#lateral').css("height", $(document).height())
-			$('#togglao').css("left", $(document).width()-40)
-		$(window).resize()
-
-		$("#togglao").hover(
-			-> 
-				a = if $("#lateral").is(':visible') then "d" else "e"
-				o = "/assets/seta_"+ a + "2.png"
-				$("#togglao").attr("src", o)
-			-> 
-				a = if $("#lateral").is(':visible') then "d" else "e"
-				o = "/assets/seta_"+ a + ".png"
-				$("#togglao").attr("src", o)
-
-		).click -> 
-			$("#lateral").animate({width: 'toggle'})
-			seta = $("#togglao")			
-			fechado = "/assets/seta_d2.png"
-			src = seta.attr("src")
-			gira = if fechado==src then "/assets/seta_e2.png" else fechado
-			seta.attr("src", gira)
+= render :partial=>"pages/toggle"
