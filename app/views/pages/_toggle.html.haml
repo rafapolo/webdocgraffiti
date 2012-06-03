@@ -4,10 +4,6 @@
 	$ ->
 		$("body").css "overflow", "hidden"
 
-		$(window).resize ->			
-			$('#lateral').css("height", $(document).height())
-			$('#togglao').css("left", $(document).width()-40)
-		$(window).resize()
 
 		$("#togglao").hover(
 			-> 
@@ -29,7 +25,9 @@
 
 		$(window).resize ->
 			seta = $("#togglao")
-			metade = ($(document).height()/2 - seta.height()/2 -30)
+			metade = ($(window).height()/2 - seta.height()/2 -30)
 			seta.css("top", metade)
+			$('#lateral').css("height", $(window).height())
+			$('#togglao').css("left", $(window).width()-40)
 
 		$("#togglao").load -> $(window).resize()
