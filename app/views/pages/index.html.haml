@@ -17,7 +17,8 @@
 
 :coffeescript
 	$ ->
-		$("body").css "overflow", "hidden" 
+		$("body").css "overflow", "hidden"
+		$('.container').fadeIn(300)
 			
 		$("img.nav").hover(
 			-> $(this).attr "src", "/assets/seta_e2.png", 
