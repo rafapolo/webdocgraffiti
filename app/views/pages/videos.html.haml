@@ -106,7 +106,7 @@
 					OUTRA PARTE				
 
 	.box
-		.boxr{:style=>"font-size: 23px; width: 31px;"}
+		.boxr{:style=>"font-size: 21px; width: 31px; text-align: center"}
 			01
 		.boxr.item
 			BOMBING EM SAMPA
@@ -153,6 +153,8 @@
 
 	$ ->
 		$(".video").click -> window.location.href="/player"
+
+		$('.container').fadeIn(500)
 
 		$(".abre").click -> 
 			abre($(this))

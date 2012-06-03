@@ -1,3 +1,29 @@
+= javascript_include_tag "http://www.google.com/jsapi"
+
+:javascript
+	google.load('orkut.share', '1');
+	google.setOnLoadCallback(function() {
+		var params = {};
+		params[google.orkut.share.Field.TITLE] = 'WEBDOC GRAFFITI';
+		params[google.orkut.share.Field.DESTINATION_URL] = '<data:post.url/>';
+		var connection = new google.orkut.share.Connection(params);
+		document.getElementById('orkut-share').onclick =
+		  function(e) { connection.send('orkut.com', {}); return false;};
+	}, true);	
+
+:coffeescript
+	$ ->
+	
+		$('.twitter-share').click ->
+				window.open("http://twitter.com/share?text=WEBDOC%20GRAFFITI&lang=pt&url=http://webdocgraffiti.com.br")
+				false
+		
+		$('.facebook-share').click -> 
+				window.open("http://www.facebook.com/sharer.php?u=http%3A//webdocgraffiti.com.br&t=WEBDOC%20GRAFFITI");
+				false
+	
+
+
 #menu.box
 	.boxr
 	.boxr
@@ -13,13 +39,13 @@
 	.boxr{:style=>"width: 40px"}
 	.boxr{:style=>"font-size:8px"}
 
-		%a{:href=>"http://twitter.com", :target=>"_blank"}
-			%img.icon{:src=>"/assets/wdg_ico_twit.gif"}
+		%a.twitter-share{:href=>"#", :target=>"_blank"}
+			%img.icon{:src=>"/assets/wdg_ico_twit.gif"}			
 
-		%a{:href=>"http://facebook.com", :target=>"_blank"}
+		%a.facebook-share{:href=>"#", :target=>"_blank"}
 			%img.icon{:src=>"/assets/wdg_ico_face.gif"}
 
-		%a{:href=>"http://orkut.com", :target=>"_blank"}
+		%a#orkut-share{:href=>"#", :target=>"_blank"}
 			%img.icon{:src=>"/assets/wdg_ico_orkut.gif"}
 
 		%a{:href=>"/rss", :target=>"_blank"}

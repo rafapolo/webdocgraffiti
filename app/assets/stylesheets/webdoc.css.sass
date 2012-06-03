@@ -8,7 +8,7 @@
 
 body	
 	font-family: Tombo
-	font-size: 19px	
+	font-size: 20px	
 	background-color: #F4F3F0
 	margin-bottom: 20px
 
@@ -20,6 +20,7 @@ img
 	width: 937px	
 	margin: 0px auto
 	padding-top: 50px
+	display: none
 
 .menu
 	color: #b96b3b	
@@ -30,7 +31,7 @@ img
 
 .item
 	width: 849px
-	font-size: 23px
+	font-size: 21px
 	letter-spacing: 1px	
 
 #marcadores
@@ -89,6 +90,7 @@ img
 	width: inherit
 	margin: 0px auto
 	line-height: 18px	
+	height: 18px
 	padding-top: 5px
 	
 #base
@@ -98,6 +100,7 @@ img
 	height: 100%
 	width: 100%
 	position: fixed
+	z-index: -999
 
 .background
 	position: absolute
@@ -118,15 +121,15 @@ img
 	width: 750px
 	margin: 0px auto
 
-#wdg_logo
-	width: 175px
-	margin: 25px
-	z-index: 1
-	position: absolute
-
 .logo
 	width: 600px
 	margin: 0px auto
+
+#wdg_logo
+	position: fixed
+	z-index: -1	
+	width: 175px
+	margin: 25px
 
 #menu
 	margin: 5px
@@ -164,16 +167,16 @@ img
 #mapa
 	height: 100%
 	width: 100%
-	background-color: blue
 
 iframe
 	height: inherit
 	width: inherit
 	position: fixed
 	display: none	
+	z-index: -2
 
 .marcadores
-	margin: 7px	
+	margin: 5px	
 	padding-left: 12px
 
 .branco

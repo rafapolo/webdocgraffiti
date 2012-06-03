@@ -5,9 +5,10 @@
 	.logo
 		= image_tag "/assets/wdg_logo_home.gif"
 	
-	%img.nav{:src=>"/assets/seta_e.png"}
+	%img.nav.esq{:src=>"/assets/seta_e.png"}
 	.info-container		
-		.info-box EPISODIO 2: DIA INTERNACIONAL DO GRAFFITI
+		.info-box 
+			%span#info EPISODIO 2: DIA INTERNACIONAL DO GRAFFITI
 	%img.nav.dir{:src=>"/assets/seta_d.png"}
 
 #base
@@ -27,12 +28,36 @@
 			-> $(this).attr "src", "/assets/seta_d.png"
 		)
 
-		$(".nav.dir").click ->
-			$(".container").animate({width: 'toggle'})
+		$(".esq").click ->
+			$(this).fadeOut()		
+			w = $(document).width()
+			metade = $(document).width()/2 - $(".info-box").width()/2
+			$(".info-box").animate({left: "-="+w},'slow',
+				-> 
+					$(".info-box").css("left", w)
+					$("#info").text "EPISODIO 3: BANKSY CONTRA-ATACA"
+					$(".info-box").animate({left: metade},'slow', 
+						-> $(".esq").fadeIn(200)
+					)
+			)
+
+		$(".dir").click ->
+			$(this).fadeOut()	
+			w = $(document).width()
+			metade = $(document).width()/2 - $(".info-box").width()/2
+			$(".info-box").animate({left: "+="+w},'slow',
+				-> 
+					$(".info-box").css("left", -w)
+					$("#info").text "EPISODIO 3: BANKSY CONTRA-ATACA"
+					$(".info-box").animate({left: metade},'slow',
+						-> $(".dir").fadeIn(200)
+					)
+			)			
 
 		$(window).resize ->
-			metade = ($(window).width()/2 - $(".logos").width()/2)
+			metade = ($(document).width()/2 - $(".logos").width()/2)
 			$('.logos').css("margin-left", metade)
+			$(".info-box").css("left", $(document).width()/2 - $(".info-box").width()/2)
 
 		$("img.logos").load ->
 			$(window).resize()
