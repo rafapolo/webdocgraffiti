@@ -1,3 +1,4 @@
+= javascript_include_tag "jquery.rotate"
 
 = render :partial => "pages/fundo"
 = render :partial => "pages/menu"
@@ -12,8 +13,8 @@
 		.boxr.item
 			MARCADORES
 		.boxr{:style=>"border-right: 0px; width: 19px;"}
-			%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".marcadores"}
-	.box.in
+			%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".marcadores", :fechado=>"0"}
+	.box.in{:style=>"border-top: 0px"}
 		.marcadores		
 			.coluna
 				.tag
@@ -71,53 +72,87 @@
 						%span.branco
 							NUNCA
 
-	#videos.box
-		.boxr{:style=>"font-size: 23px"}
+	.box{:style=>"margin-top: 20px"}
+		.boxr{:style=>"font-size: 23px; width: 31px;"}
 			02
 		.boxr.item
 			UMA CIDADE CHEIA DE CORES
 		.boxr{:style=>"border-right: 0px; width: 19px;"}
-			%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".videos"}
-	.box.in
-		.videos
-			.video{:style=>"padding-left: 9px"}
+			%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>"#sinopse1", :fechado=>"0"}
+	.box.in{:style=>"border-top: 0px"}
+		%p#sinopse1.caixa{:style=>"border-bottom: 0px; padding: 8px"}
+			texto
+	.videos.box.caixa
+		.video{:style=>"padding-left: 9px"}
+			%img{:src=>"/assets/vid.jpg"}
+			.titulo
+				PRIMEIRA PARTE
+		.video
+			%img{:src=>"/assets/vid.jpg"}
+			.titulo
+				SEGUNDA PARTE				
+		.video
+			%img{:src=>"/assets/vid.jpg"}
+			.titulo
+				MAIS UMA
+		.video
+			%img{:src=>"/assets/vid.jpg"}
+			.titulo
+				OUTRA PARTE						
+		.ensaio
+			.video{:style=>"border-left: 1px; padding-left: 8px"}
 				%img{:src=>"/assets/vid.jpg"}
 				.titulo
-					PRIMEIRA PARTE
-			.video
+					OUTRA PARTE				
+
+	.box{:style=>"margin-top: 20px"}
+		.boxr{:style=>"font-size: 23px; width: 31px;"}
+			01
+		.boxr.item
+			BOMBING EM SAMPA
+		.boxr{:style=>"border-right: 0px; width: 19px;"}
+			%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>"#sinopse2", :fechado=>"0"}
+	.box.in{:style=>"border-top: 0px"}
+		%p#sinopse2.caixa{:style=>"border-bottom: 0px; padding: 8px"}
+			texto
+	.videos.box.caixa
+		.video{:style=>"padding-left: 9px"}
+			%img{:src=>"/assets/vid.jpg"}
+			.titulo
+				PRIMEIRA PARTE
+		.video
+			%img{:src=>"/assets/vid.jpg"}
+			.titulo
+				SEGUNDA PARTE				
+		.video
+			%img{:src=>"/assets/vid.jpg"}
+			.titulo
+				MAIS UMA
+		.video
+			%img{:src=>"/assets/vid.jpg"}
+			.titulo
+				OUTRA PARTE						
+		.ensaio
+			.video{:style=>"border-left: 1px; padding-left: 8px"}
 				%img{:src=>"/assets/vid.jpg"}
 				.titulo
-					SEGUNDA PARTE				
-			.video
-				%img{:src=>"/assets/vid.jpg"}
-				.titulo
-					MAIS UMA
-			.video
-				%img{:src=>"/assets/vid.jpg"}
-				.titulo
-					OUTRA PARTE						
-			.ensaio
-				.video{:style=>"border-left: 1px; padding-left: 8px"}
-					%img{:src=>"/assets/vid.jpg"}
-					.titulo
-						OUTRA PARTE				
+					OUTRA PARTE									
 
 :coffeescript
 
 	abre = (id) ->
 		seta = $(id)
 		$(seta.attr("toggle")).parent().slideToggle()
-		fechado = "/assets/seta_d_p.png"
-		src = seta.attr("src")
-		gira = if fechado==src then "/assets/seta_b_p.png" else fechado
-		seta.attr("src", gira)
+
+		if seta.attr("fechado")=="0"
+			seta.attr("fechado", "1")
+			seta.rotate({animateTo:90})
+		else
+			seta.attr("fechado", "0")
+			seta.rotate({animateTo:0})	
 
 	$ ->
 		$(".video").click -> window.location.href="/player"
 
 		$(".abre").click -> 
 			abre($(this))
-				
-		setTimeout(->
-			abre($("img.abre")[1])
-		, 1000)

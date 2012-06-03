@@ -1,0 +1,35 @@
+%img{:src=>"/assets/seta_e.png", :id=>"togglao", :fechado=>"1"}	
+
+:coffeescript
+	$ ->
+		$("body").css "overflow", "hidden"
+
+		$(window).resize ->			
+			$('#lateral').css("height", $(document).height())
+			$('#togglao').css("left", $(document).width()-40)
+		$(window).resize()
+
+		$("#togglao").hover(
+			-> 
+				src = $("#togglao").attr("src").replace("seta_e", "seta_e2")
+				$("#togglao").attr("src", src)				
+			-> 
+				src = $("#togglao").attr("src").replace("seta_e2", "seta_e")
+				$("#togglao").attr("src", src)	
+
+		).click -> 
+			$("#lateral").animate({width: 'toggle'})
+			seta = $("#togglao")			
+			if seta.attr("fechado")=="1"
+				seta.attr("fechado", "0")
+				seta.rotate({animateTo:-180})
+			else 
+				seta.attr("fechado", "1")
+				seta.rotate({animateTo:0})
+
+		$(window).resize ->
+			seta = $("#togglao")
+			metade = ($(document).height()/2 - seta.height()/2 -30)
+			seta.css("top", metade)
+
+		$("#togglao").load -> $(window).resize()

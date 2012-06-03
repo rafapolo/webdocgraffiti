@@ -5,40 +5,7 @@
 
 #lateral	
 	#opaco
-	#topo{:style=>"margin-left: 30px; position: absolute; top: 20px; height: 100%"}
+	#menul
 		= render :partial => "pages/menu"
 
-%img{:src=>"/assets/seta_d.png", :id=>"togglao", :fechado=>"0"}	
-
-:coffeescript
-	$ ->
-		$("body").css "overflow", "hidden"
-
-		$(window).resize ->			
-			$('#lateral').css("height", $(document).height())
-			$('#togglao').css("left", $(document).width()-40)
-		$(window).resize()
-
-		$("#togglao").hover(
-			-> 
-				if $(this).attr('fechado')=="0"
-					src = $("#togglao").attr("src").replace("d", "d2")
-				else
-					src = $("#togglao").attr("src").replace("d", "d2")
-				$("#togglao").attr("src", src)				
-			-> 
-				if $(this).attr('fechado')=="0"
-					src = $("#togglao").attr("src").replace("d2", "d")
-				else
-					src = $("#togglao").attr("src").replace("d2", "d")
-				$("#togglao").attr("src", src)	
-
-		).click -> 
-			$("#lateral").animate({width: 'toggle'})
-			seta = $("#togglao")			
-			if seta.attr("fechado")=="1"
-				seta.attr("fechado", "0")
-				seta.rotate({animateTo:0})
-			else 
-				seta.attr("fechado", "1")
-				seta.rotate({animateTo:180})
+= render :partial=>"pages/toggle"
