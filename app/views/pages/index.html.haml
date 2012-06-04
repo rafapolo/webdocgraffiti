@@ -31,7 +31,7 @@
 		)
 
 		$(".esq").click ->
-			$(this).fadeOut()		
+			$(".nav").fadeOut()
 			w = $(document).width()
 			metade = $(document).width()/2 - $(".info-box").width()/2
 			$(".info-box").animate({left: "-="+w},'slow',
@@ -39,12 +39,12 @@
 					$(".info-box").css("left", w)
 					$("#info").text "EPISODIO 3: BANKSY CONTRA-ATACA"
 					$(".info-box").animate({left: metade},'slow', 
-						-> $(".esq").fadeIn(200)
+						->  $(".nav").fadeIn(200)
 					)
 			)
 
 		$(".dir").click ->
-			$(this).fadeOut()	
+			$('.nav').fadeOut()	
 			w = $(document).width()
 			metade = $(document).width()/2 - $(".info-box").width()/2
 			$(".info-box").animate({left: "+="+w},'slow',
@@ -52,7 +52,7 @@
 					$(".info-box").css("left", -w)
 					$("#info").text "EPISODIO 3: BANKSY CONTRA-ATACA"
 					$(".info-box").animate({left: metade},'slow',
-						-> $(".dir").fadeIn(200)
+						-> $(".nav").fadeIn(200)
 					)
 			)			
 
