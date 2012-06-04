@@ -1,5 +1,17 @@
 = javascript_include_tag "jquery.rotate"
 
+:javascript
+	$(document).ready(function(){
+		
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=231453760297312";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	});
+
 %a{:href=>"/"}
 	%img{:src=>"/assets/wdg_logo_wdg.gif", :id=>"wdg_logo"}
 
@@ -36,7 +48,8 @@
 					%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".b4", :fechado=>"0"}		
 			.box.in{:style=>"border-top: 0px; width: 386px"}
 				%p.caixa.b4{:style=>"border-bottom: 0px; padding: 8px"}
-					#fb-root	
+					#fb-root
+					.fb-comments{"data-href"=>"http://example.com", "data-num-posts"=>2, "data-width"=>340, "data-colorscheme"=>"dark"}
 
 			.box.lista
 				.boxr
@@ -47,17 +60,6 @@
 				%p.caixa.b5{:style=>"border-bottom: 0px; padding: 8px"}
 					texto																
 = render :partial=>"pages/toggle"
-
-:javascript
-	$(document).ready(function(){
-		(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=231453760297312";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-	});
 
 :coffeescript
 	
