@@ -10,17 +10,42 @@
 	#opaco
 	#menul
 		= render :partial => "pages/menu"
-		#span{:style=>"margin-top: 10px"}
+		#marcador{:style=>"margin-top: 10px"}
 			.box{:style=>"width: 386px"}
 				.boxr
 				.boxr{:style=>"width: 330px"} MARCADOR
-
 				.boxr{:style=>"border-right: 0px; width: 15px;"}
-					%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>"#marcador", :fechado=>"0"}		
+					%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".b1", :fechado=>"0"}		
 			.box.in{:style=>"border-top: 0px; width: 386px"}
-				%p#marcador.caixa{:style=>"border-bottom: 0px; padding: 8px"}
+				%p.caixa.b1{:style=>"border-bottom: 0px; padding: 8px"}
 					texto				
+
+			.box.lista{:style=>"width: 386px"}
+				.boxr
+				.boxr{:style=>"width: 330px"} LISTA DE TAGS
+				.boxr{:style=>"border-right: 0px; width: 15px;"}
+					%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".b3", :fechado=>"0"}		
+			.box.in{:style=>"border-top: 0px; width: 386px"}
+				%p.caixa.b3{:style=>"border-bottom: 0px; padding: 8px"}
+					texto									
 		
+			.box.lista{:style=>"width: 386px"}
+				.boxr
+				.boxr{:style=>"width: 330px"} COMENTÁRIOS
+				.boxr{:style=>"border-right: 0px; width: 15px;"}
+					%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".b4", :fechado=>"0"}		
+			.box.in{:style=>"border-top: 0px; width: 386px"}
+				%p.caixa.b4{:style=>"border-bottom: 0px; padding: 8px"}
+					texto	
+
+			.box.lista
+				.boxr
+				.boxr{:style=>"width: 330px"} INSERIR MARCADOR
+				.boxr{:style=>"border-right: 0px; width: 15px;"}
+					%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".b5", :fechado=>"0"}		
+			.box.in{:style=>"border-top: 0px; width: 386px"}
+				%p.caixa.b5{:style=>"border-bottom: 0px; padding: 8px"}
+					texto																
 = render :partial=>"pages/toggle"
 
 :coffeescript
