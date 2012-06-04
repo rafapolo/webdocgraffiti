@@ -10,7 +10,7 @@
 		#marcador{:style=>"margin-top: 10px"}
 			.box{:style=>"width: 386px"}
 				.boxr
-				.boxr{:style=>"width: 330px"} ARTE ENTREVISTAS E ROLÊS
+				.boxr{:style=>"width: 330px"} UMA CIDADE CHEIA DE CORES
 				.boxr{:style=>"border-right: 0px; width: 15px;"}
 					%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".b1", :fechado=>"0"}		
 			.box.in{:style=>"border-top: 0px; width: 386px"}
@@ -35,7 +35,26 @@
 				.boxr{:style=>"border-right: 0px; width: 15px;"}
 					%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".b2", :fechado=>"0"}		
 			.box.in{:style=>"border-top: 0px; width: 386px"}
-				%p.caixa.b2{:style=>"border-bottom: 0px; padding: 8px"} os links nos textos e tags são diferenciados pelo laranja saturado, mas com o mouse_over ele deve ficar branco. já os títulos das outras partes do episódio são brancos, mas devem ficar laranja-saturado com o mouse_over (sobre o thumb também) não se preocupe com o logo da esquerda ele estará renderizado no vídeo			
+				%p.caixa.b2{:style=>"border-bottom: 0px; padding: 8px"} os links nos textos e tags são diferenciados pelo laranja saturado, mas com o mouse_over ele deve ficar branco. já os títulos das outras partes do episódio são brancos, mas devem ficar laranja-saturado com o mouse_over (sobre o thumb também) não se preocupe com o logo da esquerda ele estará renderizado no vídeo
+
+			.box.lista{:style=>"width: 386px"}
+				.boxr
+				.boxr{:style=>"width: 330px"} CRÉDITOS
+				.boxr{:style=>"border-right: 0px; width: 15px;"}
+					%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".b3", :fechado=>"0"}		
+			.box.in{:style=>"border-top: 0px; width: 386px"}
+				%p.caixa.b3{:style=>"border-bottom: 0px; padding: 8px"}
+					TEXTO
+			
+			.box.lista{:style=>"width: 386px"}
+				.boxr
+				.boxr{:style=>"width: 330px"} COMENTÁRIOS
+				.boxr{:style=>"border-right: 0px; width: 15px;"}
+					%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".b4", :fechado=>"0"}		
+			.box.in{:style=>"border-top: 0px; width: 386px"}
+				%p.caixa.b4{:style=>"border-bottom: 0px; padding: 8px"}
+					#fb-root
+					.fb-comments{"data-href"=>"http://example.com", "data-num-posts"=>2, "data-width"=>340, "data-colorscheme"=>"dark"}
 
 = render :partial=>"pages/toggle"
 
