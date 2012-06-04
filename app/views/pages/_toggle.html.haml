@@ -4,14 +4,13 @@
 	$ ->
 		$("body").css "overflow", "hidden"
 
+		trocar = (x, y) ->
+			src = $("#togglao").attr("src").replace(x, y)
+			$("#togglao").attr("src", src)
 
 		$("#togglao").hover(
-			-> 
-				src = $("#togglao").attr("src").replace("seta_e", "seta_e2")
-				$("#togglao").attr("src", src)				
-			-> 
-				src = $("#togglao").attr("src").replace("seta_e2", "seta_e")
-				$("#togglao").attr("src", src)	
+			-> trocar "seta_e", "seta_e2"
+			-> trocar "seta_e2", "seta_e"								
 
 		).click -> 
 			$("#lateral").animate({width: 'toggle'})
@@ -22,6 +21,7 @@
 			else 
 				seta.attr("fechado", "1")
 				seta.rotate({animateTo:0})
+		$("#togglao").click()
 
 		$(window).resize ->
 			seta = $("#togglao")
