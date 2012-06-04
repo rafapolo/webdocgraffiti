@@ -2,7 +2,8 @@
 
 :coffeescript
 	$ ->
-		$("body").css "overflow", "hidden"
+		$("body").css "overflow", "hidden"	
+		$("#menu").css "margin-bottom", "30px"	
 
 		trocar = (x, y) ->
 			src = $("#togglao").attr("src").replace(x, y)
@@ -23,7 +24,7 @@
 				seta.rotate({animateTo:0})
 		$("#togglao").click()
 
-		$(window).resize ->
+		$(window).resize ->			
 			seta = $("#togglao")
 			metade = ($(window).height()/2 - seta.height()/2 -30)
 			seta.css("top", metade)

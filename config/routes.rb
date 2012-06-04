@@ -5,6 +5,10 @@ Webdoc::Application.routes.draw do
   resources :capitulos
   resources :episodios
 
+  namespace :admin do
+    get :episodios
+  end
+
   match "/videos" => "pages#videos"
   match "/mapa" => "pages#mapa"
   match "/info" => "pages#info"

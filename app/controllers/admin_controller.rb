@@ -5,6 +5,7 @@ class AdminController < ApplicationController
 	protect_from_forgery
 	
 	def episodios
+		@episodios = Episodio.all
 	end
 
 	def arquivos

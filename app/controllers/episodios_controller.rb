@@ -1,4 +1,6 @@
 class EpisodiosController < ApplicationController
+  layout "admin"
+  
   # GET /episodios
   # GET /episodios.json
   def index

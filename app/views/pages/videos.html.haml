@@ -148,6 +148,7 @@
 		$(".video").click -> window.location.href="/player"		
 		$(".abre").click -> abre($(this))
 		$('.container').fadeIn(500)
+		$("#menu").addClass "active"
 
 		$('.video>img').hover(
 			-> $(this).next().css("color", "#fe8a2d"),

@@ -7,13 +7,13 @@
           %li= msg
 
   .field
-    = f.label :resumo
-    = f.text_field :resumo
-  .field
-    = f.label :sinopse
-    = f.text_field :sinopse
-  .field
     = f.label :titulo
     = f.text_field :titulo
+  .field
+    = f.label :sinopse
+    = f.text_area :sinopse, :style=>"width: 350px; height: 150px;"
+  .field
+    = f.label :creditos
+    = f.text_area :credito, :style=>"width: 350px; height: 150px;"
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', :class=>"btn"
