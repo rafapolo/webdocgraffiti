@@ -10,6 +10,8 @@
 		.info-box 
 			%span#info EPISODIO 2: DIA INTERNACIONAL DO GRAFFITI
 	%img.nav.dir{:src=>"/assets/seta_d.png"}
+	%img#ensaio{:src=>"/assets/wdg_ensaio.png"}
+
 
 #base
 	%img.base{:src=>"/assets/wdg_home_footer.png"}
@@ -60,6 +62,7 @@
 
 		$(window).resize ->
 			metade = ($(document).width()/2 - $(".logos").width()/2)
+			$('#ensaio').css("left", metade+750)
 			$('.logos').css("margin-left", metade)
 			$(".info-box").css("left", $(document).width()/2 - $(".info-box").width()/2)
 
