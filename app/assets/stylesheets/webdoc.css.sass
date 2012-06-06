@@ -1,3 +1,8 @@
+$ativo: #fe8a2d
+$laranja: #b96b3b
+$fundo: #433e43
+$background: #313138
+
 *
 	margin: 0px
 	padding: 0px
@@ -24,22 +29,25 @@ img
 	z-index: 1
 
 .menu
-	color: #b96b3b	
+	color: $laranja
 	text-decoration: none
 	border: 0px
 .menu:hover
-	text-decoration: underline
+	color: $ativo
 
 .item
 	width: 849px
 	font-size: 21px
-	letter-spacing: 1px	
+	letter-spacing: 1px
+	cursor: pointer
+	&:hover
+		color: $ativo
 
 #marcadores
 	margin-top: 200px		
 
 .fundo-alfa
-	background-color: #313138
+	background-color: $background
 	opacity: 0.85
 
 .base
@@ -52,6 +60,7 @@ img
 	position: fixed
 	bottom: 0px	
 	margin: 0px auto
+	display: none
 
 .icon
 	margin: 0px
@@ -68,7 +77,7 @@ img
 
 .ensaio
 	width: 189px
-	border-left: 4px solid #b96b3b
+	border-left: 4px solid $laranja
 	float: right
 	height: 100%
 
@@ -81,9 +90,9 @@ img
 .info-box
 	font-weight: bold
 	font-size: 18px
-	background-color: #433e43
-	color: #b96b3b
-	border: 4px solid #b96b3b
+	background-color: $fundo
+	color: $laranja
+	border: 4px solid $laranja
 	top: 286px
 	color: white
 	text-align: center
@@ -148,18 +157,18 @@ img
 	margin: 0px 0px 30px 0px
 
 .box
-	background-color: #433e43
-	color: #b96b3b
-	border: 4px solid #b96b3b
+	background-color: $fundo
+	color: $laranja
+	border: 4px solid $laranja
 	float: left
 	height: 22px
 	min-width: 18px
 
 .boxr
 	line-height: 27px
-	background-color: #433e43
-	color: #b96b3b
-	border-right: 4px solid #b96b3b
+	background-color: $fundo
+	color: $laranja
+	border-right: 4px solid $laranja
 	float: left
 	padding: 0px 3px 0px 3px
 	height: inherit
@@ -182,6 +191,10 @@ img
 	color: white
 	letter-spacing: 1px
 	font-size: 13px
+	line-height: 13pt
+.caixa.menor
+	border-bottom: 0px
+	padding: 8px 8px 12px 8px
 
 #mapa
 	height: 100%
@@ -208,6 +221,7 @@ iframe
 .coluna
 	float: left
 	width: 299px
+	padding-top: 2px
 
 .titulo
 	color: white
@@ -215,12 +229,13 @@ iframe
 	font-size: 15px
 	margin-top: 2px
 .titulo:hover
-	color: #fe8a2d	
+	color: $ativo	
 	cursor: pointer
 
 .tag
 	padding: 4px	
 	letter-spacing: 1px
+	font-size: 15px
 
 .videos
 	width: 925px
@@ -233,8 +248,11 @@ iframe
 	cursor: pointer
 	height: 163px
 
+.abre
+	padding-left: 0px	
+
 #opaco
-	background-color: #313138
+	background-color: $background
 	opacity: 0.9
 	height: 100%
 
@@ -247,4 +265,3 @@ iframe
 #lateral	
 	width: 485px
 	float: right
-	display: none

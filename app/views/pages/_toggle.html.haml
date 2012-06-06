@@ -1,30 +1,43 @@
-%img{:src=>"/assets/seta_e.png", :id=>"togglao", :fechado=>"1"}	
+%img{:src=>"/assets/seta_d.png", :id=>"togglao", :fechado=>"1"}	
 
 :coffeescript
+	
+	abre = (id) ->
+		seta = $(id)
+		$(seta.attr("toggle")).parent().slideToggle()		
+		if seta.attr("fechado") == "0"
+			seta.attr("fechado", "1")
+			seta.rotate({animateTo:90})
+		else
+			seta.attr("fechado", "0")
+			seta.rotate({animateTo:0})
+
+	trocar = (x, y) ->
+		src = $("#togglao").attr("src").replace(x, y)
+		$("#togglao").attr("src", src)		
+
 	$ ->
 		$("body").css "overflow", "hidden"	
 		$("#menu").css "margin-bottom", "30px"	
-
-		trocar = (x, y) ->
-			src = $("#togglao").attr("src").replace(x, y)
-			$("#togglao").attr("src", src)
+		$("#menu").css("float", "left")
+		
+		$(".abre").click -> abre($(this))
+		$(".item").click -> abre($(this).next().children())
 
 		$("#togglao").hover(
-			-> trocar "seta_e", "seta_e2"
-			-> trocar "seta_e2", "seta_e"								
-
-		).click -> 
+			-> trocar "seta_d", "seta_d2"
+			-> trocar "seta_d2", "seta_d"								
+		).click -> 		
 			$("#lateral").animate({width: 'toggle'})
 			seta = $("#togglao")			
 			if seta.attr("fechado")=="1"
 				seta.attr("fechado", "0")
 				seta.rotate({animateTo:-180})
-			else 
+			else
 				seta.attr("fechado", "1")
 				seta.rotate({animateTo:0})
-		$("#togglao").click()
 
-		$(window).resize ->			
+		$(window).resize ->
 			seta = $("#togglao")
 			metade = ($(window).height()/2 - seta.height()/2 -30)
 			seta.css("top", metade)

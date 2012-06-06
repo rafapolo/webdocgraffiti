@@ -18,8 +18,10 @@
 :coffeescript
 	$ ->
 		$("body").css "overflow", "hidden"		
-		$('.container').fadeIn(300)
-		$("#menu").css "margin", "5px"
+		$('.container').fadeIn(400)
+		$("#menu").css "margin", "5px"		
+		$("img.logos").fadeIn(400)
+		$("img.logos").load -> $(window).resize()
 			
 		$("img.nav").hover(
 			-> $(this).attr "src", "/assets/seta_e2.png", 
@@ -61,5 +63,3 @@
 			$('.logos').css("margin-left", metade)
 			$(".info-box").css("left", $(document).width()/2 - $(".info-box").width()/2)
 
-		$("img.logos").load ->
-			$(window).resize()

@@ -25,54 +25,38 @@
 		#marcador{:style=>"margin-top: 10px"}
 			.box{:style=>"width: 386px"}
 				.boxr
-				.boxr{:style=>"width: 330px"} MARCADOR
+				.boxr.item{:style=>"width: 330px"} MARCADOR
 				.boxr{:style=>"border-right: 0px; width: 15px;"}
-					%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".b1", :fechado=>"0"}		
+					%img.abre{:src=>"/assets/seta_pqn_menu.png", :toggle=>".b1", :fechado=>"0"}		
 			.box.in{:style=>"border-top: 0px; width: 386px"}
-				%p.caixa.b1{:style=>"border-bottom: 0px; padding: 8px"}
+				%p.caixa.menor.b1
 					texto				
 
 			.box.lista{:style=>"width: 386px"}
 				.boxr
-				.boxr{:style=>"width: 330px"} TAGS
+				.boxr.item{:style=>"width: 330px"} TAGS
 				.boxr{:style=>"border-right: 0px; width: 15px;"}
-					%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".b3", :fechado=>"0"}		
+					%img.abre{:src=>"/assets/seta_pqn_menu.png", :toggle=>".b3", :fechado=>"0"}		
 			.box.in{:style=>"border-top: 0px; width: 386px"}
-				%p.caixa.b3{:style=>"border-bottom: 0px; padding: 8px"}
+				%p.caixa.menor.b3
 					texto									
 		
 			.box.lista{:style=>"width: 386px"}
 				.boxr
-				.boxr{:style=>"width: 330px"} COMENTÁRIOS
+				.boxr.item{:style=>"width: 330px"} COMENTÁRIOS
 				.boxr{:style=>"border-right: 0px; width: 15px;"}
-					%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".b4", :fechado=>"0"}		
+					%img.abre{:src=>"/assets/seta_pqn_menu.png", :toggle=>".b4", :fechado=>"0"}		
 			.box.in{:style=>"border-top: 0px; width: 386px"}
-				%p.caixa.b4{:style=>"border-bottom: 0px; padding: 8px"}
+				%p.caixa.menor.b4
 					#fb-root
 					.fb-comments{"data-href"=>"http://example.com", "data-num-posts"=>2, "data-width"=>340, "data-colorscheme"=>"dark"}
 
 			.box.lista
 				.boxr
-				.boxr{:style=>"width: 330px"} INSERIR MARCADOR
+				.boxr.item{:style=>"width: 330px"} INSERIR MARCADOR
 				.boxr{:style=>"border-right: 0px; width: 15px;"}
-					%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".b5", :fechado=>"0"}		
+					%img.abre{:src=>"/assets/seta_pqn_menu.png", :toggle=>".b5", :fechado=>"0"}		
 			.box.in{:style=>"border-top: 0px; width: 386px"}
-				%p.caixa.b5{:style=>"border-bottom: 0px; padding: 8px"}
+				%p.caixa.menor.b5
 					texto																
 = render :partial=>"pages/toggle"
-
-:coffeescript
-	
-	abre = (id) ->
-		seta = $(id)
-		$(seta.attr("toggle")).parent().slideToggle()		
-		if seta.attr("fechado") == "0"
-			seta.attr("fechado", "1")
-			seta.rotate({animateTo:90})
-		else
-			seta.attr("fechado", "0")
-			seta.rotate({animateTo:0})
-
-	$(document).ready ->
-		$("#menu").css("float", "left")
-		$(".abre").click -> abre($(this))

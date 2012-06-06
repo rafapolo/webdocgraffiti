@@ -12,7 +12,7 @@
 		.boxr.item
 			MARCADORES
 		.boxr{:style=>"border-right: 0px; width: 19px;"}
-			%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>".marcadores", :fechado=>"0"}
+			%img.abre{:src=>"/assets/seta_pqn.png", :toggle=>".marcadores", :fechado=>"0"}
 	.box.in{:style=>"border-top: 0px"}
 		.marcadores		
 			.coluna
@@ -40,11 +40,12 @@
 					%input{:type=>"checkbox"}			
 						%span.branco
 							AKENI			
-			.coluna
 				.tag
 					%input{:type=>"checkbox"}			
 						%span.branco
-							PINHEIROS
+							PINHEIROS							
+			.coluna
+				
 				.tag
 					%input{:type=>"checkbox"}			
 						%span.branco
@@ -65,6 +66,10 @@
 					%input{:type=>"checkbox"}			
 						%span.branco
 							AKENI
+				.tag
+					%input{:type=>"checkbox"}			
+						%span.branco
+							POLO
 			.coluna
 				.tag
 					%input{:type=>"checkbox"}			
@@ -75,7 +80,7 @@
 		.boxr{:style=>"font-size: 23px; width: 31px;"} 02
 		.boxr.item UMA CIDADE CHEIA DE CORES
 		.boxr{:style=>"border-right: 0px; width: 19px;"}
-			%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>"#sinopse1", :fechado=>"0"}
+			%img.abre{:src=>"/assets/seta_pqn.png", :toggle=>"#sinopse1", :fechado=>"0"}
 	
 	.box.in{:style=>"border-top: 0px"}
 		%p#sinopse1.caixa{:style=>"border-bottom: 0px; padding: 8px"}
@@ -100,37 +105,30 @@
 				.titulo OUTRA PARTE				
 
 	.box
-		.boxr{:style=>"font-size: 21px; width: 31px; text-align: center"}
-			01
-		.boxr.item
-			BOMBING EM SAMPA
+		.boxr{:style=>"font-size: 21px; width: 31px; text-align: center"} 01
+		.boxr.item BOMBING EM SAMPA
 		.boxr{:style=>"border-right: 0px; width: 19px;"}
-			%img.abre{:src=>"/assets/seta_d_p.png", :toggle=>"#sinopse2", :fechado=>"0"}
+			%img.abre{:src=>"/assets/seta_pqn.png", :toggle=>"#sinopse2", :fechado=>"0"}
 	.box.in{:style=>"border-top: 0px"}
 		%p#sinopse2.caixa{:style=>"border-bottom: 0px; padding: 8px"}
 			texto
 	.videos.box.caixa{:style=>"margin-bottom: 20px"}
 		.video{:style=>"padding-left: 9px"}
 			%img{:src=>"/assets/vid.jpg"}
-			.titulo
-				PRIMEIRA PARTE
+			.titulo PRIMEIRA PARTE
 		.video
 			%img{:src=>"/assets/vid.jpg"}
-			.titulo
-				SEGUNDA PARTE				
+			.titulo SEGUNDA PARTE				
 		.video
 			%img{:src=>"/assets/vid.jpg"}
-			.titulo
-				MAIS UMA
+			.titulo MAIS UMA
 		.video
 			%img{:src=>"/assets/vid.jpg"}
-			.titulo
-				OUTRA PARTE						
+			.titulo OUTRA PARTE						
 		.ensaio
 			.video{:style=>"border-left: 1px; padding-left: 8px"}
 				%img{:src=>"/assets/vid.jpg"}
-				.titulo
-					OUTRA PARTE									
+				.titulo OUTRA PARTE									
 
 :coffeescript
 
@@ -145,10 +143,16 @@
 			seta.rotate({animateTo:0})	
 
 	$ ->
-		$(".video").click -> window.location.href="/player"		
-		$(".abre").click -> abre($(this))
+		$(".video").click -> window.location.href="/player"				
 		$('.container').fadeIn(500)
 		$("#menu").addClass "active"
+		
+		$(".abre").click -> abre($(this))
+		$(".item").click -> abre($(this).next().children())
+		$(".item").hover(
+			-> $(this).prev().css "color", "#fe8a2d"
+			-> $(this).prev().css "color", ""
+		)
 
 		$('.video>img').hover(
 			-> $(this).next().css("color", "#fe8a2d"),
