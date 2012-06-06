@@ -22,7 +22,6 @@
 		$("body").css "overflow", "hidden"		
 		$('.container').fadeIn(400)
 		$("#menu").css "margin", "5px"		
-		$("img.logos").fadeIn(400)
 		$("img.logos").load -> $(window).resize()
 			
 		$("img.nav").hover(
@@ -62,7 +61,7 @@
 
 		$(window).resize ->
 			metade = ($(document).width()/2 - $(".logos").width()/2)
-			$('#ensaio').css("left", metade+750)
-			$('.logos').css("margin-left", metade)
+			$('#ensaio').css("left", metade+750).fadeIn(400)
+			$('.logos').css("margin-left", metade).fadeIn(400)
 			$(".info-box").css("left", $(document).width()/2 - $(".info-box").width()/2)
 
