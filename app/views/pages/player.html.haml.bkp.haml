@@ -1,0 +1,56 @@
+= javascript_include_tag "jquery.rotate"
+
+#mapa
+	%iframe{:allowfullscreen => "", :frameborder => "0", :height => "100%", :src => "http://www.youtube.com/embed/2-V9knhF6RU", :width => "100%"}
+
+#lateral	
+	#opaco
+	#menul
+		= render :partial => "pages/menu"
+		#marcador{:style=>"margin-top: 10px"}			
+			.box{:style=>"width: 386px"}
+				.box-head
+					.boxr
+					.boxr.item{:style=>"width: 330px"} UMA CIDADE CHEIA DE CORES
+					.boxr{:style=>"border-right: 0px; width: 15px;"}
+						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".b1", :fechado=>"0"}		
+			.box.in{:style=>"border-top: 0px; width: 386px;"}
+				%p.caixa.menor.b1 
+					Grafite ou grafito[1] (do italiano graffiti, plural de graffito) é o nome dado às 		inscrições feitas em paredes, desde o Império Romano. Considera-se grafite uma inscrição caligrafada ou um desenho pintado ou gravado sobre um suporte que não é normalmente previsto para esta finalidade. Por muito tempo visto como um assunto irrelevante ou mera contravenção, atualmente o grafite já é considerado como forma de expressão incluída no âmbito das artes visuais,[2] mais especificamente, da street art ou arte urbana - em que o artista aproveita os espaços públicos, criando uma linguagem intencional para interferir na cidade. Entretanto ainda há quem não concorde, comparando o grafite com a pichação.
+					%br
+					%br
+					%span{:style=>"font-size: 16px; padding-bottom: 10px;"}
+						tags: 
+						%a.link{:href=>"#"}
+							artista
+						, 	
+						%a.link{:href=>"#"}
+							galo
+						,	
+						%a.link{:href=>"#"}
+							processo
+
+			.box{:style=>"width: 386px; margin-top: 30px; height: 49px"}				
+				.box-head
+					.boxr{:style=>"height:23px"} EPISÓDIO 02
+					%br
+					.boxb
+						.boxr{:style=>"border-right: 0px;"} UMA CIDADE CHEIA DE CORES
+						.boxr{:style=>"border-right: 0px; border-left: 4px solid #b96b3b; float: right; "}
+							%img.abre.aberto{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".b2", :fechado=>"1"}		
+			.box.in{:style=>"border-top: 0px; width: 386px; display: block"}
+				%p.caixa.menor.b2 os links nos textos e tags são diferenciados pelo laranja saturado, mas com o mouse_over ele deve ficar branco. já os títulos das outras partes do episódio são brancos, mas devem ficar laranja-saturado com o mouse_over (sobre o thumb também) não se preocupe com o logo da esquerda ele estará renderizado no vídeo
+
+			
+			.box.lista{:style=>"width: 386px"}
+				.box-head
+					.boxr
+					.boxr.item{:style=>"width: 330px"} COMENTÁRIOS
+					.boxr{:style=>"border-right: 0px; width: 15px;"}
+						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".b4", :fechado=>"0"}		
+			.box.in{:style=>"border-top: 0px; width: 386px"}
+				%p.caixa.menor.b4
+					#fb-root
+					.fb-comments{"data-href"=>"http://example.com", "data-num-posts"=>2, "data-width"=>340, "data-colorscheme"=>"dark"}
+
+= render :partial=>"pages/toggle"

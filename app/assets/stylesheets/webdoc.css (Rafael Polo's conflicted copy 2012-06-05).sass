@@ -1,8 +1,3 @@
-$ativo: #fe8a2d
-$laranja: #b96b3b
-$fundo: #433e43
-$background: #313138
-
 *
 	margin: 0px
 	padding: 0px
@@ -13,7 +8,7 @@ $background: #313138
 
 body	
 	font-family: Tombo
-	font-size: 20px	
+	font-size: 19px	
 	background-color: #F4F3F0
 	margin-bottom: 20px
 
@@ -24,34 +19,26 @@ img
 	height: 100%
 	width: 937px	
 	margin: 0px auto
-	top: 50px
-	display: none
-	z-index: 1
-
-.ativo
-	color: $ativo	
+	padding-top: 50px
 
 .menu
-	color: $laranja
+	color: #b96b3b	
 	text-decoration: none
 	border: 0px
 .menu:hover
-	color: $ativo
+	text-decoration: underline
 
 .item
 	width: 849px
-	font-size: 21px
-	letter-spacing: 1px
-	cursor: default
-	&:hover
-		color: $ativo
+	font-size: 23px
+	letter-spacing: 1px	
 
 #marcadores
 	margin-top: 200px		
 
 .fundo-alfa
-	background-color: $background
-	opacity: 0.85
+	background-color: #313138
+	opacity: 0.9
 
 .base
 	position: absolute
@@ -63,7 +50,6 @@ img
 	position: fixed
 	bottom: 0px	
 	margin: 0px auto
-	display: none
 
 .icon
 	margin: 0px
@@ -80,7 +66,7 @@ img
 
 .ensaio
 	width: 189px
-	border-left: 4px solid $laranja
+	border-left: 4px solid #b96b3b
 	float: right
 	height: 100%
 
@@ -93,9 +79,9 @@ img
 .info-box
 	font-weight: bold
 	font-size: 18px
-	background-color: $fundo
-	color: $laranja
-	border: 4px solid $laranja
+	background-color: #433e43
+	color: #b96b3b
+	border: 4px solid #b96b3b
 	top: 286px
 	color: white
 	text-align: center
@@ -103,7 +89,6 @@ img
 	width: inherit
 	margin: 0px auto
 	line-height: 18px	
-	height: 18px
 	padding-top: 5px
 	
 #base
@@ -111,16 +96,13 @@ img
 
 #fundo
 	height: 100%
-	width: 100%
-	position: fixed
-	z-index: -999
 
 .background
 	position: absolute
 	background-repeat: no-repeat	
 	width: 100%
 	height: 100%
-	z-index: -2
+	z-index: -1
 
 .grid-layer
 	background-image: url('/assets/wdg_gradeBP.gif')
@@ -128,135 +110,86 @@ img
 	background-repeat: repeat	
 	width: 100%
 	height: inherit
-	z-index: -2
-
-#atual	
-	cursor: pointer
-	&:hover
-		color: $ativo
+	z-index: -1
 
 .info-container
 	width: 750px
 	margin: 0px auto
 
+#wdg_logo
+	width: 175px
+	margin: 25px
+	z-index: 1
+	position: absolute
+
 .logo
 	width: 600px
 	margin: 0px auto
-	padding-top: 50px
-
-.share
-	color: transparent
-
-#wdg_logo
-	position: fixed
-	top: 5px
-	position: fixed
-	z-index: -1
-	width: 175px
-	left: 50px
 
 #menu
-	float: right		
-#menu.active
-	position: fixed
-	right: 5px
-	top: 5px
-	z-index: -1
-#menu.lateral
-	margin: 0px 0px 30px 0px
-
+	margin: 5px
+	float: right
+	
 .box
-	background-color: $fundo
-	color: $laranja
-	border: 4px solid $laranja
+	background-color: #433e43
+	color: #b96b3b
+	border: 4px solid #b96b3b
 	float: left
 	height: 22px
 	min-width: 18px
 
 .boxr
 	line-height: 27px
-	background-color: $fundo
-	color: $laranja
-	border-right: 4px solid $laranja
+	background-color: #433e43
+	color: #b96b3b
+	border-right: 4px solid #b96b3b
 	float: left
 	padding: 0px 3px 0px 3px
 	height: inherit
 	min-width: 15px
 
-.boxb
-	border-top: 4px solid #B96B3B
-	margin-top: 3px
-	border-bottom: 4px solid #B96B3B
-	height: inherit	
-
 .box.in
 	display: none
 	width: 925px
 	height: 173px
-	overflow: auto
 
-.link
-	color: #fe8a2d	
-	text-decoration: none
-.link:hover
-	color: white	
 
 .caixa
+	height: 173px	
 	color: white
-	letter-spacing: 1px
-	font-size: 13px
-	line-height: 13pt
-.caixa.menor
-	border-bottom: 0px
-	padding: 8px 8px 12px 8px
+	font-size: 17px	
 
 #mapa
 	height: 100%
 	width: 100%
+	background-color: blue
 
 iframe
 	height: inherit
 	width: inherit
 	position: fixed
 	display: none	
-	z-index: -2
 
 .marcadores
-	margin: 5px	
+	margin: 7px	
 	padding-left: 12px
 
 .branco
 	color: white
 
-.lista
-	width: 386px
-	margin-top: 30px
-
 .coluna
 	float: left
 	width: 299px
-	padding-top: 2px
-
-#ensaio
-	position: absolute
-	display: none
-	left: 925px
 
 .titulo
+	color: white
 	letter-spacing: 1px
 	font-size: 15px
 	margin-top: 2px
-.titulo:hover
-	color: $ativo	
-	cursor: pointer
-
-.box-head
-	height: 22px
 
 .tag
 	padding: 4px	
 	letter-spacing: 1px
-	font-size: 15px
 
 .videos
 	width: 925px
@@ -269,11 +202,8 @@ iframe
 	cursor: pointer
 	height: 163px
 
-.abre
-	padding-left: 0px	
-
 #opaco
-	background-color: $background
+	background-color: #313138
 	opacity: 0.9
 	height: 100%
 
@@ -286,3 +216,4 @@ iframe
 #lateral	
 	width: 485px
 	float: right
+	display: none

@@ -1,4 +1,4 @@
-%img{:src=>"/assets/seta_d.png", :id=>"togglao", :fechado=>"1"}	
+%img{:src=>"/assets/setas/seta_d.png", :id=>"togglao", :fechado=>"1"}	
 
 :coffeescript
 	
@@ -22,7 +22,7 @@
 		$("#menu").css("float", "left")
 		
 		$(".abre").click -> abre($(this))
-		$(".item").click -> abre($(this).next().children())
+		$(".item").click -> abre($(this).next().children())		
 
 		$("#togglao").hover(
 			-> trocar "seta_d", "seta_d2"

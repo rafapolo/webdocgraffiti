@@ -3,19 +3,20 @@
 
 .container
 	.logo
-		= image_tag "/assets/wdg_logo_home.gif"
+		= image_tag "/assets/logos/wdg_logo_home.gif"
 	
-	%img.nav.esq{:src=>"/assets/seta_e.png"}
+	%img.nav.esq{:src=>"/assets/setas/seta_e.png"}
 	.info-container		
 		.info-box 
-			%span#info EPISODIO 2: DIA INTERNACIONAL DO GRAFFITI
-	%img.nav.dir{:src=>"/assets/seta_d.png"}
-	%img#ensaio{:src=>"/assets/wdg_ensaio.png"}
+			%span#atual EPISODIO 2: DIA INTERNACIONAL DO GRAFFITI
+	%img.nav.dir{:src=>"/assets/setas/seta_d.png"}
+	%a{:href=>"/player"}	
+		%img#ensaio{:src=>"/assets/wdg_ensaio.png"}
 
 
 #base
 	%img.base{:src=>"/assets/wdg_home_footer.png"}
-	%img.logos{:src=>"/assets/logos.png"}
+	%img.logos{:src=>"/assets/logos/logos.png"}
 
 :coffeescript
 	$ ->
@@ -25,12 +26,12 @@
 		$("img.logos").load -> $(window).resize()
 			
 		$("img.nav").hover(
-			-> $(this).attr "src", "/assets/seta_e2.png", 
-			-> $(this).attr "src", "/assets/seta_e.png"
+			-> $(this).attr "src", "/assets/setas/seta_e2.png", 
+			-> $(this).attr "src", "/assets/setas/seta_e.png"
 		)
 		$("img.nav.dir").hover(
-			-> $(this).attr "src", "/assets/seta_d2.png", 
-			-> $(this).attr "src", "/assets/seta_d.png"
+			-> $(this).attr "src", "/assets/setas/seta_d2.png", 
+			-> $(this).attr "src", "/assets/setas/seta_d.png"
 		)
 
 		$(".esq").click ->
@@ -61,7 +62,8 @@
 
 		$(window).resize ->
 			metade = ($(document).width()/2 - $(".logos").width()/2)
-			$('#ensaio').css("left", metade+750).fadeIn(400)
+			$('#ensaio').css("top", $(document).height()/2)
+			$('#ensaio').fadeIn(400)
 			$('.logos').css("margin-left", metade).fadeIn(400)
 			$(".info-box").css("left", $(document).width()/2 - $(".info-box").width()/2)
 

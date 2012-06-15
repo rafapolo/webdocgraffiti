@@ -22,6 +22,11 @@
 				window.open "http://www.facebook.com/sharer.php?u=http%3A//webdocgraffiti.com.br&t=WEBDOC%20GRAFFITI"
 				false
 
+		$('.share>img').hover(
+			-> $(this).attr("src", $(this).attr("src").replace("off", "on")),
+			-> $(this).attr("src", $(this).attr("src").replace("on", "off"))
+		)
+
 #menu.box
 	.boxr
 	.boxr
@@ -35,15 +40,15 @@
 	.boxr{:style=>"font-size:8px"}
 
 		%a.share{:href=>"#", :target=>"_blank"}
-			%img.icon{:src=>"/assets/wdg_ico_twit.gif"}			
+			%img.icon{:src=>"/assets/social/wdg_ico_twit_off.gif"}			
 
 		%a.share.facebook{:href=>"#", :target=>"_blank"}
-			%img.icon{:src=>"/assets/wdg_ico_face.gif"}
+			%img.icon{:src=>"/assets/social/wdg_ico_face_off.gif"}
 
 		%a.share#orkut{:href=>"#", :target=>"_blank"}
-			%img.icon{:src=>"/assets/wdg_ico_orkut.gif"}
+			%img.icon{:src=>"/assets/social/wdg_ico_orkut_off.gif"}
 
-		%a{:href=>"/rss", :target=>"_blank"}
-			%img.icon{:src=>"/assets/wdg_ico_rss.gif"}
+		%a.share{:href=>"/rss", :target=>"_blank"}
+			%img.icon{:src=>"/assets/social/wdg_ico_rss_off.gif"}
 
 	.boxr{:style=>"border-right: 0px"}

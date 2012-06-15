@@ -1,0 +1,38 @@
+= render :partial => "pages/fundo"
+= render :partial => "pages/menu"
+
+.container
+	.logo
+		= image_tag "/assets/wdg_logo_home.gif"
+	
+	%img.nav{:src=>"/assets/seta_e.png"}
+	.info-container		
+		.info-box EPISODIO 2: DIA INTERNACIONAL DO GRAFFITI
+	%img.nav.dir{:src=>"/assets/seta_d.png"}
+
+#base
+	%img.base{:src=>"/assets/wdg_home_footer.png"}
+	%img.logos{:src=>"/assets/logos.png"}
+
+:coffeescript
+	$ ->
+		$("body").css "overflow", "hidden" 
+			
+		$("img.nav").hover(
+			-> $(this).attr "src", "/assets/seta_e2.png", 
+			-> $(this).attr "src", "/assets/seta_e.png"
+		)
+		$("img.nav.dir").hover(
+			-> $(this).attr "src", "/assets/seta_d2.png", 
+			-> $(this).attr "src", "/assets/seta_d.png"
+		)
+
+		$(".nav.dir").click ->
+			$(".container").animate({width: 'toggle'})
+
+		$(window).resize ->
+			metade = ($(window).width()/2 - $(".logos").width()/2)
+			$('.logos').css("margin-left", metade)
+
+		$("img.logos").load ->
+			$(window).resize()
