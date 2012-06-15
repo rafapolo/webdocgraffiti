@@ -20,6 +20,13 @@
 		$("body").css "overflow", "hidden"	
 		$("#menu").css "margin-bottom", "30px"	
 		$("#menu").css("float", "left")
+
+		$(".box-head").click -> 
+			clicado = $(this).children().last().children()
+			$(".abre[fechado='1']").each(-> 
+				item = $(this)
+				abre(item) if $(item).attr("toggle") != clicado.attr("toggle")
+			)
 		
 		$(".abre").click -> abre($(this))
 		$(".item").click -> abre($(this).next().children())		
