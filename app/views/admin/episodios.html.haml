@@ -7,15 +7,15 @@
   %table.table.table-striped
     %thead
       %tr
-        %th Imagem
         %th Nome
         %th Descrição
         %th Videos
     %tbody
-      - @episodios.each do |e|    
+      - @episodios.each do |e|
         %tr
-          %td= e.imagem.url(:thumb)
-          %td= g.info
-          %td= g.imagems.count            
+          %td{:width=>"15%"}= e.titulo
+          %td= e.sinopse
+          %td= e.blocos.count
           %td= link_to "Editar", edit_episodio_path(e), :class=>"btn"          
-          %td= link_to "Excluir", episodio_path(g), :method=>:delete, :confirm => "Quer mesmo excluir este episódio com todos os vídeos?", :class=>"btn btn-danger"
+          %td= link_to "Excluir", episodio_path(e), :method=>:delete, :confirm => "Quer mesmo excluir este episódio com todos os vídeos?", :class=>"btn btn-danger"
+

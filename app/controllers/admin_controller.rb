@@ -8,22 +8,14 @@ class AdminController < ApplicationController
 		@episodios = Episodio.all
 	end
 
-	def arquivos
-	end
-
-	def blog
-	end
-
-	def contatos
-	end
-
-	def biografia
+	def mapas
+		redirect_to "/admin", notice: 'Mapas; Logo logo...'
 	end
 
 	private
 	def login
 		authenticate_or_request_with_http_basic do |user_name, password|
-      		user_name == "*admin*" && password == "*senha*"
+      		user_name == "*webdocadmin*" && password == "*webdocsenha*"
     	end
   	end	
 end

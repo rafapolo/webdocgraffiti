@@ -29,6 +29,10 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     arel (3.0.2)
+    aws-s3 (0.6.3)
+      builder
+      mime-types
+      xml-simple
     barista (1.2.1)
       coffee-script (~> 2.2)
     builder (3.0.0)
@@ -38,6 +42,7 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    cocaine (0.2.1)
     coderay (1.0.6)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -78,6 +83,11 @@ GEM
       jruby-pageant (>= 1.0.2)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
+    paperclip (2.7.0)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
+      cocaine (>= 0.0.2)
+      mime-types
     pg (0.13.2)
     polyglot (0.3.3)
     pry (0.9.9.6)
@@ -146,16 +156,19 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    xml-simple (1.1.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-s3
   barista
   capistrano
   coffee-rails (~> 3.2)
   haml-rails
   json
+  paperclip
   pg
   pry
   pry-nav

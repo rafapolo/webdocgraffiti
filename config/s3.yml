@@ -1,0 +1,4 @@
+development:
+  bucket: wdg-demo
+production:
+  bucket: wdg-demo

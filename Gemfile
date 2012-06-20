@@ -7,6 +7,9 @@ gem 'json'
 gem "haml-rails"
 gem "pg"
 gem 'therubyracer'
+gem 'paperclip'
+gem 'aws-sdk'
+gem 'aws-s3'
 
 group :development do
 	gem 'pry'
@@ -14,7 +17,7 @@ group :development do
 	gem 'pry-nav'
 	gem 'capistrano'
 	gem 'unicorn'
-  gem "rails-erd"
+  	gem "rails-erd"
 end	
 
 gem 'sass-rails', "  ~> 3.2"

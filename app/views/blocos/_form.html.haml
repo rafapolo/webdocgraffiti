@@ -14,6 +14,21 @@
     = f.text_field :titulo
   .field
     = f.label :info
-    = f.text_field :info
+    = f.text_area :info
+  .field
+    = f.label :hiper_in
+    = f.text_field :hiper_in
+  .field
+    = f.label :hiper_out
+    = f.text_field :hiper_out  
+  .field
+    = f.label :Imagem
+    = f.file_field :image  
+    %br
+    - if @bloco.episodio
+      = f.hidden_field :episodio_id, :value => @bloco.episodio.id
+    - else
+      = f.hidden_field :episodio_id, :value => @episodio_id
+    %br
   .actions
-    = f.submit 'Save'
+    = f.submit 'Salvar', :class=>"btn"

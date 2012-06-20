@@ -2,8 +2,10 @@
 %html{:lang => "pt-br"}
   %head
     %title WDG Admin
-    = javascript_include_tag "jquery171", "bootstrap"
+    = javascript_include_tag "jquery171", "bootstrap", "rails"
     = stylesheet_link_tag "bootstrap"
+    %style
+      textarea {width: 350px; height: 150px}
   %body
 
   .navbar
@@ -17,15 +19,9 @@
             %li
               = link_to "Mapas", "/admin/mapas"
 
-    - unless flash[:notice].blank?
-      .alert-message.info
-        = content_tag :div, flash[:notice]
-    - unless flash[:error].blank?
-      .alert-message.error
-        = content_tag :div, flash[:error]
-    - unless flash[:alert].blank?
-      .alert-message.warning
-        = content_tag :div, flash[:alert]
-       
-  .container{:style=>"margin: 30px"} 
+  - unless flash[:notice].blank?
+    .alert.alert-info 
+      = flash[:notice]
+      
+  #adm{:style=>"padding:30px"}     
     = yield

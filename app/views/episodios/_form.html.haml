@@ -11,9 +11,6 @@
     = f.text_field :titulo
   .field
     = f.label :sinopse
-    = f.text_area :sinopse, :style=>"width: 350px; height: 150px;"
-  .field
-    = f.label :creditos
-    = f.text_area :credito, :style=>"width: 350px; height: 150px;"
+    = f.text_area :sinopse
   .actions
-    = f.submit 'Save', :class=>"btn"
+    = f.submit 'Salvar', :class=>"btn"

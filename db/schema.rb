@@ -14,10 +14,16 @@
 ActiveRecord::Schema.define(:version => 20120131015950) do
 
   create_table "blocos", :force => true do |t|
+    t.integer "episodio_id"
     t.string   "video_url"
     t.string   "titulo"
-    t.string   "info"
-    t.text   "creditos"
+    t.text   "info"
+    t.integer "hiper_in"
+    t.integer "hiper_out"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"    
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,7 +58,6 @@ ActiveRecord::Schema.define(:version => 20120131015950) do
   create_table "episodios", :force => true do |t|
     t.string   "titulo"
     t.text   "sinopse"
-    t.text   "credito"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

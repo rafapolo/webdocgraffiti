@@ -1,34 +1,19 @@
 class BlocosController < ApplicationController
-  # GET /blocos
-  # GET /blocos.json
+  layout "admin"
+
   def index
     @blocos = Bloco.all
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @blocos }
+      format.html
     end
   end
 
-  # GET /blocos/1
-  # GET /blocos/1.json
-  def show
-    @bloco = Bloco.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @bloco }
-    end
-  end
-
-  # GET /blocos/new
-  # GET /blocos/new.json
   def new
     @bloco = Bloco.new
-
+    @episodio_id = params[:episodio_id]
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @bloco }
+      format.html
     end
   end
 
