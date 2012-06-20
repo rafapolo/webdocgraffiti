@@ -8,7 +8,6 @@ gem "haml-rails"
 gem "pg"
 gem 'therubyracer'
 gem 'paperclip'
-gem 'aws-sdk'
 gem 'aws-s3'
 
 group :development do
