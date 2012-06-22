@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20120131015950) do
     t.integer "episodio_id"
     t.string   "video_url"
     t.string   "titulo"
+    t.string   "urlized"
     t.text   "info"
     t.integer "hiper_in"
     t.integer "hiper_out"
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20120131015950) do
   create_table "episodios", :force => true do |t|
     t.string   "titulo"
     t.text   "sinopse"
+    t.string   "urlized"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

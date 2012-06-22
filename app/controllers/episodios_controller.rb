@@ -25,7 +25,7 @@ class EpisodiosController < ApplicationController
       if @episodio.save
         format.html { redirect_to edit_episodio_path(@episodio), notice: 'Ok' }
       else
-        format.html { redirect_to "/admin", notice: 'Error' }
+        format.html { redirect_to request.referer, notice: "Erro #{@episodio.errors.messages.inspect}" }
       end
     end
   end
@@ -36,7 +36,7 @@ class EpisodiosController < ApplicationController
       if @episodio.update_attributes(params[:episodio])
         format.html { redirect_to "/admin", notice: 'Ok' }
       else
-        format.html { redirect_to "/admin", notice: 'Error' }
+        format.html { redirect_to "/admin", notice: "Erro #{@episodio.errors.messages.inspect}" }
       end
     end
   end

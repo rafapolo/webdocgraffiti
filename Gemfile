@@ -9,6 +9,7 @@ gem "pg"
 gem 'therubyracer'
 gem 'paperclip'
 gem 'aws-s3'
+gem 'aws-sdk'
 
 group :development do
 	gem 'pry'
