@@ -76,45 +76,60 @@
 						%span.branco
 							NUNCA
 
-	- c = @episodios.count+1
-	- @episodios.each do |e|
-		- c-=1
-		.box{:style=>"margin-top: 20px"}
-			.box-head
-				.boxr{:style=>"font-size: 21px; width: 31px;"} 
-					= count c
-				.boxr.item 
-					= e.titulo
-				.boxr{:style=>"border-right: 0px; width: 19px;"}
-					%img.abre{:src=>"/assets/setas/seta_pqn.png", :toggle=>"#sinopse#{e.id}", :fechado=>"0"}	
-		.box.in{:style=>"border-top: 0px"}
-			%p.caixa{:style=>"border-bottom: 0px; padding: 8px", :id=>"sinopse#{e.id}"}
-				= e.sinopse	
-		.videos.box.caixa{:style=>"margin-bottom: 20px"}
-			- x = 0
-			- e.blocos.each do |b|
-				- if x==0
-					.video{:style=>"padding-left: 9px"}
-						%a{:href=>"/bloco/#{b.urlized}"}
-							= s3_image b.image.url(:thumb)
-							.titulo 
-								= b.titulo
-				- else
-					- if x==4
-						.ensaio
-							.video{:style=>"border-left: 1px; padding-left: 8px"}
-								%a{:href=>"/bloco/#{b.urlized}"}
-									= s3_image b.image.url(:thumb)
-									.titulo 
-										= b.titulo
-					- else
-						.video
-							%a{:href=>"/bloco/#{b.urlized}"}
-								= s3_image b.image.url(:thumb)
-								.titulo 
-									= b.titulo					
-				- x+=1
+	.box{:style=>"margin-top: 20px"}
+		.box-head
+			.boxr{:style=>"font-size: 21px; width: 31px;"} 02
+			.boxr.item UMA CIDADE CHEIA DE CORES
+			.boxr{:style=>"border-right: 0px; width: 19px;"}
+				%img.abre{:src=>"/assets/setas/seta_pqn.png", :toggle=>"#sinopse1", :fechado=>"0"}	
+	.box.in{:style=>"border-top: 0px"}
+		%p#sinopse1.caixa{:style=>"border-bottom: 0px; padding: 8px"}
+			texto
+	
+	.videos.box.caixa{:style=>"margin-bottom: 20px"}
+		.video{:style=>"padding-left: 9px"}
+			%img{:src=>"/assets/vid.jpg"}
+			.titulo PRIMEIRA PARTE
+		.video
+			%img{:src=>"/assets/vid.jpg"}
+			.titulo SEGUNDA PARTE				
+		.video
+			%img{:src=>"/assets/vid.jpg"}
+			.titulo MAIS UMA
+		.video
+			%img{:src=>"/assets/vid.jpg"}
+			.titulo OUTRA PARTE						
+		.ensaio
+			.video{:style=>"border-left: 1px; padding-left: 8px"}
+				%img{:src=>"/assets/vid.jpg"}
+				.titulo OUTRA PARTE				
 
+	.box
+		.box-head
+			.boxr{:style=>"font-size: 21px; width: 31px; text-align: center"} 01
+			.boxr.item BOMBING EM SAMPA
+			.boxr{:style=>"border-right: 0px; width: 19px;"}
+				%img.abre{:src=>"/assets/setas/seta_pqn.png", :toggle=>"#sinopse2", :fechado=>"0"}
+	.box.in{:style=>"border-top: 0px"}
+		%p#sinopse2.caixa{:style=>"border-bottom: 0px; padding: 8px"}
+			texto
+	.videos.box.caixa{:style=>"margin-bottom: 20px"}
+		.video{:style=>"padding-left: 9px"}
+			%img{:src=>"/assets/vid.jpg"}
+			.titulo PRIMEIRA PARTE
+		.video
+			%img{:src=>"/assets/vid.jpg"}
+			.titulo SEGUNDA PARTE				
+		.video
+			%img{:src=>"/assets/vid.jpg"}
+			.titulo MAIS UMA
+		.video
+			%img{:src=>"/assets/vid.jpg"}
+			.titulo OUTRA PARTE						
+		.ensaio
+			.video{:style=>"border-left: 1px; padding-left: 8px"}
+				%img{:src=>"/assets/vid.jpg"}
+				.titulo OUTRA PARTE									
 
 :coffeescript
 
@@ -129,11 +144,12 @@
 			seta.rotate({animateTo:0})	
 
 	$ ->
+		$(".video").click -> window.location.href="/player"	
 		$('.container').fadeIn(500)
 		$("#menu").addClass "active"		
 		$(".item").click -> abre($(this).next().children())
 
-		$('.video>a>img').hover(
+		$('.video>img').hover(
 			-> $(this).next().addClass "ativo"
 			-> $(this).next().removeClass "ativo"
 		)

@@ -1,6 +1,4 @@
 development:
   bucket: wdg-demo
-  access_key_id: AKIAI4YLMTA5YTCDQYVQ
-  secret_access_key: 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
 production:
   bucket: wdg-demo

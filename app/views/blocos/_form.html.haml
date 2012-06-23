@@ -7,7 +7,7 @@
           %li= msg
 
   .field
-    = f.label :youtube_link
+    = f.label :video_url
     = f.text_field :video_url
   .field
     = f.label :titulo
@@ -23,9 +23,8 @@
     = f.text_field :hiper_out  
   .field
     = f.label :Imagem
-    = f.file_field :image      
+    = f.file_field :image  
     %br
-    = s3_image @bloco.image.url(:thumb) if @bloco.id
     - if @bloco.episodio
       = f.hidden_field :episodio_id, :value => @bloco.episodio.id
     - else

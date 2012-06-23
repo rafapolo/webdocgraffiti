@@ -1,28 +1,26 @@
+= link_to "Novo Bloco", new_bloco_path, :style=>"float:right", :class=>"btn btn-primary"
+
 #left{:style=>"float: left"}
 	%h1 Editar Episódio
 	%br
 	= render 'form'
 
-- count = @episodio.blocos.count
-#right{:style=>"float: left; padding-left:40px; width: 55%"}
-	%h1 Blocos	
-	- if count > 0
+#right{:style=>"float: left; padding-left:40px"}
+	%h1 Blocos
+	- if @episodio.blocos.count > 0
 		%table.table.table-striped
-			%thead
+		%thead
+			%tr
+				%th Imagem
+				%th Titulo
+				%th Info
+		%tbody
+			- @episodio.blocos.each do |b|
 				%tr
-					%th Imagem
-					%th Titulo
-					%th
-					%th
-			%tbody
-				- @episodio.blocos.each do |b|
-					%tr
-						%td{:width=>"15%"}= s3_image b.image.url(:thumb)
-						%td= b.titulo					
-						%td= link_to "Editar", edit_bloco_path(b), :class=>"btn"
-						%td= link_to "Excluir", bloco_path(b), :method=>:delete, :confirm => "Quer mesmo excluir este episódio com todos os blocos?", :class=>"btn btn-danger"
+					%td= b.titulo
+					%td{:width=>"15%"}= b.imagem.url(:thumb)
+					%td= e.info
+					%td= link_to "Editar", edit_episodio_path(e), :class=>"btn"          
+					%td= link_to "Excluir", episodio_path(e), :method=>:delete, :confirm => "Quer mesmo excluir este episódio com todos os vídeos?", :class=>"btn btn-danger"
 	- else
 		%p Vazio. Adicione.
-
-- if count<5
-	= link_to "Novo Bloco", new_bloco_path + "?episodio_id=#{@episodio.id}", :style=>"float:right", :class=>"btn btn-primary"		
