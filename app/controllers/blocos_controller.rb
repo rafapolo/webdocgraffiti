@@ -10,59 +10,58 @@ class BlocosController < ApplicationController
   end
 
   def new
-    @bloco = Bloco.new
+    @bloco = Bloco.new    
     @episodio_id = params[:episodio_id]
     respond_to do |format|
       format.html
     end
   end
 
-  # GET /blocos/1/edit
   def edit
     @bloco = Bloco.find(params[:id])
   end
 
-  # POST /blocos
-  # POST /blocos.json
   def create
-    @bloco = Bloco.new(params[:bloco])
-
+    bloco = params[:bloco]
+    tags = bloco[:tags]
+    bloco.delete(:tags)
+    @bloco = Bloco.new(bloco)
     respond_to do |format|
       if @bloco.save
-        format.html { redirect_to @bloco, notice: 'Capitulo was successfully created.' }
-        format.json { render json: @bloco, status: :created, location: @bloco }
+        tags.split(",").each do |t|
+          @bloco.tags << Tag.find_or_create_by_name(t.strip)          
+        end
+        format.html { redirect_to "/episodios/#{@bloco.episodio.id}/edit", notice: 'Bloco criado' }
       else
-        format.html { render action: "new" }
-        format.json { render json: @bloco.errors, status: :unprocessable_entity }
+        flash[:error] = true
+        format.html { redirect_to :back, notice: "#{@bloco.errors.messages.inspect}" }
       end
     end
   end
 
-  # PUT /blocos/1
-  # PUT /blocos/1.json
   def update
     @bloco = Bloco.find(params[:id])
-
     respond_to do |format|
+      bloco = params[:bloco]
+      tags = bloco[:tags]
+      bloco.delete(:tags)
       if @bloco.update_attributes(params[:bloco])
-        format.html { redirect_to @bloco, notice: 'Capitulo was successfully updated.' }
-        format.json { head :ok }
+        @bloco.tags.destroy_all
+        tags.split(",").each do |t|
+          @bloco.tags << Tag.find_or_create_by_name(t.strip)          
+        end
+        Tag.all.each{|t| t.destroy if t.blocos.empty?} # remove as sem uso
+        format.html { redirect_to "/episodios/#{@bloco.episodio.id}/edit", notice: 'Bloco atualizado.' }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @bloco.errors, status: :unprocessable_entity }
+        flash[:error] = true
+        format.html { redirect_to request.referer, notice: "#{@bloco.errors.messages.inspect}" }
       end
     end
   end
 
-  # DELETE /blocos/1
-  # DELETE /blocos/1.json
   def destroy
     @bloco = Bloco.find(params[:id])
     @bloco.destroy
-
-    respond_to do |format|
-      format.html { redirect_to blocos_url }
-      format.json { head :ok }
-    end
+    redirect_to request.referer    
   end
 end

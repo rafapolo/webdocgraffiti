@@ -27,6 +27,10 @@
 			-> $(this).attr("src", $(this).attr("src").replace("on", "off"))
 		)
 
+		$.each($('.icon'), ->
+			preload = $('<img />').attr('src', $(this).attr('src').replace('off', 'on'));
+		)
+
 #menu.box
 	.boxr
 	.boxr

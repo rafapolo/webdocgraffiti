@@ -43,6 +43,7 @@ img
 	font-size: 21px
 	letter-spacing: 1px
 	cursor: default
+	text-transform: uppercase
 	&:hover
 		color: $ativo
 
@@ -54,7 +55,7 @@ img
 	opacity: 0.85
 
 .base
-	position: absolute
+	position: fixed
 	bottom: 0px
 	height: 100px
 	width: 100%
@@ -83,6 +84,9 @@ img
 	border-left: 4px solid $laranja
 	float: right
 	height: 100%
+.ensaio>.video
+	border-left: 1px
+	padding-left: 8px
 
 .nav
 	position: absolute
@@ -108,6 +112,7 @@ img
 	
 #base
 	margin: 0px auto
+	position: absolute
 
 #fundo
 	height: 100%
@@ -226,6 +231,8 @@ iframe
 .marcadores
 	margin: 5px	
 	padding-left: 12px
+.marcadores>table>tbody>tr>td
+	width: 220px
 
 .branco
 	color: white
@@ -240,14 +247,14 @@ iframe
 	padding-top: 2px
 
 #ensaio
-	position: absolute
+	position: fixed
 	display: none
-	left: 925px
 
 .titulo
 	letter-spacing: 1px
 	font-size: 15px
 	margin-top: 2px
+	text-transform: uppercase
 .titulo:hover
 	color: $ativo	
 	cursor: pointer
@@ -255,10 +262,14 @@ iframe
 .box-head
 	height: 22px
 
+#tags
+	padding-bottom: 8px
+	border-top: 0px
 .tag
 	padding: 4px	
 	letter-spacing: 1px
 	font-size: 15px
+	text-transform: uppercase
 
 .videos
 	width: 925px
@@ -269,7 +280,11 @@ iframe
 	width: 173px
 	float: left
 	cursor: pointer
+	opacity: 1
 	height: 163px
+.video>a
+	color: inherit
+	text-decoration: inherit
 
 .abre
 	padding-left: 0px	

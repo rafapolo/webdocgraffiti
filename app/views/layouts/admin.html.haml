@@ -2,6 +2,7 @@
 %html{:lang => "pt-br"}
   %head
     %title WDG Admin
+    %link{:type => "image/x-icon", :rel=>"icon", :href=>"/assets/favicon.ico"}
     = javascript_include_tag "jquery171", "bootstrap", "rails"
     = stylesheet_link_tag "bootstrap"
     %style
@@ -20,8 +21,12 @@
               = link_to "Mapas", "/admin/mapas"
 
   - unless flash[:notice].blank?
-    .alert.alert-info 
-      = flash[:notice]
+    - if flash[:error]
+      .alert.alert-error 
+        = flash[:notice]
+    - else
+      .alert.alert-info 
+        = flash[:notice]
       
   #adm{:style=>"padding:30px"}     
     = yield
