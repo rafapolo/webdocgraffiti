@@ -1,5 +1,8 @@
 = javascript_include_tag "jquery.rotate"
 
+#fb-root
+= javascript_include_tag "http://connect.facebook.net/pt_BR/all.js#xfbml=1&appId=380422978692298"
+
 #mapa
 	%iframe{:allowfullscreen => "", :frameborder => "0", :height => "100%", :src => "http://www.youtube.com/embed/2-V9knhF6RU", :width => "100%"}
 
@@ -58,10 +61,9 @@
 					.boxr.item{:style=>"width: 330px"} COMENTÁRIOS
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
 						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".b4", :fechado=>"0"}		
-			.box.in{:style=>"border-top: 0px; width: 386px"}
-				%p.caixa.menor.b4
-					#fb-root
-					.fb-comments{"data-href"=>"http://example.com", "data-num-posts"=>2, "data-width"=>340, "data-colorscheme"=>"dark"}
+			.box.in{:style=>"border-top: 0px; width: 386px; display:block"}
+				%p.caixa.menor.b4					
+					%fb:comments{:href=>"http://wdg.heroku.com/player"}
 
 :coffeescript
 	$ ->
