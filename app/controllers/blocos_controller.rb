@@ -1,14 +1,6 @@
 class BlocosController < ApplicationController
   layout "admin"
 
-  def index
-    @blocos = Bloco.all
-
-    respond_to do |format|
-      format.html
-    end
-  end
-
   def new
     @bloco = Bloco.new    
     @episodio_id = params[:episodio_id]

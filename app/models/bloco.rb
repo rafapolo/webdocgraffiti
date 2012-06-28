@@ -21,8 +21,14 @@ class Bloco < ActiveRecord::Base
 		self.urlized = self.titulo.urlize
 	end
 
-end
+	after_create :notifica
+	def notifica
+		page = Koala::Facebook::GraphAPI.new(Admin.token)
+		path = "http://webdocgraffiti.com.br/#{self.episodio.urlized}/#{self.urlized}"
+		page.put_object('WebDocGraffiti', 'feed', :message => "Novo Video: #{self.titulo} em #{self.episodio.titulo} > #{path}")
+	end
 
+end
 
 
 

@@ -14,8 +14,12 @@ Webdoc::Application.routes.draw do
   match "/info" => "pages#info"
   match "/player" => "pages#player"
   
-  match "/admin" => "admin#episodios"
+  match "/oauth" => "admin#oauth"
+
+  match "/admin" => "admin#episodios", :as => :admin
 	match "/admin/mapas" => "admin#mapas"
+
+  match "/:episodio/:bloco" => "pages#player"
   
   root :to => 'pages#index'
 end
