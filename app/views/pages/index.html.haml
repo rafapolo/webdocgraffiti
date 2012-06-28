@@ -6,15 +6,22 @@
 	.logo
 		= image_tag "/assets/logos/wdg_logo_home.gif"
 	
-	%img.nav.esq{:src=>"/assets/setas/seta_e.png"}
+	- if false # previous
+		%img.nav.esq{:src=>"/assets/setas/seta_e.png"}
+	
 	.info-container		
 		.info-box 
 			%span
-				%a#atual{:href=>"/player"}
-					EPISODIO 2: DIA INTERNACIONAL DO GRAFFITI
-	%img.nav.dir{:src=>"/assets/setas/seta_d.png"}
-	%a{:href=>"/player"}	
-		%img#ensaio{:src=>"/assets/wdg_ensaio.png"}
+				- if b = Bloco.last
+					%a#atual{:href=>"/player"}
+						#{b.episodio.titulo}: #{b.episodio.titulo}
+	
+	- if false # previous
+		%img.nav.dir{:src=>"/assets/setas/seta_d.png"}
+	
+	- if b = @b && e = b.episodio.ensaio?
+		%a{:href=>"/player"}	
+			%img#ensaio{:src=>"/assets/wdg_ensaio.png"}
 
 #base
 	%img.base{:src=>"/assets/wdg_home_footer.png"}

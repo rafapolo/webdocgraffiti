@@ -12,5 +12,11 @@
   .field
     = f.label :sinopse
     = f.text_area :sinopse
+
+  .field
+    = f.label :Capa
+    = f.file_field :capa
+    = s3_image @episodio.capa.url(:thumb) if @episodio.id
+  %br
   .actions
     = f.submit 'Salvar', :class=>"btn"

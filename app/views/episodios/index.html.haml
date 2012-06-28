@@ -1,45 +1,26 @@
-<<<<<<< HEAD
-%h1 Listing episodios
-
-%table
-  %tr
-    %th Resumo
-    %th Sinopse
-    %th Titulo
-=======
 %h1 Episodios
 
-%table
-  %tr
-    %th Titulo
-    %th Sinopse
-    %th Resumo
->>>>>>> c8c5b1115815bf373e07331566c176a09fcef29b
-    %th
-    %th
-    %th
-
-  - @episodios.each do |episodio|
+- count = @episodios.count
+- if count > 0
+  %table
     %tr
-<<<<<<< HEAD
-      %td= episodio.resumo
-      %td= episodio.sinopse
-      %td= episodio.titulo
-      %td= link_to 'Show', episodio
-      %td= link_to 'Edit', edit_episodio_path(episodio)
-      %td= link_to 'Destroy', episodio, :confirm => 'Are you sure?', :method => :delete
+      %th Titulo
+      %th Sinopse
+      %th Resumo
+      %th
+      %th
+      %th
+
+    - @episodios.each do |episodio|
+      %tr
+        %td= link_to episodio.titulo, episodio
+        %td= episodio.sinopse
+        %td= episodio.resumo
+        %td= link_to 'Edita', edit_episodio_path(episodio)
+        %td= link_to 'Exclui', episodio, :confirm => 'mesmo?', :method => :delete
+  %br
+- else
+  %p Vazio. Adicione.
 
 %br
-
-= link_to 'New Episodio', new_episodio_path
-=======
-      %td= link_to episodio.titulo, episodio
-      %td= episodio.sinopse
-      %td= episodio.resumo
-      %td= link_to 'Edita', edit_episodio_path(episodio)
-      %td= link_to 'Exclui', episodio, :confirm => 'mesmo?', :method => :delete
-
-%br
-
-= link_to 'Novo Episodio', new_episodio_path
->>>>>>> c8c5b1115815bf373e07331566c176a09fcef29b
+= link_to 'Novo Episodio', new_episodio_path, :class=>"btn btn-primary"

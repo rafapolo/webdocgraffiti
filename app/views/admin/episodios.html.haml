@@ -1,9 +1,7 @@
 #admin
-  %h1{:style=>"float: left"} Episódios
+  %h1 Episódios
   %br  
   - if @episodios.count > 0
-    %br  
-    %br  
     %table.table.table-striped
       %thead
         %tr
@@ -14,11 +12,12 @@
       %tbody
         - @episodios.each do |e|
           %tr
-            %td{:width=>"15%"}= e.titulo
+            %td{:width=>"200px"}= e.titulo
             %td= e.sinopse
             %td{:style=>"text-align:center"}= e.blocos.count
             %td{:style=>"width:80px"}= e.blocos.last.created_at.strftime("%v") if e.blocos.last
             %td= link_to "Editar", edit_episodio_path(e), :class=>"btn"          
             %td= link_to "Excluir", episodio_path(e), :method=>:delete, :confirm => "Quer mesmo excluir este episódio com todos os vídeos?", :class=>"btn btn-danger"
-
+  - else
+    %p Vazio. Adicione.
 = link_to "Novo Episódio", new_episodio_path, :class=>"btn btn-primary", :style=>"float:right"
