@@ -17,4 +17,8 @@ class Episodio < ActiveRecord::Base
 	def urlize
 		self.urlized = self.titulo.urlize
 	end
+
+	def self.ensaio?
+		self.blocos.count > 4 ? self.blocos.last : nil
+	end
 end
