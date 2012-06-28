@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 require './lib/extend_string'
 require 'rails/all'
+require 'openssl'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line

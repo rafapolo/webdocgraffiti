@@ -1,31 +1,29 @@
 = form_for @bloco do |f|
   .field
-    = f.label :youtube_link
-    = f.text_field :video_url
-  .field
     = f.label :titulo
     = f.text_field :titulo
+  .field
+    = f.label :youtube_link
+    = f.text_field :video_url  
   .field
     = f.label :info
     = f.text_area :info
   .field
-    = f.label :hiper_in
-    = f.text_field :hiper_in
-  .field
-    = f.label "tags (separadas por vírgulas)"
-    = f.text_field :tags, :value=> csv_tags(@bloco)
+    = f.label "hiper_in (entrada do hiperbalão)"
+    = f.text_field :hiper_in  
   .field
     = f.label :hiper_out
     = f.text_field :hiper_out  
   .field
+    = f.label "tags (separadas por vírgulas)"
+    = f.text_field :tags, :value=> csv_tags(@bloco)
+  .field
     = f.label :Imagem
     = f.file_field :image      
     %br
-    = s3_image @bloco.image.url(:thumb) if @bloco.id
-    - if @bloco.episodio
-      = f.hidden_field :episodio_id, :value => @bloco.episodio.id
-    - else
-      = f.hidden_field :episodio_id, :value => @episodio_id
-  %br
+    = s3_image @bloco.image.url(:thumb) if @bloco.id    
+    = f.hidden_field :episodio_id, :value => @bloco.episodio ? @bloco.episodio.id : @episodio_id
+    %br
+    %br
   .actions
     = f.submit 'Salvar', :class=>"btn"

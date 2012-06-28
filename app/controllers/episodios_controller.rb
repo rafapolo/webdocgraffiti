@@ -17,6 +17,13 @@ class EpisodiosController < ApplicationController
 
   def edit
     @episodio = Episodio.find(params[:id])
+    begin
+      graph = Koala::Facebook::API.new(Admin.token)
+      @me = graph.get_object("me")
+    rescue Koala::Facebook::APIError
+      @me = false
+    end
+    
   end
 
   def create

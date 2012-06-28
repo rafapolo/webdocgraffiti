@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20120131015950) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+  add_index :blocos, :urlized
 
   create_table "episodios", :force => true do |t|
     t.string   "titulo"
@@ -29,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20120131015950) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end  
-
+  add_index :episodios, :urlized
 
   create_table "blocos_tags", :id => false, :force => true do |t|
     t.belongs_to   "bloco"
@@ -50,6 +51,10 @@ ActiveRecord::Schema.define(:version => 20120131015950) do
 
   create_table "tags", :force => true do |t|
     t.string   "name"
+  end
+
+  create_table "admins", :force => true do |t|
+    t.string   "token"
   end
 
 end

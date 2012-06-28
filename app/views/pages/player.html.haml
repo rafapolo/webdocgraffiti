@@ -1,7 +1,10 @@
 = javascript_include_tag "jquery.rotate"
 
-#mapa
-	%iframe{:allowfullscreen => "", :frameborder => "0", :height => "100%", :src => "http://www.youtube.com/embed/2-V9knhF6RU", :width => "100%"}
+#fb-root
+= javascript_include_tag "http://connect.facebook.net/pt_BR/all.js#xfbml=1&appId=380422978692298"
+
+#mapa	
+	//%iframe{:allowfullscreen => "", :frameborder => "0", :height => "100%", :src => "http://www.youtube.com/embed/2-V9knhF6RU", :width => "100%"}
 
 #lateral	
 	#opaco
@@ -11,12 +14,13 @@
 			.box{:style=>"width: 386px"}
 				.box-head
 					.boxr
-					.boxr.item{:style=>"width: 330px"} UMA CIDADE CHEIA DE CORES
+					.boxr.item{:style=>"width: 330px"} 
+						= @bloco.titulo
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
 						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".b1", :fechado=>"0"}		
 			.box.in{:style=>"border-top: 0px; width: 386px;"}
 				%p.caixa.menor.b1 
-					Grafite ou grafito[1] (do italiano graffiti, plural de graffito) é o nome dado às inscrições feitas em paredes, desde o Império Romano. Considera-se grafite uma inscrição caligrafada ou um desenho pintado ou gravado sobre um suporte que não é normalmente previsto para esta finalidade. Por muito tempo visto como um assunto irrelevante ou mera contravenção, atualmente o grafite já é considerado como forma de expressão incluída no âmbito das artes visuais,[2] mais especificamente, da street art ou arte urbana - em que o artista aproveita os espaços públicos, criando uma linguagem intencional para interferir na cidade. Entretanto ainda há quem não concorde, comparando o grafite com a pichação.
+					= spc @bloco.info
 					%br
 					%br
 					%span{:style=>"font-size: 16px; padding-bottom: 10px;"}
@@ -33,7 +37,7 @@
 			.box{:style=>"width: 386px; margin-top: 30px;"}				
 				.box-head
 					.boxr
-					.boxr.item{:style=>"width: 330px"} EPISÓDIO 02
+					.boxr.item{:style=>"width: 330px"} = @bloco.episodio.titulo
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
 						%img.abre.aberto{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".videos-box", :fechado=>"1"}		
 			.box.in{:style=>"border-top: 0px; width: 386px; display: block; height: 346px; color: white"}
@@ -57,11 +61,10 @@
 					.boxr
 					.boxr.item{:style=>"width: 330px"} COMENTÁRIOS
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
-						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".b4", :fechado=>"0"}		
-			.box.in{:style=>"border-top: 0px; width: 386px"}
-				%p.caixa.menor.b4
-					#fb-root
-					.fb-comments{"data-href"=>"http://example.com", "data-num-posts"=>2, "data-width"=>340, "data-colorscheme"=>"dark"}
+						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".comment", :fechado=>"0"}		
+			.box.in{:style=>"border-top: 0px; width: 386px; display:block; height: 350px"}
+				%iframe.comment{:src=>"https://www.facebook.com/plugins/comments.php?api_key=380422978692298&channel_url=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D8%23cb%3Df1fad68578%26origin%3Dhttp%253A%252F%252Fwdg.heroku.com%252Ff2957f35f%26domain%3Dwdg.heroku.com%26relation%3Dparent.parent&href=http%3A%2F%2Fwdg.heroku.com%2Fplayer&locale=pt_BR&numposts=5&sdk=joey&colorscheme=dark"}
+					
 
 :coffeescript
 	$ ->

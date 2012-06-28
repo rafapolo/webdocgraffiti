@@ -11,6 +11,10 @@ gem 'paperclip'
 gem 'aws-s3'
 gem 'aws-sdk'
 
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'koala'
+
 group :development do
 	gem 'pry'
 	gem 'pry-remote'

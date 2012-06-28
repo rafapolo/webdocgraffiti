@@ -1,0 +1,3 @@
+:javascript
+	var token = (window.location.hash.match('#access_token=(\.+)&')[1])
+	window.location = '/oauth?token='+token

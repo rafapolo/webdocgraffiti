@@ -1,5 +1,5 @@
 = javascript_include_tag "jquery.rotate"
-
+= javascript_include_tag "videos"
 = render :partial => "pages/fundo"
 = render :partial => "pages/menu"
 
@@ -24,11 +24,9 @@
 								%input{:type=>"checkbox", :checked=>true}			
 									%span.branco= t.name
 						- c+=1
-						- if c == 4
+						- if c % 4
 							- c = 0
 							%tr
-
-			
 
 	- c = @episodios.count+1
 	- @episodios.each do |e|
@@ -44,13 +42,13 @@
 						%img.abre{:src=>"/assets/setas/seta_pqn.png", :toggle=>"#sinopse#{e.id}", :fechado=>"0"}	
 			.box.in{:style=>"border-top: 0px;"}
 				%p.caixa{:style=>"border-bottom: 0px; padding: 8px", :id=>"sinopse#{e.id}"}
-					= e.sinopse	
+					= spc e.sinopse
 			.videos.box.caixa{:style=>"margin-bottom: 20px"}
 				- x = 0
 				- e.blocos.each do |b|
 					- if x==0
 						.video{:style=>"padding-left: 9px", :tags=>csv_tags(b)}
-							%a{:href=>"/bloco/#{b.urlized}"}
+							%a{:href=> bloco_path(b)}
 								= s3_image b.image.url(:thumb)
 								.titulo 
 									= b.titulo
@@ -58,62 +56,14 @@
 						- if x==4
 							.ensaio
 								.video{:tags=>csv_tags(b)}
-									%a{:href=>"/bloco/#{b.urlized}"}
+									%a{:href=>bloco_path(b)}
 										= s3_image b.image.url(:thumb)
 										.titulo 
 											= b.titulo
 						- else
 							.video{:tags=>csv_tags(b)}
-								%a{:href=>"/bloco/#{b.urlized}"}
+								%a{:href=>bloco_path(b)}
 									= s3_image b.image.url(:thumb)
 									.titulo 
 										= b.titulo					
 					- x+=1
-
-
-:coffeescript
-
-	abre = (id) ->
-		seta = $(id)
-		$(seta.attr("toggle")).parent().slideToggle()		
-		if seta.attr("fechado") == "0"
-			seta.attr("fechado", "1")
-			seta.rotate({animateTo:90})
-		else
-			seta.attr("fechado", "0")
-			seta.rotate({animateTo:0})	
-
-	$ ->
-		$('.tag>input').on('change', ->
-			input = $(this).next()
-			tag = input.text()
-			$('.video').each( ->
-				video = $(this)
-				tags = $(this).attr('tags').split(', ')
-				$.each(tags, (x, i) -> 
-					if i==tag
-						o = video.css('opacity')
-						if o == '1'
-							if !input.is(":checked")
-								video.css('opacity', 0.5)
-						else
-							if input.is(":checked")
-								video.css('opacity', 1)
-						
-						
-				)
-			)
-		)
-		$('.container').fadeIn(500)
-		$("#menu").addClass "active"		
-		ceil = Math.ceil($(".tag").length / 4)
-		$("#tags").css("height", (ceil * 22) + 13)
-
-		$(".item").click -> abre($(this).next().children())		
-
-		$('.video>a>img').hover(
-			-> $(this).next().addClass "ativo"
-			-> $(this).next().removeClass "ativo"
-		)
-
-		$('.abre').click -> abre($(this))
