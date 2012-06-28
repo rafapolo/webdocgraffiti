@@ -5,7 +5,7 @@ class Episodio < ActiveRecord::Base
   
   validates_presence_of :titulo, :sinopse
 
-  before_create :urlize
+  before_save :urlize
 	def urlize
 		self.urlized = self.titulo.urlize
 	end

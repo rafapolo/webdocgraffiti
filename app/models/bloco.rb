@@ -2,6 +2,7 @@ class Bloco < ActiveRecord::Base
 
 	belongs_to :episodio
 	has_many :georef
+	has_many :hiperbalons, :dependent => :destroy 
 	has_and_belongs_to_many :tags
 
 	has_attached_file :image,
@@ -16,7 +17,7 @@ class Bloco < ActiveRecord::Base
 	validates_presence_of :info, :video_url, :titulo, :image_file_name
 	validates_uniqueness_of :titulo
 
-	before_create :urlize
+	before_save :urlize
 	def urlize
 		self.urlized = self.titulo.urlize
 	end

@@ -1,10 +1,10 @@
-= javascript_include_tag "jquery.rotate"
+= javascript_include_tag "jquery.rotate", "player"
 
 #fb-root
 = javascript_include_tag "http://connect.facebook.net/pt_BR/all.js#xfbml=1&appId=380422978692298"
 
 #mapa	
-	//%iframe{:allowfullscreen => "", :frameborder => "0", :height => "100%", :src => "http://www.youtube.com/embed/2-V9knhF6RU", :width => "100%"}
+	%iframe{:allowfullscreen => "", :frameborder => "0", :height => "100%", :src => @bloco.video_url, :width => "100%"}
 
 #lateral	
 	#opaco
@@ -15,7 +15,7 @@
 				.box-head
 					.boxr
 					.boxr.item{:style=>"width: 330px"} 
-						= @bloco.titulo
+						= min @bloco.titulo
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
 						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".b1", :fechado=>"0"}		
 			.box.in{:style=>"border-top: 0px; width: 386px;"}
@@ -23,37 +23,43 @@
 					= spc @bloco.info
 					%br
 					%br
-					%span{:style=>"font-size: 16px; padding-bottom: 10px;"}
-						tags: 
-						%a.link{:href=>"#"}
-							artista
-						, 	
-						%a.link{:href=>"#"}
-							galo
-						,	
-						%a.link{:href=>"#"}
-							processo
+					%span{:style=>"font-size: 13px; padding-bottom: 10px;"}
+						tags:
+						- tags = @bloco.tags
+						- tags.each do |t|
+							= link_to t.name, t, :class=>"link"
+							= ", " if tags.last != t
 
 			.box{:style=>"width: 386px; margin-top: 30px;"}				
 				.box-head
 					.boxr
-					.boxr.item{:style=>"width: 330px"} = @bloco.episodio.titulo
+					.boxr.item{:style=>"width: 330px"} 
+						= min @bloco.episodio.titulo
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
 						%img.abre.aberto{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".videos-box", :fechado=>"1"}		
-			.box.in{:style=>"border-top: 0px; width: 386px; display: block; height: 346px; color: white"}
+			.box.in{:style=>"border-top: 0px; width: 386px; display: block; height: inherit; color: white"}
+				- blocos = @bloco.episodio.blocos
 				.videos-box
-					.video{:style=>"padding-left: 16px; opacity: 0.3;"}
-						%img{:src=>"/assets/vid.jpg"}
-						.titulo PRIMEIRA PARTE
-					.video
-						%img{:src=>"/assets/vid.jpg"}
-						.titulo SEGUNDA PARTE				
-					.video{:style=>"padding-left: 16px"}
-						%img{:src=>"/assets/vid.jpg"}
-						.titulo MAIS UMA MAS COM UM NOME BEM MAIOR
-					.video
-						%img{:src=>"/assets/vid.jpg"}
-						.titulo OUTRA PARTE						
+					- if b1 = blocos[0]
+						%a{:href=>play_bloco(b1)}
+							.video{:style=>"padding-left: 16px; opacity: #{b1==@bloco ? 0.3 : 1}"}			
+								= s3_image(b1.image.url(:thumb))
+								.titulo= b1.titulo
+					- if b2 = blocos[1]
+						%a{:href=>play_bloco(b2)}
+							.video{:style=>"opacity: #{b2==@bloco ? 0.3 : 1}"}
+								= s3_image(b2.image.url(:thumb))
+								.titulo= b2.titulo					
+					- if b3 = blocos[2]
+						%a{:href=>play_bloco(b3)}
+							.video{:style=>"padding-left: 16px; opacity: #{b3==@bloco ? 0.3 : 1}"}
+								= s3_image(b3.image.url(:thumb))
+								.titulo= b3.titulo
+					- if b4 = blocos[3]
+						%a{:href=>play_bloco(b4)}
+							.video{:style=>"opacity: #{b4==@bloco ? 0.3 : 1}"}
+								= s3_image(b4.image.url(:thumb))
+								.titulo= b4.titulo
 
 			
 			.box.lista{:style=>"width: 386px"}
@@ -64,14 +70,5 @@
 						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".comment", :fechado=>"0"}		
 			.box.in{:style=>"border-top: 0px; width: 386px; display:block; height: 350px"}
 				%iframe.comment{:src=>"https://www.facebook.com/plugins/comments.php?api_key=380422978692298&channel_url=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D8%23cb%3Df1fad68578%26origin%3Dhttp%253A%252F%252Fwdg.heroku.com%252Ff2957f35f%26domain%3Dwdg.heroku.com%26relation%3Dparent.parent&href=http%3A%2F%2Fwdg.heroku.com%2Fplayer&locale=pt_BR&numposts=5&sdk=joey&colorscheme=dark"}
-					
-
-:coffeescript
-	$ ->
-		$('.video>img').hover(
-			-> $(this).next().addClass "ativo"
-			-> $(this).next().removeClass "ativo"
-		)
-			
 
 = render :partial=>"pages/toggle"

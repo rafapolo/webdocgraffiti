@@ -4,6 +4,7 @@ Webdoc::Application.routes.draw do
   resources :capitulos
   resources :episodios  
   resources :blocos
+  resources :hiperbalons
   
   namespace :admin do
     get :episodios

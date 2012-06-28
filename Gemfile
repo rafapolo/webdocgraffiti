@@ -26,7 +26,6 @@ end
 
 gem 'sass-rails', "  ~> 3.2"
 gem 'coffee-rails', "~> 3.2"
-gem "barista"
 
 group :assets do
   gem 'uglifier'

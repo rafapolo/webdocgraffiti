@@ -48,7 +48,7 @@
 				- e.blocos.each do |b|
 					- if x==0
 						.video{:style=>"padding-left: 9px", :tags=>csv_tags(b)}
-							%a{:href=> bloco_path(b)}
+							%a{:href=>play_bloco(b)}
 								= s3_image b.image.url(:thumb)
 								.titulo 
 									= b.titulo
@@ -56,13 +56,13 @@
 						- if x==4
 							.ensaio
 								.video{:tags=>csv_tags(b)}
-									%a{:href=>bloco_path(b)}
+									%a{:href=>play_bloco(b)}
 										= s3_image b.image.url(:thumb)
 										.titulo 
 											= b.titulo
 						- else
 							.video{:tags=>csv_tags(b)}
-								%a{:href=>bloco_path(b)}
+								%a{:href=>play_bloco(b)}
 									= s3_image b.image.url(:thumb)
 									.titulo 
 										= b.titulo					
