@@ -1,7 +1,11 @@
 !!!
 %html{:lang => "pt-br"}
-  %head
-    %title WEBDOC GRAFFITI
+  %head    
+    - if @titulo
+      - t = "WEBDOC GRAFFITI | #{@titulo}" 
+      %title= t
+    - else
+      %title WEBDOC GRAFFITI
     %meta{:content => "text/html;charset=UTF-8", "http-equiv" => "content-type"}    
     %link{:type => "image/x-icon", :rel=>"icon", :href=>"/assets/favicon.ico"}
     %meta{:property=>"fb:app_id", :content=>"380422978692298"}

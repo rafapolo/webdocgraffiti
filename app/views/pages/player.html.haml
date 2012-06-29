@@ -1,24 +1,42 @@
-= javascript_include_tag "jquery.rotate", "player"
+= javascript_include_tag "jquery.rotate", "player", "popcorn.min"
+
+- exec = ''
+- @bloco.hiperbalons.each do |h|
+	- exec << "v.footnote({start: #{h.in}, end: #{h.out}, text: \\\"<img src='#{h.image.url(:thumb).gsub('s3.amazonaws.com/wdg-demo', 'wdg-demo.s3.amazonaws.com')}' style='float:left; padding-right:10px'/><p>#{spc h.titulo}</p>\\\", target: 'hiperbalon', effect: 'applyclass', applyclass: 'hiperbalon'}); "	
+
+:javascript
+	document.addEventListener("DOMContentLoaded", function () {
+		var v = Popcorn.youtube('#video', "#{@bloco.video_url}");
+		eval("#{exec}");
+		v.listen("play", function(){
+			var l = $("#lateral");
+			if (l.is(":visible")){$("#togglao").click()}
+		});
+		v.listen("pause", function() {
+			var l = $("#lateral");
+			if (!l.is(":visible")){$("#togglao").click()}
+		});
+	}, false);
 
 #fb-root
 = javascript_include_tag "http://connect.facebook.net/pt_BR/all.js#xfbml=1&appId=380422978692298"
 
-#mapa	
-	%iframe{:allowfullscreen => "", :frameborder => "0", :height => "100%", :src => @bloco.video_url, :width => "100%"}
+#video.full
+#hiperbalon.invisible
 
 #lateral	
 	#opaco
 	#menul
 		= render :partial => "pages/menu"
 		#marcador{:style=>"margin-top: 10px"}			
-			.box{:style=>"width: 386px"}
+			.box{:style=>"width: 386px; margin-top: 30px;"}
 				.box-head
 					.boxr
-					.boxr.item{:style=>"width: 330px"} 
-						= min @bloco.titulo
+					#bloco-titulo.boxr.item{:style=>"width: 330px"} 
+						= @bloco.titulo
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
 						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".b1", :fechado=>"0"}		
-			.box.in{:style=>"border-top: 0px; width: 386px;"}
+			.box.in{:style=>"border-top: 0px; width: 386px; height: inherit"}
 				%p.caixa.menor.b1 
 					= spc @bloco.info
 					%br
@@ -34,7 +52,7 @@
 				.box-head
 					.boxr
 					.boxr.item{:style=>"width: 330px"} 
-						= min @bloco.episodio.titulo
+						= @bloco.episodio.titulo
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
 						%img.abre.aberto{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".videos-box", :fechado=>"1"}		
 			.box.in{:style=>"border-top: 0px; width: 386px; display: block; height: inherit; color: white"}
@@ -42,7 +60,7 @@
 				.videos-box
 					- if b1 = blocos[0]
 						%a{:href=>play_bloco(b1)}
-							.video{:style=>"padding-left: 16px; opacity: #{b1==@bloco ? 0.3 : 1}"}			
+							.video{:style=>"padding-left: 16px; opacity: #{b1==@bloco ? 0.3 : 1}"}		
 								= s3_image(b1.image.url(:thumb))
 								.titulo= b1.titulo
 					- if b2 = blocos[1]
@@ -67,8 +85,10 @@
 					.boxr
 					.boxr.item{:style=>"width: 330px"} COMENTÁRIOS
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
-						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".comment", :fechado=>"0"}		
+						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".comment", :fechado=>"1"}		
 			.box.in{:style=>"border-top: 0px; width: 386px; display:block; height: 350px"}
-				%iframe.comment{:src=>"https://www.facebook.com/plugins/comments.php?api_key=380422978692298&channel_url=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D8%23cb%3Df1fad68578%26origin%3Dhttp%253A%252F%252Fwdg.heroku.com%252Ff2957f35f%26domain%3Dwdg.heroku.com%26relation%3Dparent.parent&href=http%3A%2F%2Fwdg.heroku.com%2Fplayer&locale=pt_BR&numposts=5&sdk=joey&colorscheme=dark"}
+				- url = CGI.escape(self_url)
+				- host = request.host
+				%iframe.comment{:src=>"https://www.facebook.com/plugins/comments.php?api_key=380422978692298&channel_url=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D8%23cb%3Df1fad68578%26origin%3D#{host}%252Ff2957f35f%26domain%3D#{host}%26relation%3Dparent.parent&href=#{url}&locale=pt_BR&numposts=5&sdk=joey&colorscheme=dark"}
 
 = render :partial=>"pages/toggle"

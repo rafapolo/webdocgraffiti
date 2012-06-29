@@ -4,41 +4,62 @@ abre = (id) ->
 	if seta.attr("fechado") == "0"
 		seta.attr("fechado", "1")
 		seta.rotate({animateTo:90})
-	else
+	else		
 		seta.attr("fechado", "0")
-		seta.rotate({animateTo:0})	
+		seta.rotate({animateTo:0})
 
-$ ->
-	$('.tag>input').on('change', ->
-		input = $(this).next()
-		tag = input.text()
-		$('.video').each( ->
-			video = $(this)
-			tags = $(this).attr('tags').split(', ')
-			$.each(tags, (x, i) -> 
-				if i==tag
-					o = video.css('opacity')
-					if o == '1'
-						if !input.is(":checked")
-							video.css('opacity', 0.5)
-					else
-						if input.is(":checked")
-							video.css('opacity', 1)
-					
-					
-			)
-		)
+outrasTagsTambem = (checked, tags) ->		
+	ok = true
+	$.each(tags, (n, t) ->		
+		if $("#tag-"+t).is(":checked") != checked			
+			#console.log t + ": " + checked
+			ok = false
+			return ok
+		else
+			#console.log t + ": " + !checked
 	)
+	ok
+
+$(document).ready ->
 	$('.container').fadeIn(500)
+	$('.box').css("height", "")
+	$('.box.in').css("height", "")
+	$('.ensaio').height($('.ensaio').parent().height())
 	$("#menu").addClass "active"		
 	ceil = Math.ceil($(".tag").length / 4)
 	$("#tags").css("height", (ceil * 22) + 13)
-
 	$(".item").click -> abre($(this).next().children())		
+	
+	$('.abre').click -> abre($(this))
+	
+	$('.tag>span').click ->
+		$(this).prev().click()
+	
+	$('.tag>input').on('change', ->
+		input = $(this)
+		tag = input.attr("id").replace("tag-", "")
+		checked = $(this).is(":checked")
+		$('.video').each( ->
+			video = $(this)
+			tags = $(this).attr('tags').split(', ')
+			$.each(tags, (x, i) -> 								
+				if i==tag
+					#console.log video
+					if outrasTagsTambem(checked, tags)
+						#console.log "all!"
+						if checked
+							video.css('opacity', '1')
+						else
+							video.css('opacity', '0.3')
+					else
+						#console.log "not all!"
+						video.css('opacity', '1') if parseFloat(video.css('opacity')) < 1
+						#console.log video.css('opacity')
+			)
+		)
+	)
 
 	$('.video>a>img').hover(
 		-> $(this).next().addClass "ativo"
 		-> $(this).next().removeClass "ativo"
 	)
-
-	$('.abre').click -> abre($(this))

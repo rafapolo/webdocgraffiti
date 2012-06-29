@@ -1,10 +1,14 @@
 $ ->	
 	$('.twitter').click ->
-			window.open "http://twitter.com/share?text=WEBDOC%20GRAFFITI&lang=pt&url=http://webdocgraffiti.com.br"
+			url = escape(document.location.href)
+			text = "WEBDOC GRAFFITI > #{url}"
+			window.open "http://twitter.com/share?text=#{text}&lang=pt&url=#{url}"
 			false
 	
 	$('.facebook').click -> 
-			window.open "http://www.facebook.com/sharer.php?u=http%3A//webdocgraffiti.com.br&t=WEBDOC%20GRAFFITI"
+			url = escape(document.location.href)
+			text = escape(document.title)
+			window.open "http://www.facebook.com/sharer.php?u=#{url}&t=#{text}"
 			false
 
 	$('.share>img').hover(

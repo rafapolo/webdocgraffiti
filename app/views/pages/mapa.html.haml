@@ -1,21 +1,12 @@
 = javascript_include_tag "jquery.rotate"
 
-:javascript
-	$(document).ready(function(){
-		
-		(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1&appId=231453760297312";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-	});
+#fb-root
+= javascript_include_tag "http://connect.facebook.net/pt_BR/all.js#xfbml=1&appId=380422978692298"
 
 %a{:href=>"/"}
 	%img{:src=>"/assets/logos/wdg_logo_wdg.gif", :id=>"wdg_logo"}
 
-#mapa
+#mapa.full
 	%iframe{:frameborder => "0", :height => "350", :allowtransparency=>"true", :marginheight => "0", :marginwidth => "0", :scrolling => "no", :width => "425", :src => "https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Rua+da+Consola%C3%A7%C3%A3o,+S%C3%A3o+Paulo,+Brasil&aq=0&oq=rua+da+consolac&sll=-22.92677,-43.176591&sspn=0.023794,0.038538&t=m&ie=UTF8&hq=&hnear=R.+da+Consola%C3%A7%C3%A3o+-+S%C3%A3o+Paulo,+Brazil&ll=-23.550278,-46.654458&spn=0.011842,0.019269&z=14&output=embed"}	
 
 #lateral	
@@ -23,7 +14,7 @@
 	#menul
 		= render :partial => "pages/menu"
 		#marcador{:style=>"margin-top: 10px"}
-			.box{:style=>"width: 386px"}
+			.box{:style=>"width: 386px; margin-top: 30px;"}
 				.box-head
 					.boxr
 					.boxr.item{:style=>"width: 330px"} MARCADOR
@@ -51,8 +42,9 @@
 						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".b4", :fechado=>"0"}		
 			.box.in{:style=>"border-top: 0px; width: 386px"}
 				%p.caixa.menor.b4
-					#fb-root
-					.fb-comments{"data-href"=>"http://example.com", "data-num-posts"=>2, "data-width"=>340, "data-colorscheme"=>"dark"}
+					- url = CGI.escape(self_url)
+					- host = request.host
+					%iframe.comment{:src=>"https://www.facebook.com/plugins/comments.php?api_key=380422978692298&channel_url=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D8%23cb%3Df1fad68578%26origin%3D#{host}%252Ff2957f35f%26domain%3D#{host}%26relation%3Dparent.parent&href=#{url}&locale=pt_BR&numposts=5&sdk=joey&colorscheme=dark"}
 
 			.box.lista
 				.box-head

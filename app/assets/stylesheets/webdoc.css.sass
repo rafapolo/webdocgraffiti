@@ -20,6 +20,9 @@ body
 img
 	#border: 1px solid red
 
+a
+	text-decoration: none
+
 .container	
 	height: 100%
 	width: 937px	
@@ -43,6 +46,7 @@ img
 	font-size: 21px
 	letter-spacing: 1px
 	cursor: default
+	overflow: hidden
 	text-transform: uppercase
 	&:hover
 		color: $ativo
@@ -218,9 +222,10 @@ img
 	border-bottom: 0px
 	padding: 8px 8px 12px 8px
 
-#mapa
+.full
 	height: 100%
 	width: 100%
+	position: absolute
 
 iframe
 	height: inherit
@@ -301,7 +306,8 @@ iframe
 	margin-left: 30px
 	position: absolute
 	top: 20px
-	height: 100%	
+	height: 100%
+	overflow: auto	
 
 #lateral	
 	width: 485px
@@ -316,3 +322,24 @@ iframe
 
 .video>.titulo
 	color: $laranja
+#video.full>object
+	height: 100%
+	width: 100%	
+
+#togglao
+	z-index: 2
+
+.tag>span
+	cursor: default	
+
+.hiperbalon
+	margin: 50px
+	padding: 5px
+	bottom: 0
+	position: fixed
+	z-index: 5
+	border: 4px solid #B96B3B
+	height: 150px
+	color: #B96B3B
+	width: 500px
+	background-color: #433E43

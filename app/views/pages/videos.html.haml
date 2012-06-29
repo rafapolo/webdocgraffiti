@@ -9,6 +9,7 @@
 .container
 	#marcadores.box.box-head
 		.boxr{:style=>"width: 31px"}
+			&nbsp;
 		.boxr.item
 			TAGS
 		.boxr{:style=>"border-right: 0px; width: 19px;"}
@@ -21,11 +22,10 @@
 					- @tags.each do |t|
 						%td
 							.tag
-								%input{:type=>"checkbox", :checked=>true}			
+								%input{:type=>"checkbox", :checked=>true, :id=>"tag-#{t.urlized}"}			
 									%span.branco= t.name
 						- c+=1
-						- if c % 4
-							- c = 0
+						- if c % 4 == 0
 							%tr
 
 	- c = @episodios.count+1
@@ -34,7 +34,7 @@
 			- c-=1
 			.box{:style=>"margin-top: 20px"}
 				.box-head
-					.boxr{:style=>"font-size: 21px; width: 31px;"} 
+					.boxr{:style=>"font-size: 21px; width: 31px; text-align: center;"} 
 						= count c
 					.boxr.item 
 						= e.titulo
@@ -43,11 +43,11 @@
 			.box.in{:style=>"border-top: 0px;"}
 				%p.caixa{:style=>"border-bottom: 0px; padding: 8px", :id=>"sinopse#{e.id}"}
 					= spc e.sinopse
-			.videos.box.caixa{:style=>"margin-bottom: 20px"}
+			.videos.box.caixa
 				- x = 0
 				- e.blocos.each do |b|
 					- if x==0
-						.video{:style=>"padding-left: 9px", :tags=>csv_tags(b)}
+						.video{:style=>"padding-left: 9px", :tags=>csv_url_tags(b)}
 							%a{:href=>play_bloco(b)}
 								= s3_image b.image.url(:thumb)
 								.titulo 
@@ -55,13 +55,13 @@
 					- else
 						- if x==4
 							.ensaio
-								.video{:tags=>csv_tags(b)}
+								.video{:tags=>csv_url_tags(b)}
 									%a{:href=>play_bloco(b)}
 										= s3_image b.image.url(:thumb)
 										.titulo 
 											= b.titulo
 						- else
-							.video{:tags=>csv_tags(b)}
+							.video{:tags=>csv_url_tags(b)}
 								%a{:href=>play_bloco(b)}
 									= s3_image b.image.url(:thumb)
 									.titulo 

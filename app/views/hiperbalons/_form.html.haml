@@ -1,0 +1,23 @@
+= form_for @hiperbalon do |f|
+  .field
+    = f.label :texto
+    = f.text_area :titulo
+  .field
+    = f.label :url
+    = f.text_field :url  
+  .field
+    = f.label :in
+    = f.text_field :in
+  .field
+    = f.label :out
+    = f.text_field :out
+  .field
+    = f.label :Imagem
+    = f.file_field :image      
+    %br
+    = s3_image @hiperbalon.image.url(:thumb) if @hiperbalon.id    
+    = f.hidden_field :bloco_id, :value => @hiperbalon.bloco ? @hiperbalon.bloco.id : @bloco_id
+    %br
+    %br
+  .actions
+    = f.submit 'Salvar', :class=>"btn"

@@ -6,7 +6,7 @@ class CreateHiperbalons < ActiveRecord::Migration
       t.integer :out
       t.string :titulo
       t.string :url
-      t.string :image_name
+      t.string :image_file_name
       t.string :image_type
       t.integer :image_size
       t.datetime :image_updated_at

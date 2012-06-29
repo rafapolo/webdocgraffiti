@@ -16,6 +16,7 @@
   .field
     = f.label :Capa
     = f.file_field :capa
+    %br
     = s3_image @episodio.capa.url(:thumb) if @episodio.id
   %br
   .actions

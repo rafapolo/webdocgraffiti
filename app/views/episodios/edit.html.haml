@@ -12,17 +12,21 @@
 				%tr
 					%th Imagem
 					%th Titulo
+					%th Tags
 					%th
 					%th
 			%tbody
 				- @episodio.blocos.each do |b|
 					%tr
 						%td{:width=>"15%"}= s3_image b.image.url(:thumb)
-						%td= b.titulo					
+						%td= b.titulo
+						%td= csv_tags b					
 						%td= link_to "Editar", edit_bloco_path(b), :class=>"btn"
 						%td= link_to "Excluir", bloco_path(b), :method=>:delete, :confirm => "Quer mesmo excluir este episódio com todos os blocos?", :class=>"btn btn-danger"
 	- else
 		%p Vazio. Adicione.
 
-	- if count<5
+	- if count<4
 		= link_to "Novo Bloco", new_bloco_path + "?episodio_id=#{@episodio.id}", :class=>"btn btn-primary"
+	- if count==4
+		= link_to "Adicionar Ensaio", new_bloco_path + "?episodio_id=#{@episodio.id}", :class=>"btn btn-primary"

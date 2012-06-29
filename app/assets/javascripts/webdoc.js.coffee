@@ -10,4 +10,5 @@ $ ->
 			$(this).children().next().css("color", "#b96b3b")
 	)
 
-	$(".aberto").rotate(90) if $(".aberto").length
+	$(".abre").rotate(90) if $(".aberto").length	
+

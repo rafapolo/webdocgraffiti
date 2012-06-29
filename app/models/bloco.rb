@@ -24,9 +24,12 @@ class Bloco < ActiveRecord::Base
 
 	after_create :notifica
 	def notifica
-		page = Koala::Facebook::GraphAPI.new(Admin.token)
-		path = "http://webdocgraffiti.com.br/#{self.episodio.urlized}/#{self.urlized}"
-		page.put_object('WebDocGraffiti', 'feed', :message => "Novo Video: #{self.titulo} em #{self.episodio.titulo} > #{path}")
+		begin
+			page = Koala::Facebook::GraphAPI.new(Admin.token)
+			path = "http://webdocgraffiti.com.br/#{self.episodio.urlized}/#{self.urlized}"		
+			page.put_object('WebDocGraffiti', 'feed', :message => "Novo Video: #{self.titulo} em #{self.episodio.titulo} > #{path}")
+		rescue
+		end
 	end
 
 end

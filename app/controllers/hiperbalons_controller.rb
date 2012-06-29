@@ -3,7 +3,7 @@ class HiperbalonsController < ApplicationController
 
   def new
     @hiperbalon = Hiperbalon.new    
-    @episodio_id = params[:episodio_id]
+    @bloco_id = params[:bloco_id]
     respond_to do |format|
       format.html
     end
@@ -20,10 +20,7 @@ class HiperbalonsController < ApplicationController
     @hiperbalon = Hiperbalon.new(hiperbalon)
     respond_to do |format|
       if @hiperbalon.save
-        tags.split(",").each do |t|
-          @hiperbalon.tags << Tag.find_or_create_by_name(t.strip)          
-        end
-        format.html { redirect_to "/hiperbalons/#{@hiperbalon.episodio.id}/edit", notice: 'Hiperbalon criado' }
+        format.html { redirect_to "/blocos/#{@hiperbalon.bloco.id}/edit", notice: 'Hiperbalon criado' }
       else
         flash[:error] = true
         format.html { redirect_to :back, notice: "#{@hiperbalon.errors.messages.inspect}" }
@@ -38,12 +35,7 @@ class HiperbalonsController < ApplicationController
       tags = hiperbalon[:tags]
       hiperbalon.delete(:tags)
       if @hiperbalon.update_attributes(params[:hiperbalon])
-        @hiperbalon.tags.destroy_all
-        tags.split(",").each do |t|
-          @hiperbalon.tags << Tag.find_or_create_by_name(t.strip)          
-        end
-        Tag.all.each{|t| t.destroy if t.hiperbalons.empty?} # remove as sem uso
-        format.html { redirect_to "/hiperbalons/#{@hiperbalon.episodio.id}/edit", notice: 'Hiperbalon atualizado.' }
+        format.html { redirect_to "/blocos/#{@hiperbalon.bloco.id}/edit", notice: 'Hiperbalon atualizado.' }
       else
         flash[:error] = true
         format.html { redirect_to request.referer, notice: "#{@hiperbalon.errors.messages.inspect}" }
