@@ -4,6 +4,6 @@ class AddCapaToEpisodio < ActiveRecord::Migration
     add_column :episodios, :capa_file_name, :string
     add_column :episodios, :capa_content_type, :string
     add_column :episodios, :capa_file_size, :string
-    add_column :episodios, :capa_updated_at, :strin
+    add_column :episodios, :capa_updated_at, :string
   end
 end
