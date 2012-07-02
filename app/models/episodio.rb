@@ -21,4 +21,15 @@ class Episodio < ActiveRecord::Base
 	def self.ensaio?
 		self.blocos.count > 4 ? self.blocos.last : nil
 	end
+
+	def position
+		all = Episodio.all
+		p = all.count
+		all.each do |e|
+			if e.id==self.id
+				return p
+			end
+			p-=1
+		end
+	end
 end

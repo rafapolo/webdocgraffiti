@@ -4,7 +4,7 @@ class Hiperbalon < ActiveRecord::Base
 
 	has_attached_file :image,
 	   :styles => {
-	   :thumb=> "x200"
+	   :thumb=> "x150"
 	   },
 	 :storage => :s3,
 	 :s3_credentials => "#{Rails.root}/config/s3.yml",
