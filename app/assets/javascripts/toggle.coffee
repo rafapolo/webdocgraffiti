@@ -45,4 +45,12 @@ $ ->
 		metade = ($(document).height()/2 - seta.height()/2 -30)
 		seta.css("top", metade)
 
+	$(document).keydown((e) ->
+		if (e.keyCode == 37) # left
+			$("#togglao").click() if !($("#lateral").is(":visible"))
+		if (e.keyCode == 39) # right
+			$("#togglao").click() if $("#lateral").is(":visible")
+	)
+
 	$("#togglao").load -> $(window).resize()
+
