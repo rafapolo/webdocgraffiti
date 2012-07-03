@@ -14,6 +14,7 @@ gem 'koala'
 
 gem 'paperclip'
 gem 'therubyracer'
+gem 'uglifier'
 
 group :development do
 	gem 'pry'
@@ -23,7 +24,3 @@ group :development do
   	gem "rails-erd"
   	gem 'rails-erd'
 end	
-
-group :assets do
-  gem 'uglifier'  
-end
