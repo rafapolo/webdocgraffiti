@@ -11,18 +11,14 @@
 			%thead
 				%tr
 					%th Imagem
-					%th Titulo
-					%th In
-					%th Out
 					%th URL
+					%th Duração
 			%tbody
 				- @bloco.hiperbalons.each do |h|
 					%tr
 						%td{:width=>"15%"}= s3_image h.image.url(:thumb)
-						%td= h.titulo	
-						%td= h.in
-						%td= h.out
-						%td= h.url						
+						%td= h.url
+						%td{:width=>"200px"}= "#{h.in}s -> #{h.out}s"
 						%td= link_to "Editar", edit_hiperbalon_path(h), :class=>"btn"
 						%td= link_to "Excluir", hiperbalon_path(h), :method=>:delete, :confirm => "Quer mesmo excluir este hiperbalão?", :class=>"btn btn-danger"
 	- else

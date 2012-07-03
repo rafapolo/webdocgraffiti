@@ -2,7 +2,7 @@
 
 - exec = ''
 - @bloco.hiperbalons.each do |h|
-	- exec << "v.footnote({start: #{h.in}, end: #{h.out}, text: \\\"<img src='#{h.image.url(:thumb).gsub('s3.amazonaws.com/wdg-demo', 'wdg-demo.s3.amazonaws.com')}' style='float:left; padding-right:10px'/><p>#{spc h.titulo}</p>\\\", target: 'hiperbalon', effect: 'applyclass', applyclass: 'hiperbalon'}); "	
+	- exec << "v.footnote({start: #{h.in}, end: #{h.out}, text: \\\"<a href='#{h.url}'><img src='#{h.image.url(:thumb).gsub('s3.amazonaws.com/wdg-demo', 'wdg-demo.s3.amazonaws.com')}' style='float:left; padding-right:10px'/></a>\\\", target: 'hiperbalon', effect: 'applyclass', applyclass: 'hiperbalon'}); "	
 
 :javascript
 	document.addEventListener("DOMContentLoaded", function () {
@@ -41,7 +41,7 @@
 						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".b1", :fechado=>"0"}		
 			.box.in{:style=>"border-top: 0px; width: 386px; height: inherit"}
 				%p.caixa.menor.b1 
-					= spc @bloco.info
+					= spc @bloco.sinopse
 					%br
 					%br
 					%span{:style=>"font-size: 13px; padding-bottom: 10px;"}

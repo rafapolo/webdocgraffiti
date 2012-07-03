@@ -14,7 +14,7 @@
     = f.text_area :sinopse
 
   .field
-    = f.label :Capa
+    = f.label "Capa (GIF)"
     = f.file_field :capa
     %br
     = s3_image @episodio.capa.url(:thumb) if @episodio.id

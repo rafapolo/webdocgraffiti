@@ -21,8 +21,7 @@ group :development do
 	gem 'pry-nav'
 	gem 'capistrano'
   	gem "rails-erd"
-  	gem 'aws-s3'
-	gem 'aws-sdk'
+  	gem 'rails-erd'
 end	
 
 group :assets do
