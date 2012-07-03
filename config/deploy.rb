@@ -14,13 +14,22 @@ set :deploy_via, :remote_cache
 role :web, "webdocgraffiti.com.br"
 role :app, "webdocgraffiti.com.br"
 set :deploy_to, "/home/#{user}/#{application}" 
-set :runner, "webdocgr"
 
-task :restart, :roles => :app do
+
+task :after_update_code, :roles => [:web, :db, :app] do
+  run "chmod 755 #{release_path}/public"
 end
 
-after "deploy:update_code", :roles => [:web, :db, :app] do
-  run "chmod 755 #{release_path}/public -R" 
+namespace :deploy do
+  desc "restart passenger"
+  task :restart do
+    passenger::restart
+  end
 end
 
-after "deploy:update", "deploy:cleanup" 
+namespace :passenger do
+  desc "Restart dispatchers"
+  task :restart do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+end
