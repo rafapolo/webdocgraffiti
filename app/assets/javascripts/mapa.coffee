@@ -7,7 +7,7 @@ $(document).ready ->
 	map = new google.maps.Map(document.getElementById("mapa"), myOptions)
 	marcadores = []
 	google.maps.event.addListener map, "click", (event) ->
-		if ($("#marker").css("position")=="fixed")
+		if ($("#marker").is(":visible"))
 			marker = new google.maps.Marker(
 				position: event.latLng
 				map: map
@@ -16,8 +16,8 @@ $(document).ready ->
 			marcadores.push marker
 			$("#marker").hide()			
 			$(document).off("mousemove")			
-			$('#marcador-lat').val event.latLng["$a"]
-			$('#marcador-long').val event.latLng["ab"]
+			$('#marcador_lat').val event.latLng["$a"]
+			$('#marcador_long').val event.latLng["ab"]
 			console.log event.latLng["ab"]
 			$("#create-marker").slideToggle()
 			$('#save-marker').slideToggle()
@@ -39,4 +39,8 @@ $(document).ready ->
 		$('#save-marker>p.caixa>input').val("")
 		$("#create-marker").slideToggle()
 		$('#save-marker').slideToggle()
+	)
+
+	$("#save-marker").click(->
+		alert $('#marcador_lat').val() + " | " + $('#marcador_long').val()
 	)

@@ -22,7 +22,7 @@
 						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".b1", :fechado=>"0"}		
 			.box.in{:style=>"border-top: 0px; width: 386px"}
 				%p.caixa.menor.b1
-					texto				
+					dados do marcador				
 
 			.box.lista{:style=>"width: 386px"}
 				.box-head
@@ -31,7 +31,7 @@
 						%img.abre.aberto{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".b3", :fechado=>"1"}		
 			.box.in{:style=>"border-top: 0px; width: 386px; display: block"}
 				%p.caixa.menor.b3
-					texto									
+					tags e autocomplete									
 		
 			.box.lista{:style=>"width: 386px"}
 				.box-head
@@ -88,9 +88,10 @@
 										%br
 										= f.file_field :image
 									%br				
-									= f.submit 'Save'													
-								%a{:id=>"cancel-marker", :href=>"#", :style=>"float:right"}Cancelar
+									- f.submit 'Save'													
 								%a{:id=>"save-marker", :href=>"#", :style=>"float:left"}Salvar
+								%a{:id=>"cancel-marker", :href=>"#", :style=>"float:right"}Cancelar
+								
 
 
 
