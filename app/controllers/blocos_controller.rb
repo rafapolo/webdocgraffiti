@@ -1,4 +1,4 @@
-class BlocosController < ApplicationController
+class BlocosController < ÏpplicationController
   layout "admin"
 
   def new

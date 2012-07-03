@@ -49,10 +49,7 @@ a
 	overflow: hidden
 	text-transform: uppercase
 	&:hover
-		color: $ativo
-
-#marcadores
-	margin-top: 200px		
+		color: $ativo	
 
 .fundo-alfa
 	background-color: $background
@@ -218,6 +215,7 @@ a
 	letter-spacing: 1px
 	font-size: 13px
 	line-height: 13pt
+	overflow-y: auto
 .caixa.menor
 	border-bottom: 0px
 	padding: 8px 8px 12px 8px
@@ -234,6 +232,12 @@ iframe
 	display: none	
 	z-index: -2
 
+#mapa
+	height: 100%
+	width: 100%	
+
+#marcadores
+	margin-top: 200px	
 .marcadores
 	margin: 5px	
 	padding-left: 12px
@@ -315,9 +319,10 @@ iframe
 .comment
 	z-index: 1
 	border: 0px
-	width: 386px
+	width: 370px
 	height: 800px
 	position: relative
+	margin-left: 7px
 
 .video>.titulo
 	color: $laranja
@@ -342,3 +347,7 @@ iframe
 	color: #B96B3B
 	width: 500px
 	background-color: #433E43
+
+.caixa>a
+	text-decoration: underline
+	color: white

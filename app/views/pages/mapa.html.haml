@@ -1,4 +1,5 @@
-= javascript_include_tag "jquery.rotate"
+= javascript_include_tag "jquery.rotate", "mapa"
+= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyBwG0qBPx1M89Waoit_jg8TbJL2wcvQKts&sensor=false"
 
 #fb-root
 = javascript_include_tag "http://connect.facebook.net/pt_BR/all.js#xfbml=1&appId=380422978692298"
@@ -6,8 +7,8 @@
 %a{:href=>"/"}
 	%img{:src=>"/assets/logos/wdg_logo_wdg.gif", :id=>"wdg_logo"}
 
-#mapa.full
-	%iframe{:frameborder => "0", :height => "350", :allowtransparency=>"true", :marginheight => "0", :marginwidth => "0", :scrolling => "no", :width => "425", :src => "https://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Rua+da+Consola%C3%A7%C3%A3o,+S%C3%A3o+Paulo,+Brasil&aq=0&oq=rua+da+consolac&sll=-22.92677,-43.176591&sspn=0.023794,0.038538&t=m&ie=UTF8&hq=&hnear=R.+da+Consola%C3%A7%C3%A3o+-+S%C3%A3o+Paulo,+Brazil&ll=-23.550278,-46.654458&spn=0.011842,0.019269&z=14&output=embed"}	
+.full
+	#mapa
 
 #lateral	
 	#opaco
@@ -36,20 +37,35 @@
 				.box-head
 					.boxr.item{:style=>"width: 355px"} COMENTÁRIOS
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
-						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".b4", :fechado=>"0"}		
-			.box.in{:style=>"border-top: 0px; width: 386px"}
-				%p.caixa.menor.b4
-					- url = CGI.escape(self_url)
-					- host = request.host
-					%iframe.comment{:src=>"https://www.facebook.com/plugins/comments.php?api_key=380422978692298&channel_url=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D8%23cb%3Df1fad68578%26origin%3D#{host}%252Ff2957f35f%26domain%3D#{host}%26relation%3Dparent.parent&href=#{url}&locale=pt_BR&numposts=5&sdk=joey&colorscheme=dark"}
+						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".comment", :fechado=>"0"}		
+			.box.in{:style=>"border-top: 0px; width: 386px; height: 350px"}
+				- url = CGI.escape(self_url)
+				- host = request.host
+				%iframe.comment{:src=>"https://www.facebook.com/plugins/comments.php?api_key=380422978692298&channel_url=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D8%23cb%3Df1fad68578%26origin%3D#{host}%252Ff2957f35f%26domain%3D#{host}%26relation%3Dparent.parent&href=#{url}&locale=pt_BR&numposts=5&sdk=joey&colorscheme=dark"}
 
 			.box.lista
 				.box-head
 					.boxr.item{:style=>"width: 355px"} INSERIR MARCADOR
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
-						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".b5", :fechado=>"0"}		
-			.box.in{:style=>"border-top: 0px; width: 386px"}
-				%p.caixa.menor.b5
-					texto															
+						%img.abre{:id=>"marca", :src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".add-marcador", :fechado=>"0", :auth=>@auth}		
+			.box.in{:style=>"border-top: 0px; width: 386px; height: inherit"}
+				.add-marcador{:style=>"padding: 5px"}
+					%p.caixa
+						- if !@me
+							Autentique-se para adicionar um novo marcador
+							%a{:href=>"https://www.facebook.com/dialog/oauth?client_id=380422978692298&redirect_uri=http://localhost:3000/oauth/&scope=publish_stream&response_type=token"}						
+								%img{:src=>"/assets/connect_facebook.png", :align=>"center"}
+						- else
+							#{@me["name"]},
+							%br
+							%br
+							%p.caixa 1) Mova e aproxime o mapa até a localização desejada para o novo marcador. 
+							%br
+							%p.caixa 
+								2) Clique
+								%a{:href=>"#", :id=>"habilita-marker"}aqui
+								para habilitar a inserção.
+								%img{:src=>"/assets/markers/user_p.png", :id=>"marker"}
+
 
 = render :partial=>"pages/toggle"

@@ -16,6 +16,7 @@ $ ->
 	$("#menu").css("float", "left")
 	$(".abre").click -> abre($(this))
 	$(".item").click -> abre($(this).next().children())
+	abre($('.abre[auth]'))
 
 	$(window).resize ->			
 		$('#lateral').css("height", $(document).height())
@@ -53,4 +54,3 @@ $ ->
 	)
 
 	$("#togglao").load -> $(window).resize()
-

@@ -12,13 +12,6 @@ class AdminController < ApplicationController
 		redirect_to "/admin", notice: 'Mapas; Logo logo...'
 	end
 
-	def oauth
-		if token = params[:token]
-			Admin.token = token
-			redirect_to admin_path
-		end
-	end
-
 	private
 	def login
 		authenticate_or_request_with_http_basic do |user_name, password|

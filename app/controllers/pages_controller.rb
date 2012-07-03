@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
 	def index
 	end
+	@auth = true
 
 	def videos
 		@episodios = Episodio.all
@@ -14,6 +15,21 @@ class PagesController < ApplicationController
   	end
 
   	def mapa
+  		session[:mapa] = true
   		@titulo = "MAPA"
+	    begin
+	      graph = Koala::Facebook::API.new(session[:token])
+	      @me = graph.get_object("me")
+	      @auth = true
+	    rescue Koala::Facebook::APIError
+	      @me = false
+	    end
   	end
+
+  	def oauth
+		if token = params[:token]
+			session[:token] = token
+			redirect_to session[:mapa] ? "/mapa" : "/admin"
+		end
+	end
 end
