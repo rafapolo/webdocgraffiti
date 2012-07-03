@@ -2,12 +2,7 @@ class Episodio < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
 
 	has_attached_file :capa,
-		:styles => {
-	   		:thumb=> "200x"
-	   	},
-		:storage => :s3,
-		:s3_credentials => "#{Rails.root}/config/s3.yml",
-		:path => "/:class/:style/:id/:filename"
+		:styles => {:thumb=> "200x"}
 
   has_many :blocos, :dependent => :destroy  
   

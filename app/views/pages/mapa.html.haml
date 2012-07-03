@@ -61,10 +61,10 @@
 							%br
 							%br
 							#create-marker
-								%p.caixa 1) Mova e aproxime o mapa até a localização desejada para o novo marcador. 
+								%p.caixa 1. Mova e aproxime o mapa até a localização desejada para o novo marcador. 
 								%br
 								%p.caixa 
-									2) Clique
+									2. Clique
 									%a{:href=>"#", :id=>"habilita-marker"}aqui
 									para habilitar a inserção.										
 							#save-marker{:style=>"display:none"}
@@ -72,28 +72,24 @@
 									= f.hidden_field :long
 									= f.hidden_field :lat
 									%p.caixa
-										3) Título
+										3. Título
 										%br
 										= f.text_field :titulo
 										%br
 									%p.caixa
 										%br
-										4) Tags (separadas por vírgulas)
+										4. Tags (separadas por vírgulas)
 										%br
-										%input{:type=>"text"}
+										= f.text_field :tags
 										%br
 									%p.caixa
 										%br
-										5) Imagem
+										5. Imagem
 										%br
 										= f.file_field :image
 									%br				
 									- f.submit 'Save'													
 								%a{:id=>"save-marker", :href=>"#", :style=>"float:left"}Salvar
 								%a{:id=>"cancel-marker", :href=>"#", :style=>"float:right"}Cancelar
-								
-
-
-
 
 = render :partial=>"pages/toggle"

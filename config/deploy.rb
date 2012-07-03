@@ -30,6 +30,8 @@ end
 namespace :passenger do
   desc "Restart dispatchers"
   task :restart do
-    run "touch #{current_path}/tmp/restart.txt"
+	run "cd #{current_path}"
+  	run "mv db/webdoc.dev.sqlite3 db/webdoc.sqlite3"
+    run "touch tmp/restart.txt"
   end
 end
