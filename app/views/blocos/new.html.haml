@@ -6,6 +6,6 @@
 %hr
 - if !@me
 	%p{:style=>"color:red"} Para que o novo Bloco seja notificado no Facebook, um dos admins deve estar autenticado aqui.
-	= link_to "Autenticar-se", "https://www.facebook.com/dialog/oauth?client_id=380422978692298&redirect_uri=http://localhost:3000/oauth/&scope=manage_pages,publish_stream&response_type=token", :class=>"btn"
+	= link_to "Autenticar-se", "https://www.facebook.com/dialog/oauth?client_id=380422978692298&redirect_uri=http://#{site}/oauth/&scope=manage_pages,publish_stream&response_type=token", :class=>"btn"
 - else
 	%p{:style=>"color: blue"} Admin: #{@me["name"]}

@@ -20,4 +20,8 @@ module ApplicationHelper
 		c < 10 ? "0#{c}" : c
 	end
 
+	def site
+		Rails.env.development? ? "localhost:3000" : "webdocgraffiti.com.br"
+	end
+
 end
