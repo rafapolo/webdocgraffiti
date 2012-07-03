@@ -1,7 +1,7 @@
 class Bloco < ActiveRecord::Base
 
 	belongs_to :episodio
-	has_many :marcadors
+	has_many :marcadors, :dependent => :destroy
 	has_many :hiperbalons, :dependent => :destroy 
 	has_and_belongs_to_many :tags
 
@@ -27,8 +27,11 @@ class Bloco < ActiveRecord::Base
 		end
 	end
 
+	before_destroy :limpa_tags
+	def limpa_tags
+		self.tags.each do |t|
+			t.destroy if t.blocos.count==1
+		end
+	end
+
 end
-
-
-
-
