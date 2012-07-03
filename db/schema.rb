@@ -1,18 +1,22 @@
-ActiveRecord::Schema.define(:version => 20120703014916) do
+# encoding: UTF-8
 
-  create_table "episodios", :force => true do |t|
-    t.string   "titulo"
-    t.string   "urlized"
-    t.text     "sinopse"
-    t.string   "capa_file_name"
-    t.string   "capa_content_type"
-    t.integer  "capa_file_size"
-    t.datetime "capa_updated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+ActiveRecord::Schema.define(:version => 20120703221039) do
+
+  create_table "admins", :force => true do |t|
+    t.string "token"
+  end
+
+  create_table "bloco_georefs", :force => true do |t|
+    t.integer "bloco_id"
+    t.integer "georef_id"
   end
 
   create_table "bloco_marcadores", :force => true do |t|
+    t.integer "bloco_id"
+    t.integer "marcador_id"
+  end
+
+  create_table "bloco_marcadors", :id => false, :force => true do |t|
     t.integer "bloco_id"
     t.integer "marcador_id"
   end
@@ -36,26 +40,40 @@ ActiveRecord::Schema.define(:version => 20120703014916) do
     t.integer "tag_id"
   end
 
-  create_table "marcadors_tags", :id => false, :force => true do |t|
-    t.integer "bloco_id"
+  create_table "ensaio_georefs", :force => true do |t|
+    t.integer "ensaio_id"
+    t.integer "georef_id"
+  end
+
+  create_table "ensaios", :force => true do |t|
+    t.string   "video_url"
+    t.string   "titulo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ensaios_tags", :id => false, :force => true do |t|
+    t.integer "ensaio_id"
     t.integer "tag_id"
   end
 
-  create_table "bloco_marcadors", :id => false, :force => true do |t|
-    t.integer "bloco_id"
-    t.integer "marcador_id"
+  create_table "episodios", :force => true do |t|
+    t.string   "titulo"
+    t.string   "urlized"
+    t.text     "sinopse"
+    t.string   "capa_file_name"
+    t.string   "capa_content_type"
+    t.integer  "capa_file_size"
+    t.datetime "capa_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "marcadors", :force => true do |t|
-    t.string   "titulo"
-    t.string   "long"
+  create_table "georefs", :force => true do |t|
     t.string   "lat"
-    t.string   "image_file_name"
-    t.string   "image_type"
-    t.integer  "image_size"
-    t.datetime "image_updated_at"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.string   "long"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "hiperbalons", :force => true do |t|
@@ -69,6 +87,24 @@ ActiveRecord::Schema.define(:version => 20120703014916) do
     t.datetime "image_updated_at"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "marcadors", :force => true do |t|
+    t.string   "titulo"
+    t.string   "long"
+    t.string   "lat"
+    t.string   "image_file_name"
+    t.string   "image_type"
+    t.integer  "image_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "bloco_id"
+  end
+
+  create_table "marcadors_tags", :id => false, :force => true do |t|
+    t.integer "marcador_id"
+    t.integer "tag_id"
   end
 
   create_table "tags", :force => true do |t|
