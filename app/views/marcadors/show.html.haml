@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Lat:
+  = @marcador.lat
+%p
+  %b Long:
+  = @marcador.long
+%p
+  %b Titulo:
+  = @marcador.titulo
+
+= link_to 'Edit', edit_marcador_path(@marcador)
+\|
+= link_to 'Back', marcadors_path

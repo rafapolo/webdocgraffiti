@@ -1,4 +1,6 @@
 Webdoc::Application.routes.draw do
+  resources :marcadors
+
   resources :georefs
   resources :tags
   resources :capitulos

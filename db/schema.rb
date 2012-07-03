@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120629060603) do
+ActiveRecord::Schema.define(:version => 20120703014916) do
 
   create_table "admins", :force => true do |t|
     t.string "token"
@@ -84,6 +84,9 @@ ActiveRecord::Schema.define(:version => 20120629060603) do
     t.datetime "updated_at",       :null => false
     t.string   "image_file_name"
   end
+
+# Could not dump table "marcadors" because of following StandardError
+#   Unknown type 'bool' for column 'publico'
 
   create_table "tags", :force => true do |t|
     t.string "name"

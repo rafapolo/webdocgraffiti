@@ -1,0 +1,23 @@
+%h1 Listing marcadors
+
+%table
+  %tr
+    %th Lat
+    %th Long
+    %th Titulo
+    %th
+    %th
+    %th
+
+  - @marcadors.each do |marcador|
+    %tr
+      %td= marcador.lat
+      %td= marcador.long
+      %td= marcador.titulo
+      %td= link_to 'Show', marcador
+      %td= link_to 'Edit', edit_marcador_path(marcador)
+      %td= link_to 'Destroy', marcador, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Marcador', new_marcador_path

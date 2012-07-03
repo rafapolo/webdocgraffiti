@@ -48,9 +48,10 @@
 					.boxr.item{:style=>"width: 355px"} INSERIR MARCADOR
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
 						%img.abre{:id=>"marca", :src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".add-marcador", :fechado=>"0", :auth=>@auth}		
-			.box.in{:style=>"border-top: 0px; width: 386px; height: inherit"}
+			.box.in{:style=>"border-top: 0px; width: 386px; height: inherit; padding-bottom: 8px"}
 				.add-marcador{:style=>"padding: 5px"}
 					%p.caixa
+						%img{:src=>"/assets/markers/user_p.png", :id=>"marker"}
 						- if !@me
 							Autentique-se para adicionar um novo marcador
 							%a{:href=>"https://www.facebook.com/dialog/oauth?client_id=380422978692298&redirect_uri=http://localhost:3000/oauth/&scope=publish_stream&response_type=token"}						
@@ -59,13 +60,39 @@
 							#{@me["name"]},
 							%br
 							%br
-							%p.caixa 1) Mova e aproxime o mapa até a localização desejada para o novo marcador. 
-							%br
-							%p.caixa 
-								2) Clique
-								%a{:href=>"#", :id=>"habilita-marker"}aqui
-								para habilitar a inserção.
-								%img{:src=>"/assets/markers/user_p.png", :id=>"marker"}
+							#create-marker
+								%p.caixa 1) Mova e aproxime o mapa até a localização desejada para o novo marcador. 
+								%br
+								%p.caixa 
+									2) Clique
+									%a{:href=>"#", :id=>"habilita-marker"}aqui
+									para habilitar a inserção.										
+							#save-marker{:style=>"display:none"}
+								= form_for Marcador.new do |f|
+									= f.hidden_field :long
+									= f.hidden_field :lat
+									%p.caixa
+										3) Título
+										%br
+										= f.text_field :titulo
+										%br
+									%p.caixa
+										%br
+										4) Tags (separadas por vírgulas)
+										%br
+										%input{:type=>"text"}
+										%br
+									%p.caixa
+										%br
+										5) Imagem
+										%br
+										= f.file_field :image
+									%br				
+									= f.submit 'Save'													
+								%a{:id=>"cancel-marker", :href=>"#", :style=>"float:right"}Cancelar
+								%a{:id=>"save-marker", :href=>"#", :style=>"float:left"}Salvar
+
+
 
 
 = render :partial=>"pages/toggle"

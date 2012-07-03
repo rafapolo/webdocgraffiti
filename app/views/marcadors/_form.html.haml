@@ -1,0 +1,19 @@
+= form_for @marcador do |f|
+  -if @marcador.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@marcador.errors.count, "error")} prohibited this marcador from being saved:"
+      %ul
+        - @marcador.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :lat
+    = f.text_field :lat
+  .field
+    = f.label :long
+    = f.text_field :long
+  .field
+    = f.label :titulo
+    = f.text_field :titulo
+  .actions
+    = f.submit 'Save'
