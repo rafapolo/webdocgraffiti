@@ -1,7 +1,7 @@
 $(document).ready ->
 	myOptions =
-		center: new google.maps.LatLng(-34.397, 150.644)
-		zoom: 8
+		center: new google.maps.LatLng(-23.5687, -46.5705)
+		zoom: 12
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 
 	map = new google.maps.Map(document.getElementById("mapa"), myOptions)
@@ -15,12 +15,12 @@ $(document).ready ->
 			)
 			marcadores.push marker
 			$("#marker").hide()			
-			$(document).off("mousemove")			
 			$('#marcador_lat').val event.latLng["$a"]
 			$('#marcador_long').val event.latLng["ab"]
-			console.log event.latLng["ab"]
-			$("#create-marker").slideToggle()
-			$('#save-marker').slideToggle()
+			$("#passo-3").slideToggle()
+			$("#togglao").click() if !($("#lateral").is(":visible"))
+			$("#marcador-titulo").focus()
+			$(document).off("mousemove")			
 
 	$("#habilita-marker").click(
 		(e)->			
@@ -28,19 +28,34 @@ $(document).ready ->
 			$("#marker").css("position", "fixed")
 			$("#marker").css("top", e.pageY - 40)
 			$("#marker").css("left", e.pageX - 22)
+			$("#marcador_tags").val("")
+			$("#create-marker").slideToggle()
+			$('#save-marker').slideToggle()
 			$(document).mousemove((e)->	
 				$("#marker").css("top", e.pageY - 40)
 				$("#marker").css("left", e.pageX - 22)
 			)
 	)
 
-	$("#cancel-marker").click(->
-		marcadores[0].setMap null if marcadores[0]
+	$("#new_marcador").ajaxForm
+      beforeSubmit: ->        
+        $('#save-marker').slideToggle()
+        $('#status').text("Salvando...")
+      success: (e) ->
+        $("#status").text("Ok")
+
+	$("#cancel-btn").click(->
+		if marcadores[0]
+			marcadores[0].setMap null
+			marcadores.pop marcadores[0]
+		$("#marker").hide()
 		$('#save-marker>p.caixa>input').val("")
 		$("#create-marker").slideToggle()
 		$('#save-marker').slideToggle()
+		$("#passo-3").slideToggle()
 	)
 
-	$("#save-marker").click(->
-		alert $('#marcador_lat').val() + " | " + $('#marcador_long').val()
+	$("#save-btn").click(->
+		$("#passo-3").slideToggle()
+		$("#new_marcador").submit()
 	)
