@@ -40,15 +40,18 @@ class MarcadorsController < ApplicationController
   # POST /marcadors
   # POST /marcadors.json
   def create
-    @marcador = Marcador.new(params[:marcador])
-
+    marcador = params[:marcador]
+    tags = marcador[:tags]
+    marcador.delete(:tags)
+    @marcador = Marcador.new(marcador)
     respond_to do |format|
       if @marcador.save
+        tags.split(",").each do |t|
+          @marcador.tags << Tag.find_or_create_by_name(t.strip)          
+        end
         format.html { redirect_to @marcador, notice: 'Marcador was successfully created.' }
-        format.json { render json: @marcador, status: :created, location: @marcador }
       else
-        format.html { render action: "new" }
-        format.json { render json: @marcador.errors, status: :unprocessable_entity }
+        format.html { redirect_to @marcador, notice: 'Erro' }
       end
     end
   end
