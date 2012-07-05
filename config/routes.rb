@@ -18,6 +18,7 @@ Webdoc::Application.routes.draw do
   match "/player" => "pages#player"
   
   match "/oauth" => "pages#oauth"
+  match "/marcadores" => "marcadors#index"
 
   match "/admin" => "admin#episodios", :as => :admin
 	match "/admin/mapas" => "admin#mapas"

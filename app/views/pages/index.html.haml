@@ -1,6 +1,7 @@
 = render :partial => "pages/fundo"
 = render :partial => "pages/menu"
-= javascript_include_tag "index"
+- content_for :head do
+	= javascript_include_tag "index"
 
 .container
 	.logo
@@ -23,6 +24,4 @@
 		%a{:href=>"/player"}	
 			%img#ensaio{:src=>"/assets/wdg_ensaio.png"}
 
-#base
-	%img.base{:src=>"/assets/wdg_home_footer.png"}
-	%img.logos{:src=>"/assets/logos/logos.png"}
+= render :partial => "pages/rodape"

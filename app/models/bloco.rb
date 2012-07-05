@@ -22,7 +22,7 @@ class Bloco < ActiveRecord::Base
 		begin
 			page = Koala::Facebook::GraphAPI.new(session[:token])
 			path = "http://webdocgraffiti.com.br/#{self.episodio.urlized}/#{self.urlized}"		
-			page.put_object('WebDocGraffiti', 'feed', :message => "Novo Video: #{self.titulo} em #{self.episodio.titulo} > #{path}")
+			page.put_object('WebDocGraffiti', 'feed', :message => "Novo Video: #{self.titulo} > #{self.sinopse} > #{path}")
 		rescue
 		end
 	end

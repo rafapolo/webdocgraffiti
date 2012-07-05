@@ -1,4 +1,5 @@
-= javascript_include_tag "jquery.rotate"
+- content_for :head do
+	= javascript_include_tag "jquery.rotate", "info"
 = render :partial => "pages/fundo"
 = render :partial => "pages/menu"
 
@@ -11,8 +12,8 @@
 			.boxr.item WEBDOC GRAFFITI
 			.boxr{:style=>"border-right: 0px; width: 19px;"}
 				%img.abre.aberto{:src=>"/assets/setas/seta_pqn.png", :toggle=>"#info-box", :fechado=>"1"}
-	.box.in{:style=>"border-top: 0px; width: 884px; height: 300px; display: block"}
-		#info-box.caixa{:style=>"border-bottom: 0px; padding: 8px; height: 0px"}
+	.box.in{:style=>"border-top: 0px; width: 884px; height: 300px; display: block; height: inherit"}
+		#info-box.caixa{:style=>"border-bottom: 0px; padding: 8px;"}
 			%p.caixa À partir de julho desse ano, Webdoc Graffiti vai apresentar doze episódios mensais e doze ensaios audiovisuais com depoimentos, cenas e performances de artistas urbanos da capital paulista. Ao todo serão mais de duas horas de material em vídeo, publicado quinzenalmente até julho de 2013.
 			%br
 			%p.caixa A cada mês novos temas, artistas, coletivos, regiões, bairros, iniciativas e estilos serão abordados. Em uma plataforma interativa, os visitantes poderão navegar no mapa, encontrar dezenas de vídeos, filtrar os temas de seu interesse, agregar comentários ou postar fotografias de pontos de apreciação na cidade.
@@ -20,16 +21,11 @@
 			%p.caixa Um formato que explora a linguagem documental do cinema e da televisão e a adapta para a internet. Isso é webdocumentário.
 			%p.caixa Interatividade: Mapa interativo com recursos de street view do google; Conteúdo colaborativo postado pelos internautas (street views e fotografias de grafites); Conteúdo geo-referenciado e navegacão pelo mapa; Episódios não-lineares, subdividos em capítulos temáticos; Tags e filtragem temática associadas a cada unidade de vídeo; Possibilidade de compartilhamento de todo conteúdo em redes sociais.
 			%br
-			%br
-			%p Diretor: Giovanni Francischelli
-			%p Produção e Pesquisa: Lívia Perez de Paula
-			%p Layout: Miguel Nobrega e Daniel Frota
-			%p Programação e desenvolvimento do Website: Rafael Polo
-			%p Webmaster: Felipe Crepker Vieira
-			%p Videomaker: André Menezes
-			%br
+			%p Diretor:  Giovanni Francischelli
+			%p Produção e Pesquisa:  Lívia Perez de Paula
+			%p Layout:  Miguel Nobrega e Daniel Frota
+			%p Desenvolvimento Web:  Rafael Polo
+			%p Webmaster:  Felipe Crepker Vieira
+			%p Videomaker:  André Menezes
 
-#base
-	%img.base{:src=>"/assets/wdg_home_footer.png"}
-	%img.logos{:src=>"/assets/logos/logos.png"}	
-			
+= render :partial => "pages/rodape"
