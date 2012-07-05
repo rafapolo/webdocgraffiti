@@ -5,16 +5,18 @@
       - t = "WEBDOC GRAFFITI | #{@titulo}" 
       %title= t
     - else
-      %title WEBDOC GRAFFITI
+      %title WEBDOC GRAFFITI    
     %meta{:content => "text/html;charset=UTF-8", "http-equiv" => "content-type"}    
     %link{:type => "image/x-icon", :rel=>"icon", :href=>"/assets/favicon.ico"}
+    %meta{:name=>"viewport", :content=>"width=950", "initial-scale"=>"1"}
     %meta{:property=>"fb:app_id", :content=>"380422978692298"}
     %meta{:property=>"fb:admins", :content=>"polo.rafael"}
     %meta{:property=>"og:title", :content=>"WEBDOC GRAFFITI"}
     %meta{:property=>"og:type", :content=>"website"}
     %meta{:property=>"og:image", :content=>"/assets/logos/wdg_logo_home.gif"}
-    %meta{:property=>"og:site_name", :content=>"WEBDOC GRAFFITI"}
+    %meta{:property=>"og:site_name", :content=>"WEBDOC GRAFFITI"}    
     = javascript_include_tag "jquery171", "webdoc"
+    = yield :head 
     = stylesheet_link_tag "webdoc"
   %body
     = yield

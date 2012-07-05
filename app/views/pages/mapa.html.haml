@@ -1,5 +1,6 @@
-= javascript_include_tag "jquery.rotate", "mapa", "ajaxform"
-= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyBwG0qBPx1M89Waoit_jg8TbJL2wcvQKts&sensor=false"
+- content_for :head do
+	= javascript_include_tag "jquery.rotate", "mapa", "ajaxform"
+	= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyBwG0qBPx1M89Waoit_jg8TbJL2wcvQKts&sensor=false"
 
 #fb-root
 = javascript_include_tag "http://connect.facebook.net/pt_BR/all.js#xfbml=1&appId=380422978692298"
@@ -52,12 +53,13 @@
 				.add-marcador{:style=>"padding: 5px"}
 					%p.caixa
 						%img{:src=>"/assets/markers/user_p.png", :id=>"marker"}
-						- if false #!@me
+						- if !@me
 							Autentique-se para adicionar um novo marcador
 							%a{:href=>"https://www.facebook.com/dialog/oauth?client_id=380422978692298&redirect_uri=http://#{site}/oauth/&scope=publish_stream&response_type=token"}						
 								%img{:src=>"/assets/connect_facebook.png", :align=>"center"}
 						- else
-							//#{@me["name"]},
+							%img{:src=>"#{@pic}"}
+							#{@me["name"]},
 							%br
 							%br
 							#create-marker
@@ -71,8 +73,9 @@
 								= form_for Marcador.new do |f|
 									= f.hidden_field :long
 									= f.hidden_field :lat
+									= f.hidden_field :autor, :value=>@me["name"]
+									= f.hidden_field :autor_url, :value=>@me["link"]
 									%p.caixa{:id=>"passo-3"}
-										%br
 										3. Selecione o local no mapa.
 										%br
 										%br
@@ -95,7 +98,11 @@
 									%br				
 									- f.submit 'Save'									
 								%a{:id=>"save-btn", :href=>"#"}Salvar
-								%a{:id=>"cancel-btn", :href=>"#"}Cancelar				
-							%p.caixa{:id=>"status"}			
+								%a{:id=>"cancel-btn", :href=>"#"}Cancelar			
+							%p.caixa{:id=>"status"}		
+								#back-btn
+									%br
+									%p.caixa
+										%a{:id=>"voltar-btn", :href=>"#"}Voltar
 
 = render :partial=>"pages/toggle"

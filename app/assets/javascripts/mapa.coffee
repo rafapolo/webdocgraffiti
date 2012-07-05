@@ -1,11 +1,24 @@
 $(document).ready ->
+	$("#wdg_logo").css("left", "65px")
 	myOptions =
 		center: new google.maps.LatLng(-23.5687, -46.5705)
 		zoom: 12
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 
 	map = new google.maps.Map(document.getElementById("mapa"), myOptions)
-	marcadores = []
+	
+	$.get("/marcadores", (data)->
+		$.each(data, (i, m) ->
+			icon = if m.bloco_id then "/assets/markers/wdg_p.png" else "/assets/markers/user_p.png"
+			marker = new google.maps.Marker(
+				position: new google.maps.LatLng(m.lat, m.long)
+				map: map
+				icon: icon
+			)
+		)
+	)
+
+	marcador = ""
 	google.maps.event.addListener map, "click", (event) ->
 		if ($("#marker").is(":visible"))
 			marker = new google.maps.Marker(
@@ -13,12 +26,11 @@ $(document).ready ->
 				map: map
 				icon: "/assets/markers/user_p.png"
 			)
-			marcadores.push marker
+			marcador = marker
 			$("#marker").hide()			
 			$('#marcador_lat').val event.latLng["$a"]
 			$('#marcador_long').val event.latLng["ab"]
 			$("#passo-3").slideToggle()
-			$("#togglao").click() if !($("#lateral").is(":visible"))
 			$("#marcador-titulo").focus()
 			$(document).off("mousemove")			
 
@@ -38,16 +50,22 @@ $(document).ready ->
 	)
 
 	$("#new_marcador").ajaxForm
-      beforeSubmit: ->        
-        $('#save-marker').slideToggle()
-        $('#status').text("Salvando...")
-      success: (e) ->
-        $("#status").text("Ok")
+		beforeSubmit: ->        
+			$('#save-marker').slideToggle()
+			$('#status').show()
+			$('#status').text("Salvando...")
+		success: (e) ->
+			if e == "200"
+				msg = "Ok. Marcador adicionado."
+				$("#new_marcador")[0].reset()
+				$("#marcador_tags").val("")
+				$("#status").text(msg)
+			else
+				$("#status").text("Erro. Dados incompletos")
+			$("#back-btn").show()
 
 	$("#cancel-btn").click(->
-		if marcadores[0]
-			marcadores[0].setMap null
-			marcadores.pop marcadores[0]
+		marcador.setMap null
 		$("#marker").hide()
 		$('#save-marker>p.caixa>input').val("")
 		$("#create-marker").slideToggle()
@@ -56,6 +74,17 @@ $(document).ready ->
 	)
 
 	$("#save-btn").click(->
-		$("#passo-3").slideToggle()
 		$("#new_marcador").submit()
+	)
+
+	$("#voltar-btn").click(->		
+		if $("#status").text() == "Ok. Marcador adicionado."
+			$("#create-marker").slideToggle()
+			$('#save-marker').hide()
+			$("#passo-3").hide()
+			$("#voltar-btn").hide()
+			return
+		$("#status").hide()
+		$("#back-btn").hide()
+		$('#save-marker').slideToggle()
 	)

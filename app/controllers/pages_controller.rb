@@ -5,7 +5,7 @@ class PagesController < ApplicationController
 
 	def videos
 		@episodios = Episodio.all
-		@tags = Tag.all		
+		@tags = Tag.joins(:blocos).uniq
 		@titulo = "VIDEOS"
 	end
 
@@ -20,8 +20,10 @@ class PagesController < ApplicationController
 	    begin
 	      graph = Koala::Facebook::API.new(session[:token])
 	      @me = graph.get_object("me")
+	      @pic = graph.get_picture(@me['id'])
 	      @auth = true
 	    rescue Koala::Facebook::APIError
+	      @auth = false
 	      @me = false
 	    end
   	end
