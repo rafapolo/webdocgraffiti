@@ -15,7 +15,7 @@
 			%span
 				- if b = Bloco.last
 					%a#atual{:href=>play_bloco(b), :title=>"Assista o último episódio"}
-						episódio #{count Episodio.count}: #{b.titulo}
+						EPISÓDIO #{count Episodio.count}: #{b.episodio.titulo}
 	
 	- if false # previous
 		%img.nav.dir{:src=>"/assets/setas/seta_d.png"}

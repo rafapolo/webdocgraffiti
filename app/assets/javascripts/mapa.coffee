@@ -18,7 +18,7 @@ $(document).ready ->
 		)
 	)
 
-	marcador = ""
+	new_marcador = ""
 	google.maps.event.addListener map, "click", (event) ->
 		if ($("#marker").is(":visible"))
 			marker = new google.maps.Marker(
@@ -26,7 +26,7 @@ $(document).ready ->
 				map: map
 				icon: "/assets/markers/user_p.png"
 			)
-			marcador = marker
+			new_marcador = marker
 			$("#marker").hide()			
 			$('#marcador_lat').val event.latLng["$a"]
 			$('#marcador_long').val event.latLng["ab"]
@@ -65,7 +65,7 @@ $(document).ready ->
 			$("#back-btn").show()
 
 	$("#cancel-btn").click(->
-		marcador.setMap null
+		new_marcador.setMap null
 		$("#marker").hide()
 		$('#save-marker>p.caixa>input').val("")
 		$("#create-marker").slideToggle()
