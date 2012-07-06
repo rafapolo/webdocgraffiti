@@ -7,6 +7,7 @@ $(document).ready ->
 
 	map = new google.maps.Map(document.getElementById("mapa"), myOptions)
 	
+	marcadores = []
 	$.get("/marcadores", (data)->
 		$.each(data, (i, m) ->
 			icon = if m.bloco_id then "/assets/markers/wdg_p.png" else "/assets/markers/user_p.png"
@@ -14,9 +15,19 @@ $(document).ready ->
 				position: new google.maps.LatLng(m.lat, m.long)
 				map: map
 				icon: icon
+				id: m.id
+				title: m.titulo
 			)
+			google.maps.event.addListener(marker, 'click', ->
+				$.get("/marcadors/#{marker.id}", (data)->					
+					$('.dados').html data
+					box = $('.abre[toggle=".dados"]')
+					box.click() if box.attr("fechado")=="0"
+				)    			
+			)
+			marcadores.push marker			
 		)
-	)
+	)	
 
 	new_marcador = ""
 	google.maps.event.addListener map, "click", (event) ->

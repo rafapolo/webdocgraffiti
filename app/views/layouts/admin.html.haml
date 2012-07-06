@@ -15,10 +15,10 @@
         %a.brand{:href => "/admin"} WDG
         .nav-collapse
           %ul.nav
-            %li.active
+            %li
               = link_to "Episódios", "/admin/episodios"
             %li
-              = link_to "Mapas", "/admin/mapas"
+              = link_to "Marcadores", "/admin/marcadores"
 
   - unless flash[:notice].blank?
     - if flash[:error]

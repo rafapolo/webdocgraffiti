@@ -2,7 +2,7 @@ class MarcadorsController < ApplicationController
   layout false
 
   def index
-    @marcadors = Marcador.all
+    @marcadors = Marcador.select("id, titulo, lat, long, bloco_id").all
     
     if !request.xhr?
       redirect_to root_path
@@ -12,25 +12,25 @@ class MarcadorsController < ApplicationController
   end
 
   def show
-    @marcador = Marcador.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @marcador }
-    end
+    @marcador = Marcador.find(params[:id])    
+      if !request.xhr?
+        redirect_to "/mapa"
+      else        
+        render :layout => false
+      end
   end
 
   def new
     @marcador = Marcador.new
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @marcador }
+      format.html
     end
   end
 
-  def edit
+  def edit    
     @marcador = Marcador.find(params[:id])
+    render :layout => "admin"
   end
 
   def create
@@ -50,13 +50,18 @@ class MarcadorsController < ApplicationController
 
   def update
     @marcador = Marcador.find(params[:id])
+    marcador = params[:marcador]
+    tags = marcador[:tags]
+    marcador.delete(:tags)
     respond_to do |format|
       if @marcador.update_attributes(params[:marcador])
-        format.html { redirect_to @marcador, notice: 'Marcador was successfully updated.' }
-        format.json { head :no_content }
+        @marcador.tags.destroy_all
+        tags.split(",").each do |t|
+          @marcador.tags << Tag.find_or_create_by_name(t.strip)          
+        end
+        format.html { redirect_to "/admin/marcadores", notice: 'Marcador was successfully updated.' }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @marcador.errors, status: :unprocessable_entity }
+        format.html { render request.redirect}
       end
     end
   end
@@ -65,8 +70,7 @@ class MarcadorsController < ApplicationController
     @marcador = Marcador.find(params[:id])
     @marcador.destroy
     respond_to do |format|
-      format.html { redirect_to marcadors_url }
-      format.json { head :no_content }
+      format.html { redirect_to request.referer }
     end
   end
 end

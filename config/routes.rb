@@ -1,12 +1,9 @@
-Webdoc::Application.routes.draw do
-  resources :marcadors
-
-  resources :georefs
-  resources :tags
-  resources :capitulos
+Webdoc::Application.routes.draw do  
   resources :episodios  
   resources :blocos
   resources :hiperbalons
+  resources :marcadors
+  resources :tags
   
   namespace :admin do
     get :episodios
@@ -21,7 +18,7 @@ Webdoc::Application.routes.draw do
   match "/marcadores" => "marcadors#index"
 
   match "/admin" => "admin#episodios", :as => :admin
-	match "/admin/mapas" => "admin#mapas"
+	match "/admin/marcadores" => "admin#marcadores"
 
   match "/:episodio/:bloco" => "pages#player"
   

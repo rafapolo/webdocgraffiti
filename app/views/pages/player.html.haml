@@ -65,22 +65,22 @@
 					- if b1 = blocos[0]
 						%a{:href=>play_bloco(b1)}
 							.video{:style=>"padding-left: 16px; opacity: #{b1==@bloco ? 0.3 : 1}"}		
-								= s3_image(b1.image.url(:thumb))
+								= image_tag(b1.image.url(:thumb))
 								.titulo= b1.titulo
 					- if b2 = blocos[1]
 						%a{:href=>play_bloco(b2)}
 							.video{:style=>"opacity: #{b2==@bloco ? 0.3 : 1}"}
-								= s3_image(b2.image.url(:thumb))
+								= image_tag(b2.image.url(:thumb))
 								.titulo= b2.titulo					
 					- if b3 = blocos[2]
 						%a{:href=>play_bloco(b3)}
 							.video{:style=>"padding-left: 16px; opacity: #{b3==@bloco ? 0.3 : 1}"}
-								= s3_image(b3.image.url(:thumb))
+								= image_tag(b3.image.url(:thumb))
 								.titulo= b3.titulo
 					- if b4 = blocos[3]
 						%a{:href=>play_bloco(b4)}
 							.video{:style=>"opacity: #{b4==@bloco ? 0.3 : 1}"}
-								= s3_image(b4.image.url(:thumb))
+								= image_tag(b4.image.url(:thumb))
 								.titulo= b4.titulo
 
 			

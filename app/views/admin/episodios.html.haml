@@ -7,7 +7,7 @@
         %tr
           %th Nome
           %th Descrição
-          %th Blocos
+          %th{:style=>"text-align:center"} Blocos
           %th Último
       %tbody
         - @episodios.each do |e|
@@ -15,8 +15,8 @@
             %td{:width=>"200px"}= e.titulo
             %td= e.sinopse
             %td{:style=>"text-align:center"}= e.blocos.count
-            %td{:style=>"width:80px"}= e.blocos.last.created_at.strftime("%v") if e.blocos.last
-            %td= link_to "Editar", edit_episodio_path(e), :class=>"btn"          
+            %td{:style=>"width:80px"}= e.blocos.last.created_at.strftime("%d.%m.%Y %I:%M%p") if e.blocos.last
+            %td{:style=>"width:30px"}= link_to "Editar", edit_episodio_path(e), :class=>"btn"          
             %td= link_to "Excluir", episodio_path(e), :method=>:delete, :confirm => "Quer mesmo excluir este episódio com todos os vídeos?", :class=>"btn btn-danger"
   - else
     %p Vazio. Adicione.

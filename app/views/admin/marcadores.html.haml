@@ -1,0 +1,24 @@
+#admin
+  %h1 Marcadores Públicos
+  %br  
+  - if @marcadores.count > 0
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Imagem
+          %th Título          
+          %th Tags
+          %th Autor
+          %th Data
+      %tbody
+        - @marcadores.each do |e|
+          %tr
+            %td{:style=>"width:150px"}= image_tag e.image.url(:thumb)
+            %td= e.titulo            
+            %td= csv_tags e
+            %td= link_to e.autor, e.autor_url, :target=>"_blank" if e.autor
+            %td{:style=>"width:80px"}= e.created_at.strftime("%d.%m.%Y %I:%M%p")
+            %td{:style=>"width:30px"}= link_to "Editar", edit_marcador_path(e), :class=>"btn"          
+            %td= link_to "Excluir", marcador_path(e), :method=>:delete, :confirm => "Quer mesmo excluir este marcador?", :class=>"btn btn-danger"
+  - else
+    %p Vazio. Adicione.
