@@ -49,7 +49,7 @@
 					- if x==0
 						.video{:style=>"padding-left: 9px", :tags=>csv_url_tags(b)}
 							%a{:href=>play_bloco(b)}
-								= s3_image b.image.url(:thumb)
+								= image_tag b.image.url(:thumb)
 								.titulo 
 									= b.titulo
 					- else
@@ -57,13 +57,13 @@
 							.ensaio
 								.video{:tags=>csv_url_tags(b)}
 									%a{:href=>play_bloco(b)}
-										= s3_image b.image.url(:thumb)
+										= image_tag b.image.url(:thumb)
 										.titulo 
 											= b.titulo
 						- else
 							.video{:tags=>csv_url_tags(b)}
 								%a{:href=>play_bloco(b)}
-									= s3_image b.image.url(:thumb)
+									= image_tag b.image.url(:thumb)
 									.titulo 
 										= b.titulo					
 					- x+=1

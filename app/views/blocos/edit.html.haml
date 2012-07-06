@@ -16,7 +16,7 @@
 			%tbody
 				- @bloco.hiperbalons.each do |h|
 					%tr
-						%td{:width=>"15%"}= s3_image h.image.url(:thumb)
+						%td{:width=>"15%"}= image_tag h.image.url(:thumb)
 						%td= h.url
 						%td{:width=>"200px"}= "#{h.in}s -> #{h.out}s"
 						%td= link_to "Editar", edit_hiperbalon_path(h), :class=>"btn"

@@ -12,7 +12,7 @@
     = f.label :Imagem
     = f.file_field :image      
     %br
-    = s3_image @hiperbalon.image.url(:thumb) if @hiperbalon.id    
+    = image_tag @hiperbalon.image.url(:thumb) if @hiperbalon.id    
     = f.hidden_field :bloco_id, :value => @hiperbalon.bloco ? @hiperbalon.bloco.id : @bloco_id
     %br
     %br

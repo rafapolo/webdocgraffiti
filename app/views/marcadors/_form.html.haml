@@ -1,11 +1,10 @@
-= form_for @marcador do |f|
-  -if @marcador.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@marcador.errors.count, "error")} prohibited this marcador from being saved:"
-      %ul
-        - @marcador.errors.full_messages.each do |msg|
-          %li= msg
-
+= form_for @marcador do |f|  
+  .field
+    = f.label :titulo
+    = f.text_field :titulo
+  .field
+    = f.label "Tags (separadas por vírgula)"
+    = f.text_field :tags, :value=> csv_tags(@marcador)
   .field
     = f.label :lat
     = f.text_field :lat
@@ -13,7 +12,9 @@
     = f.label :long
     = f.text_field :long
   .field
-    = f.label :titulo
-    = f.text_field :titulo
+    = image_tag @marcador.image.url(:thumb) if @marcador.id
+    = f.file_field :image
+    %br
+    %br
   .actions
-    = f.submit 'Save'
+    = f.submit 'Salvar', :class=>"btn"

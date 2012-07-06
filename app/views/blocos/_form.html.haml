@@ -15,7 +15,7 @@
     = f.label :Imagem
     = f.file_field :image      
     %br
-    = s3_image @bloco.image.url(:thumb) if @bloco.id    
+    = image_tag @bloco.image.url(:thumb) if @bloco.id    
     = f.hidden_field :episodio_id, :value => @bloco.episodio ? @bloco.episodio.id : @episodio_id
     %br
     %br

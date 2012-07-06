@@ -8,8 +8,8 @@ class AdminController < ApplicationController
 		@episodios = Episodio.all
 	end
 
-	def mapas
-		redirect_to "/admin", notice: 'Mapas; Logo logo...'
+	def marcadores
+		@marcadores = Marcador.where(:bloco_id=>nil)
 	end
 
 	private

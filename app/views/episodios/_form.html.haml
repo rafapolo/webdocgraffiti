@@ -17,7 +17,7 @@
     = f.label "Capa (GIF)"
     = f.file_field :capa
     %br
-    = s3_image @episodio.capa.url(:thumb) if @episodio.id
+    = image_tag @episodio.capa.url(:thumb) if @episodio.id
   %br
   .actions
     = f.submit 'Salvar', :class=>"btn"

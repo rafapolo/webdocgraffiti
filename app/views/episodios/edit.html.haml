@@ -18,7 +18,7 @@
 			%tbody
 				- @episodio.blocos.each do |b|
 					%tr
-						%td{:width=>"15%"}= s3_image b.image.url(:thumb)
+						%td{:width=>"15%"}= image_tag b.image.url(:thumb)
 						%td= b.titulo
 						%td= csv_tags b					
 						%td= link_to "Editar", edit_bloco_path(b), :class=>"btn"
