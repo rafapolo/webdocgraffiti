@@ -2,24 +2,27 @@
 
 - exec = ''
 - @bloco.hiperbalons.each do |h|
-	- exec << "v.footnote({start: #{h.in}, end: #{h.out}, text: \\\"<a href='#{h.url}'><img src='#{h.image.url(:thumb).gsub('s3.amazonaws.com/wdg-demo', 'wdg-demo.s3.amazonaws.com')}' style='float:left; padding-right:10px'/></a>\\\", target: 'hiperbalon', effect: 'applyclass', applyclass: 'hiperbalon'}); "	
+	- exec << "v.footnote({start: #{h.in}, end: #{h.out}, text: \\\"<a target='_blank' href='#{h.url}'><img class='hiper' src='#{h.image.url(:thumb)}' style='float:left; padding-right:10px'/></a>\\\", target: 'hiperbalon', effect: 'applyclass', applyclass: 'hiperbalon'}); "	
 
 :javascript
 	document.addEventListener("DOMContentLoaded", function () {
-		var v = Popcorn.youtube('#video', "#{@bloco.video_url}");
+		v = Popcorn.youtube('#video', "#{@bloco.video_url}");
 		eval("#{exec}");
-		v.listen("play", function(){
+		v.on("play", function(){
 			var l = $("#lateral");
 			if (l.is(":visible")){$("#togglao").click()}
 		});
-		v.listen("pause", function() {
+		v.on("pause", function() {
 			var l = $("#lateral");
 			if (!l.is(":visible")){$("#togglao").click()}
 		});
-		v.listen("stop", function() {
+		v.on("stop", function() {
 			var l = $("#lateral");
 			if (!l.is(":visible")){$("#togglao").click()}
 		});
+		$('.hiper').click(function(){
+			v.pause()
+		})
 	}, false);
 
 #fb-root
@@ -88,8 +91,8 @@
 				.box-head
 					.boxr.item{:style=>"width: 355px"} COMENTÁRIOS
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
-						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".comment", :fechado=>"1"}		
-			.box.in{:style=>"border-top: 0px; width: 386px; display:block; height: 350px"}
+						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".comment", :fechado=>"0"}		
+			.box.in{:style=>"border-top: 0px; width: 386px; height: 350px"}
 				- url = CGI.escape(self_url)
 				- host = request.host
 				%iframe.comment{:src=>"https://www.facebook.com/plugins/comments.php?api_key=380422978692298&channel_url=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D8%23cb%3Df1fad68578%26origin%3D#{host}%252Ff2957f35f%26domain%3D#{host}%26relation%3Dparent.parent&href=#{url}&locale=pt_BR&numposts=5&sdk=joey&colorscheme=dark"}
