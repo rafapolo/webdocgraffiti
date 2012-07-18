@@ -21,6 +21,7 @@ Webdoc::Application.routes.draw do
   match "/admin" => "admin#episodios", :as => :admin
 	match "/admin/marcadores" => "admin#marcadores"
 
+  match "/videos/tag/:tag" => "pages#videos"
   match "/:episodio/:bloco" => "pages#player"
   
   root :to => 'pages#index'

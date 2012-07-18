@@ -34,7 +34,7 @@
 /* line 30, ../sass/lightbox.sass */
 .lb-outerContainer {
   position: relative;
-  background-color: #b96b3b;
+  background-color: lightgray;
   *zoom: 1;
   width: 250px;
   height: 250px;
@@ -54,7 +54,7 @@
 
 /* line 39, ../sass/lightbox.sass */
 .lb-container {
-  padding: 5px;
+  
 }
 
 /* line 42, ../sass/lightbox.sass */

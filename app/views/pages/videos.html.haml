@@ -1,5 +1,4 @@
-= javascript_include_tag "jquery.rotate"
-= javascript_include_tag "videos"
+= javascript_include_tag "jquery.rotate", "actualHeight", "videos"
 = render :partial => "pages/fundo"
 = render :partial => "pages/menu"
 
@@ -14,7 +13,7 @@
 			TAGS
 		.boxr{:style=>"border-right: 0px; width: 19px;"}
 			%img.abre{:src=>"/assets/setas/seta_pqn.png", :toggle=>".marcadores", :fechado=>"0"}
-	#tags.box.in
+	#tags.box.in{:tag=>@video_tag}
 		.marcadores
 			%table			
 				%tr
@@ -22,7 +21,8 @@
 					- @tags.each do |t|
 						%td
 							.tag
-								%input{:type=>"checkbox", :checked=>true, :id=>"tag-#{t.urlized}"}			
+								- checked = true unless @video_tag
+								%input{:type=>"checkbox", :checked=>checked, :id=>"tag-#{t.urlized}"}
 									%span.branco= t.name
 						- c+=1
 						- if c % 4 == 0
