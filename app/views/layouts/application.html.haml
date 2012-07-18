@@ -10,13 +10,24 @@
     %link{:type => "image/x-icon", :rel=>"icon", :href=>"/assets/favicon.ico"}
     %meta{:name=>"viewport", :content=>"width=950", "initial-scale"=>"1"}
     %meta{:property=>"fb:app_id", :content=>"380422978692298"}
-    %meta{:property=>"fb:admins", :content=>"polo.rafael"}
+    %meta{:property=>"fb:admins", :content=>"WebdocGraffiti,polo.rafael"}
     %meta{:property=>"og:title", :content=>"WEBDOC GRAFFITI"}
     %meta{:property=>"og:type", :content=>"website"}
     %meta{:property=>"og:image", :content=>"/assets/logos/wdg_logo_home.gif"}
     %meta{:property=>"og:site_name", :content=>"WEBDOC GRAFFITI"}    
     = javascript_include_tag "jquery171", "webdoc"
-    = yield :head 
+    = yield :head     
+    :javascript
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-3761913-22']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
     = stylesheet_link_tag "webdoc"
   %body
     = yield
