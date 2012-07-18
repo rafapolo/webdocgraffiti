@@ -12,6 +12,7 @@
 				%tr
 					%th Imagem
 					%th Titulo
+					%th Marcadores
 					%th Tags
 					%th
 					%th
@@ -20,7 +21,8 @@
 					%tr
 						%td{:width=>"15%"}= image_tag b.image.url(:thumb)
 						%td= b.titulo
-						%td= csv_tags b					
+						%td= b.marcadors.count
+						%td= csv_tags b			
 						%td= link_to "Editar", edit_bloco_path(b), :class=>"btn"
 						%td= link_to "Excluir", bloco_path(b), :method=>:delete, :confirm => "Quer mesmo excluir este episódio com todos os blocos?", :class=>"btn btn-danger"
 	- else

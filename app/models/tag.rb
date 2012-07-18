@@ -7,4 +7,10 @@ class Tag < ActiveRecord::Base
 	def urlize
 		self.urlized = self.name.urlize
 	end
+
+	def self.limpa
+		Tag.all.each do |t|
+			t.destroy if t.blocos.count==0 && t.marcadors.count==0
+		end
+	end
 end

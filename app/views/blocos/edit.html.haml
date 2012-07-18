@@ -1,3 +1,6 @@
+= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyBwG0qBPx1M89Waoit_jg8TbJL2wcvQKts&sensor=false"
+= javascript_include_tag "admin_maps", "ajaxform"
+
 #left{:style=>"float: left"}
 	%h1 Editar Bloco
 	%br
@@ -5,6 +8,10 @@
 
 - count = @bloco.hiperbalons.count
 #right{:style=>"float: left; padding-left:40px; width: 55%"}
+	%h1 Marcadores
+	#mapadmin{:bloco=>@bloco.id}
+	%br
+
 	%h1 Hiper Balões
 	- if count > 0
 		%table.table.table-striped
@@ -23,6 +30,7 @@
 						%td= link_to "Excluir", hiperbalon_path(h), :method=>:delete, :confirm => "Quer mesmo excluir este hiperbalão?", :class=>"btn btn-danger"
 	- else
 		%p Vazio. Adicione.
+
 
 	- if count<5
 		= link_to "Novo HiperBalão", new_hiperbalon_path + "?bloco_id=#{@bloco.id}", :class=>"btn btn-primary"

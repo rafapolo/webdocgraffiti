@@ -1,7 +1,11 @@
 = form_for @marcador do |f|  
+  = f.hidden_field :bloco_id
   .field
     = f.label :titulo
     = f.text_field :titulo
+  .field
+    = f.label :info
+    = f.text_area :info, :class=>"area"
   .field
     = f.label "Tags (separadas por vírgula)"
     = f.text_field :tags, :value=> csv_tags(@marcador)
@@ -12,9 +16,11 @@
     = f.label :long
     = f.text_field :long
   .field
-    = image_tag @marcador.image.url(:thumb) if @marcador.id
+    = f.label :imagem
+    = image_tag @marcador.image.url(:thumb) if @marcador.id && !@marcador.bloco
     = f.file_field :image
     %br
     %br
   .actions
     = f.submit 'Salvar', :class=>"btn"
+  #status
