@@ -11,4 +11,3 @@ $ ->
 	)
 
 	$(".abre").rotate(90) if $(".aberto").length	
-

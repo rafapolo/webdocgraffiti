@@ -1,5 +1,6 @@
 - content_for :head do
-	= javascript_include_tag "jquery.rotate", "mapa", "ajaxform"
+	= stylesheet_link_tag "lightbox"
+	= javascript_include_tag "jquery.rotate", "mapa", "ajaxform", "lightbox"
 	= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyBwG0qBPx1M89Waoit_jg8TbJL2wcvQKts&sensor=false"
 
 #fb-root
@@ -86,13 +87,19 @@
 										%br
 									%p.caixa
 										%br
-										5. Tags (separadas por vírgulas)
+										5. Descrição
+										%br
+										= f.text_area :info, :class=>"area"
+										%br										
+									%p.caixa
+										%br
+										6. Tags (separadas por vírgulas)
 										%br
 										= f.text_field :tags
 										%br
 									%p.caixa
 										%br
-										6. Imagem
+										7. Imagem
 										%br
 										= f.file_field :image
 									%br				

@@ -1,3 +1,5 @@
 %h1 Editar Marcador
 
 = render 'form'
+
+= link_to "Excluir", marcador_path(@marcador), :method=>:delete, :confirm => "Quer mesmo excluir este marcador?", :class=>"btn btn-danger"

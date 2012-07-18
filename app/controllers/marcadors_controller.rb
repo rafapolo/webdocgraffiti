@@ -11,6 +11,16 @@ class MarcadorsController < ApplicationController
     end
   end
 
+  def bloco
+    @marcadors = Marcador.select("id, titulo, lat, long").where("bloco_id = ?", params[:bloco])
+    
+    if !request.xhr?
+      redirect_to root_path
+    else
+      render json: @marcadors
+    end
+  end
+
   def show
     @marcador = Marcador.find(params[:id])    
       if !request.xhr?
@@ -30,7 +40,7 @@ class MarcadorsController < ApplicationController
 
   def edit    
     @marcador = Marcador.find(params[:id])
-    render :layout => "admin"
+    render :layout => "admin" unless request.xhr?
   end
 
   def create

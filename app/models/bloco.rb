@@ -5,8 +5,7 @@ class Bloco < ActiveRecord::Base
 	has_many :hiperbalons, :dependent => :destroy 
 	has_and_belongs_to_many :tags
 
-	has_attached_file :image,
-	   :styles => {:thumb=> "173x122!"}
+	has_attached_file :image, :styles => {:thumb=> "173x122!"}
 
 	validates_format_of :video_url, :with => URI::regexp(%w(http https))
 	validates_presence_of :sinopse, :episodio_id, :video_url, :titulo, :image_file_name
@@ -28,10 +27,9 @@ class Bloco < ActiveRecord::Base
 	end
 
 	before_destroy :limpa_tags
+
 	def limpa_tags
-		self.tags.each do |t|
-			t.destroy if t.blocos.count==1
-		end
+		Tag.limpa
 	end
 
 end
