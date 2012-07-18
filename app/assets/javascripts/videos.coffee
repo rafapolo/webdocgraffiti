@@ -26,8 +26,8 @@ $(document).ready ->
 	$('.box.in').css("height", "")
 	$('.ensaio').height($('.ensaio').parent().height())
 	$("#menu").addClass "active"		
-	ceil = Math.ceil($(".tag").length / 4)
-	$("#tags").css("height", (ceil * 22) + 13)
+	
+	$("#tags").css("height", $("#tags").actual('height'))
 	$(".item").click -> abre($(this).next().children())		
 	
 	$('.abre').click -> abre($(this))
@@ -58,6 +58,10 @@ $(document).ready ->
 			)
 		)
 	)
+
+	if selected_tag = $('#tags').attr('tag')
+		abre($('.abre').first())
+		$("#tag-#{selected_tag}").click()
 
 	$('.video>a>img').hover(
 		-> $(this).next().addClass "ativo"

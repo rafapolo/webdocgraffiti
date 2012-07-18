@@ -5,7 +5,7 @@ class Marcador < ActiveRecord::Base
 	has_and_belongs_to_many :tags
 	belongs_to :bloco
 	
-	has_attached_file :image, :styles => {:thumb=> "170x", :full=> "700x"},
+	has_attached_file :image, :styles => {:thumb=> "170x", :full=> "900x"},
 		:url => "/system/:class/:id/:style/:basename.:extension",
 		:path => ":rails_root/public/system/:class/:id/:style/:basename.:extension"
 

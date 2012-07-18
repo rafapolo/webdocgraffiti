@@ -7,11 +7,14 @@ class PagesController < ApplicationController
 		@episodios = Episodio.all
 		@tags = Tag.joins(:blocos).uniq
 		@titulo = "VIDEOS"
+
+		@video_tag = params[:tag] if params[:tag]
+
 	end
 
 	def player
     	@bloco = Bloco.find_by_urlized(params[:bloco])
-    	@titulo = "{@bloco.titulo}".mb_chars.upcase
+    	@titulo = "#{@bloco.titulo}".mb_chars.upcase
   	end
 
   	def mapa

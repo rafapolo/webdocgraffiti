@@ -7,19 +7,26 @@ $(document).ready ->
 
 	map = new google.maps.Map(document.getElementById("mapa"), myOptions)
 	
+	last_marcador = ''
 	marcadores = []
 	loadMarkers = ->
 		$.get("/marcadores", (data)->
 			$.each(data, (i, m) ->
-				icon = if m.bloco_id then "/assets/markers/wdg_p.png" else "/assets/markers/user_p.png"
+				publico = if m.bloco_id then false else true
+				icon = unless publico then "/assets/markers/wdg_p.png" else "/assets/markers/user_p.png"
 				marker = new google.maps.Marker(
 					position: new google.maps.LatLng(m.lat, m.long)
 					map: map
 					icon: icon
 					id: m.id
 					title: m.titulo
+					publico: publico
 				)
 				google.maps.event.addListener(marker, 'click', ->
+					if last_marcador
+						last_marcador.setIcon if marker.publico then "/assets/markers/user_p.png" else "/assets/markers/wdg_p.png"	
+					last_marcador = marker
+					marker.setIcon if marker.publico then "/assets/markers/user_g.png" else "/assets/markers/wdg_g.png"
 					$.get("/marcadors/#{marker.id}", (data)->					
 						$('.dados').html data
 						box = $('.abre[toggle=".dados"]')
