@@ -22,7 +22,9 @@ Webdoc::Application.routes.draw do
 	match "/admin/marcadores" => "admin#marcadores"
 
   match "/videos/tag/:tag" => "pages#videos"
+  match "/mapa/marcador/:id" => "pages#mapa"
+
   match "/:episodio/:bloco" => "pages#player"
-  
+
   root :to => 'pages#index'
 end

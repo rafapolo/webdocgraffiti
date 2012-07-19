@@ -44,9 +44,7 @@ $(document).ready ->
 			tags = $(this).attr('tags').split(', ')
 			$.each(tags, (x, i) -> 								
 				if i==tag
-					#console.log video
 					if outrasTagsTambem(checked, tags)
-						#console.log "all!"
 						if checked
 							video.css('opacity', '1')
 						else
@@ -54,7 +52,6 @@ $(document).ready ->
 					else
 						#console.log "not all!"
 						video.css('opacity', '1') if parseFloat(video.css('opacity')) < 1
-						#console.log video.css('opacity')
 			)
 		)
 	)

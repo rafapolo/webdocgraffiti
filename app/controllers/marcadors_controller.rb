@@ -2,22 +2,18 @@ class MarcadorsController < ApplicationController
   layout false
 
   def index
-    @marcadors = Marcador.select("id, titulo, lat, long, bloco_id").all
-    
     if !request.xhr?
       redirect_to root_path
     else
-      render json: @marcadors
+      render json: Marcador.select("id, titulo, lat, long, bloco_id").all.to_json(:include => :tags)
     end
   end
 
   def bloco
-    @marcadors = Marcador.select("id, titulo, lat, long").where("bloco_id = ?", params[:bloco])
-    
     if !request.xhr?
       redirect_to root_path
     else
-      render json: @marcadors
+      render json: Marcador.select("id, titulo, lat, long, bloco_id").where("bloco_id = ?", params[:bloco]).to_json(:include => :tags)
     end
   end
 
