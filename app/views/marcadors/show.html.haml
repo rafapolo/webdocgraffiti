@@ -1,20 +1,22 @@
 - m = @marcador
-.left{:style=>"width:50%"}	
-	%a{:rel=>"lightbox", :href=>m.image.url(:full)}
-		= image_tag m.image.url(:thumb)
-	%br
-	= m.titulo
-	%br
-	%br
-	%span{:style=>"font-size: 13px; padding-bottom: 10px;"}
-		tags:
-		- tags = m.tags
-		- tags.each do |t|
-			= link_to t.name, t, :class=>"link"
-			= ", " if tags.last != t	
+%p
+	.left{:style=>"width:50%"}	
+		%a{:rel=>"lightbox", :href=>m.image.url(:full)}
+			= image_tag m.image.url(:thumb)
+		%br
+		= m.titulo
+		%br
+		%br
+	.left{:style=>"width:50%"}	
+		%p= m.info
+		%br
+		- if !m.bloco_id && m.autor
+			%p.caixa Adicionado por #{link_to m.autor, m.autor_url}
 
-.left{:style=>"width:50%"}	
-	%p= m.info
-	%br
-	- if !m.bloco_id && m.autor
-		%p.caixa Adicionado por #{link_to m.autor, m.autor_url}
+%br
+%span.left{:style=>"font-size: 13px; padding-bottom: 10px;"}
+	tags:
+	- tags = m.tags
+	- tags.each do |t|
+		= link_to t.name, t, :class=>"link"
+		= ", " if tags.last != t		

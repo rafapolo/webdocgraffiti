@@ -1,15 +1,12 @@
 class PagesController < ApplicationController
 	def index
-	end
-	@auth = true
+	end	
 
 	def videos
 		@episodios = Episodio.all
 		@tags = Tag.joins(:blocos).uniq
 		@titulo = "VIDEOS"
-
 		@video_tag = params[:tag] if params[:tag]
-
 	end
 
 	def player
@@ -20,6 +17,8 @@ class PagesController < ApplicationController
   	def mapa
   		session[:mapa] = true
   		@titulo = "MAPA"
+  		@marcador = params[:id] if params[:id]
+  		@tags_privadas = Tag.privadas
 	    begin
 	      graph = Koala::Facebook::API.new(session[:token])
 	      @me = graph.get_object("me")
@@ -28,7 +27,7 @@ class PagesController < ApplicationController
 	    rescue Koala::Facebook::APIError
 	      @auth = false
 	      @me = false
-	    end
+	    end	    
   	end
 
   	def info

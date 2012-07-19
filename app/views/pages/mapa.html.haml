@@ -12,7 +12,7 @@
 .full
 	#mapa
 
-#lateral	
+#lateral
 	#opaco
 	#menul
 		= render :partial => "pages/menu"
@@ -21,25 +21,39 @@
 				.box-head
 					.boxr.item{:style=>"width: 355px"} MARCADOR
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
-						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".dados", :fechado=>"0"}		
+						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".dados", :fechado=>"0"}
 			.box.in{:style=>"border-top: 0px; width: 386px; height: inherit"}
-				%p.caixa.menor.dados
-					selecione um marcador no mapa				
+				%p.caixa.menor.dados{:marcador=>@marcador}
+					selecione um marcador no mapa
 
 			.box.lista{:style=>"width: 386px"}
 				.box-head
 					.boxr.item{:style=>"width: 355px"} TAGS
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
-						%img.abre.aberto{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".b3", :fechado=>"1"}		
+						%img.abre.aberto{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".wdg_tags", :fechado=>"1"}	
 			.box.in{:style=>"border-top: 0px; width: 386px; display: block"}
-				%p.caixa.menor.b3
-					tags e autocomplete									
+				.caixa.menor.wdg_tags
+					- tags = @tags_privadas
+					%table			
+						%tr
+							- c = 0
+							- tags.each do |t|
+								%td{:style=>"width: 50%"}
+									.tag
+										%input{:type=>"checkbox", :checked=>true, :id=>"tag-#{t.urlized}"}
+											%span.branco= t.name
+								- c+=1
+								- if c % 2 == 0
+									%tr
+					%br
+					Busca:
+					%input{:type=>"text", :placeholder=>"autocomplete [off]", :style=>"margin-left: 10px; font-size:13px; width: 250px"}
 		
 			.box.lista{:style=>"width: 386px"}
 				.box-head
 					.boxr.item{:style=>"width: 355px"} COMENTÁRIOS
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
-						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".comment", :fechado=>"0"}		
+						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".comment", :fechado=>"0"}
 			.box.in{:style=>"border-top: 0px; width: 386px; height: 350px"}
 				- url = CGI.escape(self_url)
 				- host = request.host
@@ -56,7 +70,7 @@
 						%img{:src=>"/assets/markers/user_p.png", :id=>"marker"}
 						- if !@me
 							Autentique-se para adicionar um novo marcador
-							%a{:href=>"https://www.facebook.com/dialog/oauth?client_id=380422978692298&redirect_uri=http://#{site}/oauth/&scope=publish_stream&response_type=token"}						
+							%a{:href=>"https://www.facebook.com/dialog/oauth?client_id=380422978692298&redirect_uri=http://#{site}/oauth/&scope=publish_stream&response_type=token"}			
 								%img{:src=>"/assets/connect_facebook.png", :align=>"center"}
 						- else
 							%img{:src=>"#{@pic}"}

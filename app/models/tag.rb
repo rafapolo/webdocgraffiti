@@ -3,7 +3,9 @@ class Tag < ActiveRecord::Base
   has_and_belongs_to_many :marcadors
   validates_presence_of :name
 
-  before_save :urlize
+  scope :privadas, joins(:marcadors).where('marcadors.bloco_id > 0')
+
+  	before_save :urlize
 	def urlize
 		self.urlized = self.name.urlize
 	end
