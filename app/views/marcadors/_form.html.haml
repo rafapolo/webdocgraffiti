@@ -15,11 +15,6 @@
   .field
     = f.label :long
     = f.text_field :long
-  .field
-    = f.label :imagem
-    = image_tag @marcador.image.url(:thumb) if @marcador.id && !@marcador.bloco
-    = f.file_field :image
-    %br
     %br
   .actions
     = f.submit 'Salvar', :class=>"btn"

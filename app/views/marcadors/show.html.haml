@@ -1,8 +1,9 @@
 - m = @marcador
 %p
 	.left{:style=>"width:50%"}	
-		%a{:rel=>"lightbox", :href=>m.image.url(:full)}
-			= image_tag m.image.url(:thumb)
+		- i = m.bloco ? m.bloco : m
+		%a{:rel=>"lightbox", :href=>i.image.url(:full)}
+			= image_tag i.image.url(:thumb)
 		%br
 		= m.titulo
 		%br
@@ -15,8 +16,9 @@
 
 %br
 %span.left{:style=>"font-size: 13px; padding-bottom: 10px;"}
+	%br
 	tags:
 	- tags = m.tags
 	- tags.each do |t|
-		= link_to t.name, t, :class=>"link"
-		= ", " if tags.last != t		
+		= link_to t.name, "#", :class=>"link", :tag=>t.urlized
+		= ", " if tags.last != t
