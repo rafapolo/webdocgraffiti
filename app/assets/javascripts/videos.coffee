@@ -12,11 +12,8 @@ outrasTagsTambem = (checked, tags) ->
 	ok = true
 	$.each(tags, (n, t) ->		
 		if $("#tag-"+t).is(":checked") != checked			
-			#console.log t + ": " + checked
 			ok = false
 			return ok
-		else
-			#console.log t + ": " + !checked
 	)
 	ok
 
@@ -50,13 +47,13 @@ $(document).ready ->
 						else
 							video.css('opacity', '0.3')
 					else
-						#console.log "not all!"
 						video.css('opacity', '1') if parseFloat(video.css('opacity')) < 1
 			)
 		)
 	)
 
 	if selected_tag = $('#tags').attr('tag')
+		$('.video').css('opacity', '0.3')
 		abre($('.abre').first())
 		$("#tag-#{selected_tag}").click()
 

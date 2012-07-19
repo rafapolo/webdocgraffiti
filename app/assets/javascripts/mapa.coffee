@@ -1,3 +1,13 @@
+abre = (id) ->
+	seta = $(id)
+	$(seta.attr("toggle")).parent().slideToggle()		
+	if seta.attr("fechado") == "0"
+		seta.attr("fechado", "1")
+		seta.rotate({animateTo:90})
+	else		
+		seta.attr("fechado", "0")
+		seta.rotate({animateTo:0})
+
 $(document).ready ->
 	$("#wdg_logo").css("left", "65px")
 
@@ -142,3 +152,13 @@ $(document).ready ->
 		$("#back-btn").hide()
 		$('#save-marker').slideToggle()
 	)
+
+	filtra = (tag) ->
+		$.each(marcadores, (i,m) ->
+			tem = false
+			$.each(m.tags, (c,t) -> tem = true if t.urlized == tag)
+			m.setMap null unless tem
+			$('#wdg_tags').click()
+		)
+
+	$('.link').live('click', -> filtra($(this).attr("tag")))
