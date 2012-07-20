@@ -41,7 +41,6 @@ $(document).ready ->
 					tags: m.tags
 				)
 				google.maps.event.addListener(marker, 'click', ->
-					console.log marker.tags
 					if last_marcador
 						last_marcador.setIcon if last_marcador.publico then "/assets/markers/user_p.png" else "/assets/markers/wdg_p.png"	
 					last_marcador = marker
@@ -67,17 +66,6 @@ $(document).ready ->
 				google.maps.event.trigger(getMarkerById(selected_marcador), 'click')
 		)
 	loadMarkers()
-
-	$('.tag>span').click ->
-		$(this).prev().click()
-
-	$('.tag>input').on('change', ->
-		input = $(this)
-		tag = input.attr("id").replace("tag-", "")
-
-		#$.each(marcadores, (i,m) ->
-			#if
-		)
 
 	new_marcador = ""
 	google.maps.event.addListener map, "click", (event) ->
@@ -160,5 +148,31 @@ $(document).ready ->
 			m.setMap null unless tem
 			$('#wdg_tags').click()
 		)
+		abre($('.abre.aberto.go')) if $('.abre.aberto.go').attr("fechado")=="0"
+		abre($('.abre.dadosgo')) if $('.abre.aberto.go').attr("fechado")=="0"
+		$('.tag>input').attr("checked", false)
+		$("#tag-#{tag}").attr("checked", true)
+
 
 	$('.link').live('click', -> filtra($(this).attr("tag")))
+
+	$('.tag>span').click ->
+		$(this).prev().click()
+
+	$('.tag>input').on('change', ->
+		input = $(this)
+		tag = input.attr("id").replace("tag-", "")
+		filtra(tag)
+	)
+
+	$('#selectAll').click(
+		-> 
+			$('.tag>input').attr("checked", true)
+			$.each(marcadores, (i,m) -> m.setMap map)
+		)
+
+	$('#deselectAll').click(
+		-> 
+			$('.tag>input').attr("checked", false)
+			$.each(marcadores, (i,m) -> m.setMap null)
+	)

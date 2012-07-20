@@ -21,7 +21,7 @@
 				.box-head
 					.boxr.item{:style=>"width: 355px"} MARCADOR
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
-						%img.abre{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".dados", :fechado=>"0"}
+						%img.abre.dadosgo{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".dados", :fechado=>"0"}
 			.box.in{:style=>"border-top: 0px; width: 386px; height: inherit"}
 				%p.caixa.menor.dados{:marcador=>@marcador}
 					selecione um marcador no mapa
@@ -30,7 +30,7 @@
 				.box-head
 					.boxr.item{:style=>"width: 355px"} TAGS
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
-						%img.abre.aberto{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".wdg_tags", :fechado=>"1"}	
+						%img.abre.aberto.go{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".wdg_tags", :fechado=>"1"}	
 			.box.in{:style=>"border-top: 0px; width: 386px; display: block"}
 				.caixa.menor.wdg_tags
 					- tags = @tags_privadas
@@ -46,7 +46,10 @@
 								- if c % 2 == 0
 									%tr
 					%br
-					%input{:type=>"text", :placeholder=>"Buscar outras", :style=>"margin-left: 80px; font-size:13px; width: 190px"}
+					// %input{:type=>"text", :placeholder=>"Buscar outras", :style=>"margin-left: 80px; font-size:13px; width: 190px"}
+					= link_to "marcar tudo", "#", :class=>"linkM", :id=>"selectAll"
+					%span /
+					= link_to "desmarcar", "#", :class=>"linkM", :id=>"deselectAll"
 		
 			.box.lista{:style=>"width: 386px"}
 				.box-head

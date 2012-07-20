@@ -20,8 +20,7 @@ outrasTagsTambem = (checked, tags) ->
 $(document).ready ->
 	$('.container').fadeIn(500)
 	$('.box').css("height", "")
-	$('.box.in').css("height", "")
-	$('.ensaio').height($('.ensaio').parent().height())
+	$('.box.in').css("height", "")	
 	$("#menu").addClass "active"		
 	
 	$("#tags").css("height", $("#tags").actual('height'))
@@ -61,3 +60,5 @@ $(document).ready ->
 		-> $(this).next().addClass "ativo"
 		-> $(this).next().removeClass "ativo"
 	)
+
+	$('img').load(-> $('.ensaio').height($('.ensaio').parent().height()))

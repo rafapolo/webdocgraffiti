@@ -1,3 +1,6 @@
+= "/mapa/marcador/#{@marcador.id}" if @marcador.id
+%br
+%br
 = form_for @marcador do |f|  
   = f.hidden_field :bloco_id
   .field
