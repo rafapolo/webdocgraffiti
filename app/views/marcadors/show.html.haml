@@ -5,15 +5,17 @@
 		%a{:rel=>"lightbox", :href=>i.image.url(:full)}
 			= image_tag i.image.url(:thumb)
 		%br
-		= m.titulo
+		- if m.publico?
+			= m.titulo
+		- else
+			= link_to m.titulo, play_bloco(m.bloco), :class=>"liame", :target=>"_blank"
 		%br
 		%br
 	.left{:style=>"width:50%"}	
 		%p= m.info
 		%br
-		- if !m.bloco_id && m.autor
+		- if m.publico?
 			%p.caixa Adicionado por #{link_to m.autor, m.autor_url}
-
 %br
 %span.left{:style=>"font-size: 13px; padding-bottom: 10px;"}
 	%br
