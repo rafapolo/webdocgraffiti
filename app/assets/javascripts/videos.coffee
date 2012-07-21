@@ -62,3 +62,15 @@ $(document).ready ->
 	)
 
 	$('img').load(-> $('.ensaio').height($('.ensaio').parent().height()))
+
+	$('#selectAll').click(
+		-> 
+			$('.tag>input').attr("checked", true)
+			$('.tag>input').change()
+		)
+
+	$('#deselectAll').click(
+		-> 
+			$('.tag>input').attr("checked", false)
+			$('.tag>input').change()
+	)

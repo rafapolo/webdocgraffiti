@@ -15,29 +15,28 @@ $(document).ready ->
 		center: new google.maps.LatLng(-23.5687, -46.5705)
 		zoom: 12
 		mapTypeId: google.maps.MapTypeId.ROADMAP
-
 	map = new google.maps.Map(document.getElementById("mapa"), myOptions)
 
-	last_marcador = ''
 	marcadores = []
+	last_marcador = ''
 
 	getMarkerById = (id) ->
-		one = ''
+		este = ''
 		$.each(marcadores, (i,m) -> one = m if m.id == id)
-		one
+		este
 
 	loadMarkers = ->
 		$.get("/marcadores", (data)->
 			$.each(data, (i, m) ->
-				publico = if m.bloco_id then false else true
-				icon = unless publico then "/assets/markers/wdg_p.png" else "/assets/markers/user_p.png"
+				pub = if m.bloco_id then false else true
+				icon = unless pub then "/assets/markers/wdg_p.png" else "/assets/markers/user_p.png"
 				marker = new google.maps.Marker(
 					position: new google.maps.LatLng(m.lat, m.long)
 					map: map
 					icon: icon
 					id: m.id
 					title: m.titulo
-					publico: publico
+					publico: pub
 					tags: m.tags
 				)
 				google.maps.event.addListener(marker, 'click', ->
@@ -67,7 +66,7 @@ $(document).ready ->
 		)
 	loadMarkers()
 
-	new_marcador = ""
+	new_marcador = ''
 	google.maps.event.addListener map, "click", (event) ->
 		if ($("#marker").is(":visible"))
 			marker = new google.maps.Marker(
@@ -140,6 +139,7 @@ $(document).ready ->
 		$("#back-btn").hide()
 		$('#save-marker').slideToggle()
 	)
+
 
 	filtra = (tag) ->
 		$.each(marcadores, (i,m) ->
