@@ -34,6 +34,13 @@ class PagesController < ApplicationController
   		@titulo = "INFO"
   	end
 
+  	def feed
+	    @videos = Bloco.all(:order => "updated_at DESC") 
+	    respond_to do |format|
+	      format.rss { render :layout => false }
+	    end
+  end
+
   	def oauth
 		if token = params[:token]
 			session[:token] = token
