@@ -5,30 +5,12 @@
 	- exec << "v.footnote({start: #{h.in}, end: #{h.out}, text: \\\"<a target='_blank' href='#{h.url}'><img class='hiper' src='#{h.image.url(:thumb)}' style='float:left; padding-right:10px'/></a>\\\", target: 'hiperbalon', effect: 'applyclass', applyclass: 'hiperbalon'}); "	
 
 :javascript
-	document.addEventListener("DOMContentLoaded", function () {
-		v = Popcorn.youtube('#video', "#{@bloco.video_url}");
-		eval("#{exec}");
-		v.on("play", function(){
-			var l = $("#lateral");
-			if (l.is(":visible")){$("#togglao").click()}
-		});
-		v.on("pause", function() {
-			var l = $("#lateral");
-			if (!l.is(":visible")){$("#togglao").click()}
-		});
-		v.on("stop", function() {
-			var l = $("#lateral");
-			if (!l.is(":visible")){$("#togglao").click()}
-		});
-		$('.hiper').click(function(){
-			v.pause()
-		})
-	}, false);
+	$(document).ready(function(){ eval("#{exec}") });
 
 #fb-root
 = javascript_include_tag "http://connect.facebook.net/pt_BR/all.js#xfbml=1&appId=380422978692298"
 
-#video.full
+#video.full{:video=>@bloco.video_url}
 #hiperbalon.invisible
 
 #lateral	
