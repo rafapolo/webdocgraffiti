@@ -11,17 +11,17 @@
 		%img.nav.esq{:src=>"/assets/setas/seta_e.png"}
 	
 	.info-container		
-		.info-box 
+		.info-box
 			%span
-				- if b = Bloco.last
+				- if b = Bloco.next
 					%a#atual{:href=>play_bloco(b), :title=>"Assista o último episódio"}
 						EPISÓDIO #{count Episodio.count}: #{b.episodio.titulo}
 	
 	- if false # previous
 		%img.nav.dir{:src=>"/assets/setas/seta_d.png"}
 	
-	- if b = @b && e = b.episodio.ensaio?
-		%a{:href=>"/player"}	
+	- if e = Bloco.ensaio
+		%a{:href=>play_bloco(e)}	
 			%img#ensaio{:src=>"/assets/wdg_ensaio.png"}
 
 = render :partial => "pages/rodape"
