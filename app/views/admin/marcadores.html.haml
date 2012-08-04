@@ -1,5 +1,26 @@
 #admin
-  %h1 Marcadores Públicos
+  %h1 WDG
+  %br  
+  - if @marcadores_wdg.count > 0
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Imagem
+          %th ID
+          %th Título          
+          %th Tags
+          %th Data
+      %tbody
+        - @marcadores_wdg.each do |e|
+          %tr
+            %td{:style=>"width:150px"}= image_tag e.bloco.image.url(:thumb)
+            %td= e.id
+            %td= e.titulo            
+            %td= csv_tags e
+            %td{:style=>"width:80px"}= e.created_at.strftime("%d.%m.%Y %I:%M%p")
+            %td{:style=>"width:30px"}= link_to "Editar", edit_marcador_path(e), :class=>"btn"          
+            %td= link_to "Excluir", marcador_path(e), :method=>:delete, :confirm => "Quer mesmo excluir este marcador?", :class=>"btn btn-danger"
+  %h1 Públicos
   %br  
   - if @marcadores.count > 0
     %table.table.table-striped
@@ -20,5 +41,3 @@
             %td{:style=>"width:80px"}= e.created_at.strftime("%d.%m.%Y %I:%M%p")
             %td{:style=>"width:30px"}= link_to "Editar", edit_marcador_path(e), :class=>"btn"          
             %td= link_to "Excluir", marcador_path(e), :method=>:delete, :confirm => "Quer mesmo excluir este marcador?", :class=>"btn btn-danger"
-  - else
-    %p Vazio. Adicione.

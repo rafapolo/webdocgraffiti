@@ -15,33 +15,31 @@ $(document).ready ->
 		center: new google.maps.LatLng(-23.5687, -46.5705)
 		zoom: 12
 		mapTypeId: google.maps.MapTypeId.ROADMAP
-
 	map = new google.maps.Map(document.getElementById("mapa"), myOptions)
 
-	last_marcador = ''
 	marcadores = []
+	last_marcador = ''
 
 	getMarkerById = (id) ->
-		one = ''
+		este = ''
 		$.each(marcadores, (i,m) -> one = m if m.id == id)
-		one
+		este
 
 	loadMarkers = ->
 		$.get("/marcadores", (data)->
 			$.each(data, (i, m) ->
-				publico = if m.bloco_id then false else true
-				icon = unless publico then "/assets/markers/wdg_p.png" else "/assets/markers/user_p.png"
+				pub = if m.bloco_id then false else true
+				icon = unless pub then "/assets/markers/wdg_p.png" else "/assets/markers/user_p.png"
 				marker = new google.maps.Marker(
 					position: new google.maps.LatLng(m.lat, m.long)
 					map: map
 					icon: icon
 					id: m.id
 					title: m.titulo
-					publico: publico
+					publico: pub
 					tags: m.tags
 				)
 				google.maps.event.addListener(marker, 'click', ->
-					console.log marker.tags
 					if last_marcador
 						last_marcador.setIcon if last_marcador.publico then "/assets/markers/user_p.png" else "/assets/markers/wdg_p.png"	
 					last_marcador = marker
@@ -68,18 +66,7 @@ $(document).ready ->
 		)
 	loadMarkers()
 
-	$('.tag>span').click ->
-		$(this).prev().click()
-
-	$('.tag>input').on('change', ->
-		input = $(this)
-		tag = input.attr("id").replace("tag-", "")
-
-		#$.each(marcadores, (i,m) ->
-			#if
-		)
-
-	new_marcador = ""
+	new_marcador = ''
 	google.maps.event.addListener map, "click", (event) ->
 		if ($("#marker").is(":visible"))
 			marker = new google.maps.Marker(
@@ -153,6 +140,7 @@ $(document).ready ->
 		$('#save-marker').slideToggle()
 	)
 
+
 	filtra = (tag) ->
 		$.each(marcadores, (i,m) ->
 			tem = false
@@ -160,5 +148,31 @@ $(document).ready ->
 			m.setMap null unless tem
 			$('#wdg_tags').click()
 		)
+		abre($('.abre.aberto.go')) if $('.abre.aberto.go').attr("fechado")=="0"
+		abre($('.abre.dadosgo')) if $('.abre.aberto.go').attr("fechado")=="0"
+		$('.tag>input').attr("checked", false)
+		$("#tag-#{tag}").attr("checked", true)
+
 
 	$('.link').live('click', -> filtra($(this).attr("tag")))
+
+	$('.tag>span').click ->
+		$(this).prev().click()
+
+	$('.tag>input').on('change', ->
+		input = $(this)
+		tag = input.attr("id").replace("tag-", "")
+		filtra(tag)
+	)
+
+	$('#selectAll').click(
+		-> 
+			$('.tag>input').attr("checked", true)
+			$.each(marcadores, (i,m) -> m.setMap map)
+		)
+
+	$('#deselectAll').click(
+		-> 
+			$('.tag>input').attr("checked", false)
+			$.each(marcadores, (i,m) -> m.setMap null)
+	)
