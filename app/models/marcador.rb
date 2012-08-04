@@ -14,4 +14,8 @@ class Marcador < ActiveRecord::Base
 		Tag.limpa
 	end
 
+	def publico? 
+		!self.bloco_id && self.autor
+	end
+
 end

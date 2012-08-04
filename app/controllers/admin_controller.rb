@@ -10,6 +10,7 @@ class AdminController < ApplicationController
 
 	def marcadores
 		@marcadores = Marcador.where(:bloco_id=>nil)
+		@marcadores_wdg = Marcador.where('bloco_id>0')
 	end
 
 	private
