@@ -26,7 +26,6 @@ class Bloco < ActiveRecord::Base
 		end
 	end
 
-<<<<<<< HEAD
 	def self.next
 		Episodio.last && Episodio.last.blocos && Episodio.last.blocos.first ? Episodio.last.blocos.first : false
 	end
@@ -35,8 +34,6 @@ class Bloco < ActiveRecord::Base
 		Episodio.last && Episodio.last.blocos.count == 5 ? Episodio.last.blocos.last : false
 	end
 
-=======
->>>>>>> abd52c9dc95ea33fc48ab65cd168591605ea5ce8
 	before_destroy :limpa_tags
 	def limpa_tags
 		Tag.limpa
