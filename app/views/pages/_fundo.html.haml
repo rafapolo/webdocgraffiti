@@ -1,3 +1,4 @@
 #fundo
-	%img.background{:src=>"/assets/protocapa.gif"}
+	- capa = Episodio.last ? Episodio.last.capa.url : "/assets/protocapa.gif"
+	%img.background{:src=> capa }
 	.grid-layer
