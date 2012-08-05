@@ -21,7 +21,7 @@
 					- @tags.each do |t|
 						%td
 							.tag
-								- checked = true unless @video_tag
+								- checked = false unless @video_tag
 								%input{:type=>"checkbox", :checked=>checked, :id=>"tag-#{t.urlized}"}
 									%span.branco= t.name
 						- c+=1
