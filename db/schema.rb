@@ -11,16 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120717215531) do
-
-  create_table "admins", :force => true do |t|
-    t.string "token"
-  end
-
-  create_table "bloco_georefs", :force => true do |t|
-    t.integer "bloco_id"
-    t.integer "georef_id"
-  end
+ActiveRecord::Schema.define(:version => 20120804235834) do
 
   create_table "bloco_marcadores", :force => true do |t|
     t.integer "bloco_id"
@@ -51,18 +42,6 @@ ActiveRecord::Schema.define(:version => 20120717215531) do
     t.integer "tag_id"
   end
 
-  create_table "ensaio_georefs", :force => true do |t|
-    t.integer "ensaio_id"
-    t.integer "georef_id"
-  end
-
-  create_table "ensaios", :force => true do |t|
-    t.string   "video_url"
-    t.string   "titulo"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "ensaios_tags", :id => false, :force => true do |t|
     t.integer "ensaio_id"
     t.integer "tag_id"
@@ -78,13 +57,7 @@ ActiveRecord::Schema.define(:version => 20120717215531) do
     t.datetime "capa_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "georefs", :force => true do |t|
-    t.string   "lat"
-    t.string   "long"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "position"
   end
 
   create_table "hiperbalons", :force => true do |t|
