@@ -1,4 +1,6 @@
 class HiperbalonsController < ApplicationController
+  before_filter :login, :only=>[:edit, :update, :destroy]
+  
   layout "admin"
 
   def new
