@@ -1,14 +1,4 @@
-abre = (id) ->
-	seta = $(id)
-	$(seta.attr("toggle")).parent().slideToggle()		
-	if seta.attr("fechado") == "0"
-		seta.attr("fechado", "1")
-		seta.rotate({animateTo:90})
-	else		
-		seta.attr("fechado", "0")
-		seta.rotate({animateTo:0})
-
-$(document).ready ->
+->
 	$("#wdg_logo").css("left", "65px")
 
 	myOptions =
@@ -22,7 +12,7 @@ $(document).ready ->
 
 	getMarkerById = (id) ->
 		este = ''
-		$.each(marcadores, (i,m) -> one = m if m.id == id)
+		$.each(marcadores, (i,m) -> este = m if m.id == id)
 		este
 
 	loadMarkers = ->
@@ -148,8 +138,8 @@ $(document).ready ->
 			m.setMap null unless tem
 			$('#wdg_tags').click()
 		)
-		abre($('.abre.aberto.go')) if $('.abre.aberto.go').attr("fechado")=="0"
-		abre($('.abre.dadosgo')) if $('.abre.aberto.go').attr("fechado")=="0"
+		window.abre($('.abre.aberto.go')) if $('.abre.aberto.go').attr("fechado")=="0"
+		window.abre($('.abre.dadosgo')) if $('.abre.aberto.go').attr("fechado")=="0"
 		$('.tag>input').attr("checked", false)
 		$("#tag-#{tag}").attr("checked", true)
 

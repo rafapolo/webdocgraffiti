@@ -1,13 +1,3 @@
-abre = (id) ->
-	seta = $(id)
-	$(seta.attr("toggle")).parent().slideToggle()		
-	if seta.attr("fechado") == "0"
-		seta.attr("fechado", "1")
-		seta.rotate({animateTo:90})
-	else		
-		seta.attr("fechado", "0")
-		seta.rotate({animateTo:0})
-
 outrasTagsTambem = (checked, tags) ->		
 	ok = true
 	$.each(tags, (n, t) ->		
@@ -24,17 +14,20 @@ $(document).ready ->
 	$("#menu").addClass "active"		
 	
 	$("#tags").css("height", $("#tags").actual('height'))
-	$(".item").click -> abre($(this).next().children())		
+	$(".item").click -> window.abre $(this).next().children()		
 	
-	$('.abre').click -> abre($(this))
+	$('.abre').click -> window.abre $(this)
 	
 	$('.tag>span').click ->
 		$(this).prev().click()
 	
 	$('.tag>input').on('change', ->
+		if $(".tag>input[checked]").size() == 0
+			$('.video').css('opacity', '0.3')
 		input = $(this)
 		tag = input.attr("id").replace("tag-", "")
 		checked = $(this).is(":checked")
+		$(this).attr("checked", checked)
 		$('.video').each( ->
 			video = $(this)
 			tags = $(this).attr('tags').split(', ')
@@ -51,6 +44,8 @@ $(document).ready ->
 		)
 	)
 
+	$('.video').css('opacity', 1)
+
 	if selected_tag = $('#tags').attr('tag')
 		$('.video').css('opacity', '0.3')
 		abre($('.abre').first())
@@ -60,6 +55,10 @@ $(document).ready ->
 		-> $(this).next().addClass "ativo"
 		-> $(this).next().removeClass "ativo"
 	)
+	
+	$.each($(".box.in"), (i, e) ->
+		$(this).css("height", $(e).actual("height"))
+	)
 
 	$('img').load(-> $('.ensaio').height($('.ensaio').parent().height()))
 
@@ -67,10 +66,12 @@ $(document).ready ->
 		-> 
 			$('.tag>input').attr("checked", true)
 			$('.tag>input').change()
+			$('.video').css('opacity', '1')
 		)
 
 	$('#deselectAll').click(
 		-> 
 			$('.tag>input').attr("checked", false)
 			$('.tag>input').change()
+			$('.video').css('opacity', '0.3')
 	)
