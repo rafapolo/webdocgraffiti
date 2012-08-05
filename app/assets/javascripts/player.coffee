@@ -12,3 +12,8 @@ $ ->
 		-> $(this).next().css("color", "#fe8a2d")
 		-> $(this).next().css("color", "#B96B3B")
 	)
+
+	$('.sinopse').height $('.item').first().height() + 3
+	$('.box.box-large').height $('.boxx.item').height() + 3
+
+	window.abre($(".aberto"))
