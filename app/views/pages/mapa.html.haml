@@ -30,7 +30,7 @@
 				.box-head
 					.boxr.item{:style=>"width: 355px"} TAGS
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
-						%img.abre.aberto{:id=>"wdg_tags", :src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".wdg_tags", :fechado=>"1"}	
+						%img.abre.aberto.go{:id=>"wdg_tags", :src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".wdg_tags", :fechado=>"1"}	
 
 			.box.in{:style=>"border-top: 0px; width: 386px; display: block"}
 				.caixa.menor.wdg_tags
@@ -118,7 +118,11 @@
 										%br
 										7. Imagem
 										%br
+										= link_to "Selecionar do StreetView", "#", :id=>"street"
+										%br
+										Arquivo:
 										= f.file_field :image
+										
 									%br				
 									- f.submit 'Save'									
 								%a{:id=>"save-btn", :href=>"#"}Salvar

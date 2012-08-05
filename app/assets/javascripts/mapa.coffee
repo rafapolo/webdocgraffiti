@@ -1,4 +1,4 @@
-->
+$(document).ready ->
 	$("#wdg_logo").css("left", "65px")
 
 	myOptions =
@@ -34,6 +34,7 @@
 						last_marcador.setIcon if last_marcador.publico then "/assets/markers/user_p.png" else "/assets/markers/wdg_p.png"	
 					last_marcador = marker
 					marker.setIcon if marker.publico then "/assets/markers/user_g.png" else "/assets/markers/wdg_g.png"
+					map.setCenter(marker.position)
 					
 					$("#togglao").click() unless $("#lateral").is(":visible")
 
@@ -42,11 +43,12 @@
 					url = "http%3A%2F%2Fwebdocgraffiti.com.br%2Fmapa%2Fmarcador%2F#{marker.id}"
 					src = "https://www.facebook.com/plugins/comments.php?api_key=380422978692298&channel_url=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D8%23cb%3Df1fad68578%26origin%3D#{host}%252Ff2957f35f%26domain%3D#{host}%26relation%3Dparent.parent&href=#{url}&locale=pt_BR&numposts=5&sdk=joey&colorscheme=dark"		
 					$('.comment').attr("src", src)					
-
+					
+					box = $('.abre[toggle=".dados"]')
+					box.click() if box.attr("fechado")=="0"
+					$('.dados').text "carregando..."
 					$.get("/marcadors/#{marker.id}", (data)->
-						$('.dados').html data
-						box = $('.abre[toggle=".dados"]')
-						box.click() if box.attr("fechado")=="0"
+						$('.dados').html(data)
 					)
 				)
 				marcadores.push marker
@@ -64,7 +66,9 @@
 				map: map
 				icon: "/assets/markers/user_p.png"
 			)
+			map.setCenter(marker.position)
 			new_marcador = marker
+			window.new_marcador = marker
 			$("#marker").hide()
 			$('#marcador_lat').val event.latLng.lat()
 			$('#marcador_long').val event.latLng.lng()
@@ -136,10 +140,9 @@
 			tem = false
 			$.each(m.tags, (c,t) -> tem = true if t.urlized == tag)
 			m.setMap null unless tem
-			$('#wdg_tags').click()
 		)
-		window.abre($('.abre.aberto.go')) if $('.abre.aberto.go').attr("fechado")=="0"
-		window.abre($('.abre.dadosgo')) if $('.abre.aberto.go').attr("fechado")=="0"
+		window.abre($('.abre.aberto.go')) if $('.abre.aberto.go').attr("fechado")=="0"		
+		
 		$('.tag>input').attr("checked", false)
 		$("#tag-#{tag}").attr("checked", true)
 
@@ -149,20 +152,55 @@
 	$('.tag>span').click ->
 		$(this).prev().click()
 
+	marcadas = []
+	$.each($('.tag>input'), (i,t) ->
+		tag = $(t).attr("id").replace("tag-", "")
+		marcadas.push tag
+	)
 	$('.tag>input').on('change', ->
 		input = $(this)
 		tag = input.attr("id").replace("tag-", "")
-		filtra(tag)
+		
+		if input.attr("checked")
+			marcadas.push tag
+		else
+			marcadas.splice(marcadas.indexOf(tag), 1)
+
+		$.each(marcadores, (i,m) ->
+			tem = false
+			$.each(m.tags, (c,t) -> tem = true if $.inArray(t.urlized, marcadas)>-1)			
+			if tem
+				m.setMap map
+			else
+				m.setMap null
+		)
+		window.abre($('.abre.aberto.go')) if $('.abre.aberto.go').attr("fechado")=="0"
 	)
 
 	$('#selectAll').click(
 		-> 
+			marcadas = []
 			$('.tag>input').attr("checked", true)
-			$.each(marcadores, (i,m) -> m.setMap map)
+			$.each($('.tag>input'), (i,t) ->
+				tag = $(t).attr("id").replace("tag-", "")
+				marcadas.push tag
+			)
+			$.each(marcadores, (i,m) -> 
+				m.setMap map				
+			)
 		)
+	
 
 	$('#deselectAll').click(
 		-> 
+			marcadas = []
 			$('.tag>input').attr("checked", false)
 			$.each(marcadores, (i,m) -> m.setMap null)
 	)
+
+	$("#street").click ->
+		panorama = map.getStreetView()
+		panorama.setPosition(window.new_marcador.position)
+		panorama.setVisible(true)
+
+
