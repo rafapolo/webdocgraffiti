@@ -6,13 +6,13 @@
 %a{:href=>"/"}
 	%img{:src=>"/assets/logos/wdg_logo_wdg.gif", :id=>"wdg_logo"}
 
-.container
+.info
 	.box{:style=>"margin-top: 120px"}
 		.box-head
 			.boxr.item WEBDOC GRAFFITI
 			.boxr{:style=>"border-right: 0px; width: 19px;"}
-				%img.abre.aberto{:src=>"/assets/setas/seta_pqn.png", :toggle=>"#info-box", :fechado=>"1"}
-	.box.in{:style=>"border-top: 0px; width: 884px; height: 300px; display: block; height: inherit"}
+				%img.abre.aberto{:src=>"/assets/setas/seta_pqn.png", :toggle=>"#info-box", :fechado=>"0"}
+	.box.in{:style=>"border-top: 0px; width: 884px; height: 300px; display: none; height: inherit"}
 		#info-box.caixa{:style=>"border-bottom: 0px; padding: 8px;"}
 			%p.caixa 
 				Webdoc Graffiti é um documentário interativo sobre a arte urbana na capital paulista.
@@ -24,7 +24,7 @@
 				%br	
 				%br	
 			%p.caixa
-				No mapa, explore ruas e regiões da cidade. Além do conteúdo WDG, aproveite para descobrir marcadores de graffitis e arte urbana publicadas. Você pode participar. Adicione comentários, compartilhe o conteúdo e se quiser divulgar uma arte, adicione um novo marcador!
+				No mapa, explore ruas e regiões da cidade. Além do conteúdo WDG, aproveite para descobrir marcadores de graffitis e arte urbana adicionados poelos usuários. Você pode participar. Publique comentários, compartilhe o conteúdo e se quiser divulgar uma arte, adicione um novo marcador!
 				%br	
 				%br	
 			%p.caixa
@@ -33,12 +33,13 @@
 				%br	
 			%p Produção: Doctela
 			%p Direção: Giovanni Francischelli
-			%p Desenvolvimento: Rafael Polo
-			%p Layout: Miguel Nóbrega e Daniel Frota
-			%p Design: André Menezes
-			%p Fotografia: Lívia Perez de Paula e Felipe Crepker Vieira
+			%p Design de interação: Daniel Frota, Miguel Nóbrega e Rafael Polo
+			%p Desenho de tipo: Daniel Frota
+			%p Desenvolvimento web: Rafael Polo
+			%p Design visual: André Menezes
+			%p Efeitos Gráficos: André Menezes e Rafael Polo
 			%p Edição de vídeos: Henrique Cartaxo
-			%p Efeitos Gráficos: André Menezes
+			%p Fotografia: Lívia Perez de Paula e Felipe Crepker Vieira
 			%p Ilustração: Fabio Fontes Ovalles
 
 = render :partial => "pages/rodape"
