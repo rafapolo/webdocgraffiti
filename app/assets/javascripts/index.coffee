@@ -1,5 +1,22 @@
 $ ->
-	$("body").css "overflow", "hidden"		
+
+	updateAtual = (pos) ->
+		$.getJSON("/episodios/" + pos, (data) ->
+			pos = "0" + pos if pos < 10			
+			$("#atual").text "EPISODIO #{pos}: #{data.title}"			
+			$("#atual").attr('href', data.href)
+			$("#atual").attr('last', data.last)
+			$('.background').hide()			
+			$('.background').attr('src', data.capa)
+			$('.background').fadeIn(700)
+			if data.ensaio
+				$("#ensaio").parent().attr("href", data.ensaio)
+				$("#ensaio").parent().fadeIn(500)
+			else
+				$("#ensaio").parent().hide()
+		)
+
+	$("body").css "overflow", "hidden"
 	$('.container').fadeIn(400)
 	$("#menu").css "margin", "5px"		
 	$("img.logos").load -> $(window).resize()
@@ -14,30 +31,40 @@ $ ->
 	)
 
 	$(".esq").click ->
+		pos = parseInt $(this).attr("nav")
+		$(this).attr("nav", pos - 1)
+		$('.dir').attr("nav", pos + 1)
 		$(".nav").fadeOut()
 		w = $(document).width()
 		metade = $(document).width()/2 - $(".info-box").width()/2
 		$(".info-box").animate({left: "-="+w},'slow',
 			-> 
 				$(".info-box").css("left", w)
-				$("#info").text "EPISODIO 3: BANKSY CONTRA-ATACA"
+				updateAtual(pos)
 				$(".info-box").animate({left: metade},'slow', 
-					->  $(".nav").fadeIn(200)
+					->  
+						$(".esq").fadeIn(200) if pos > 1
+						$(".dir").fadeIn(200) if pos < $("#atual").attr('last')
 				)
 		)
 
 	$(".dir").click ->
+		pos = parseInt($(this).attr("nav"))
+		$(this).attr("nav", pos + 1)
+		$('.esq').attr("nav", pos - 1)
 		$('.nav').fadeOut()	
 		w = $(document).width()
 		metade = $(document).width()/2 - $(".info-box").width()/2
 		$(".info-box").animate({left: "+="+w},'slow',
 			-> 
 				$(".info-box").css("left", -w)
-				$("#info").text "EPISODIO 3: BANKSY CONTRA-ATACA"
+				updateAtual(pos)
 				$(".info-box").animate({left: metade},'slow',
-					-> $(".nav").fadeIn(200)
+					->  
+						$(".esq").fadeIn(200) if pos > 1
+						$(".dir").fadeIn(200) if pos < parseInt($("#atual").attr('last'))
 				)
-		)			
+		)		
 
 	$(window).resize ->
 		metade = ($(document).width()/2 - $(".logos").width()/2)

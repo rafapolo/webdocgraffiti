@@ -27,11 +27,11 @@ class Bloco < ActiveRecord::Base
 	end
 
 	def self.next
-		Episodio.last && Episodio.last.blocos && Episodio.last.blocos.first ? Episodio.last.blocos.first : false
+		Episodio.first && Episodio.first.blocos && Episodio.first.blocos.first ? Episodio.first.blocos.first : false
 	end
 
 	def self.ensaio
-		Episodio.last && Episodio.last.blocos.count == 5 ? Episodio.last.blocos.last : false
+		Episodio.first && Episodio.first.blocos.count == 5 ? Episodio.first.blocos.last : false
 	end
 
 	before_destroy :limpa_tags
