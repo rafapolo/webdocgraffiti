@@ -1,3 +1,5 @@
-%img{:src=>"/assets/setas/seta_d.png", :id=>"togglao", :fechado=>"1"}
+- content_for :head do
+	= javascript_include_tag "toggle"
 
-= javascript_include_tag "toggle"
+.meiuca
+	%img{:src=>"/assets/setas/seta_d.png", :id=>"togglao", :fechado=>"1"}
