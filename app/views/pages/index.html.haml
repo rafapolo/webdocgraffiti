@@ -7,21 +7,26 @@
 	.logo
 		= image_tag "/assets/logos/wdg_logo_home.gif"
 	
-	- if false # previous
-		%img.nav.esq{:src=>"/assets/setas/seta_e.png"}
+	- if p=@prev
+		%img.nav.esq{:src=>"/assets/setas/seta_e.png", :nav=>p}
 	
 	.info-container		
 		.info-box
 			%span
 				- if b = Bloco.next
-					%a#atual{:href=>play_bloco(b), :title=>"Assista o último episódio"}
-						EPISÓDIO #{count Episodio.count}: #{b.episodio.titulo}
+					%a#atual{:href=>play_bloco(b)}
+						EPISÓDIO #{count b.episodio.position}: #{b.episodio.titulo}
 	
-	- if false # previous
-		%img.nav.dir{:src=>"/assets/setas/seta_d.png"}
+	- if n=@next
+		%img.nav.dir{:src=>"/assets/setas/seta_d.png", :nav=>n}
+	-  else
+		%img.nav.dir.hidden{:src=>"/assets/setas/seta_d.png", :nav=>Episodio.count}
 	
 	- if e = Bloco.ensaio
 		%a{:href=>play_bloco(e)}	
+			%img#ensaio{:src=>"/assets/wdg_ensaio.png"}
+	- else
+		%a.hidden{}
 			%img#ensaio{:src=>"/assets/wdg_ensaio.png"}
 
 = render :partial => "pages/rodape"

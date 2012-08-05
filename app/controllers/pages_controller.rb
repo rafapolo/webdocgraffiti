@@ -1,5 +1,13 @@
 class PagesController < ApplicationController
+	
+	def info
+  		@titulo = "INFO"
+  	end
+
 	def index
+		atual = Episodio.count
+		@prev = atual > 0 ? atual-1 : false
+		@next = atual == 1 ? atual+1 : false
 	end	
 
 	def videos
@@ -28,10 +36,6 @@ class PagesController < ApplicationController
 	      @auth = false
 	      @me = false
 	    end	    
-  	end
-
-  	def info
-  		@titulo = "INFO"
   	end
 
   	def feed
