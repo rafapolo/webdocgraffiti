@@ -1,4 +1,5 @@
-class MarcadorsController < ApplicationController
+class MarcadorsController < AdminController
+  before_filter :login, :only=>[:edit, :update, :destroy]
   layout false
 
   def index
