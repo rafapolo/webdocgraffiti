@@ -1,4 +1,6 @@
 class Tag < ActiveRecord::Base
+  default_scope :order => 'urlized'
+
   has_and_belongs_to_many :blocos
   has_and_belongs_to_many :marcadors
   validates_presence_of :name
