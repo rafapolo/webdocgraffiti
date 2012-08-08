@@ -1,4 +1,5 @@
 $(document).ready ->
+
 	$("#wdg_logo").css("left", "65px")
 
 	myOptions =
@@ -16,7 +17,7 @@ $(document).ready ->
 		este
 
 	loadMarkers = ->
-		$.get("/marcadores", (data)->
+		$.get("/marcadores", (data) ->
 			$.each(data, (i, m) ->
 				pub = if m.bloco_id then false else true
 				icon = unless pub then "/assets/markers/wdg_p.png" else "/assets/markers/user_p.png"
@@ -134,6 +135,11 @@ $(document).ready ->
 		$('#save-marker').slideToggle()
 	)
 
+	$("#street").click ->
+		panorama = map.getStreetView()
+		panorama.setPosition(window.new_marcador.position)
+		panorama.setVisible(true)
+
 
 	filtra = (tag) ->
 		$.each(marcadores, (i,m) ->
@@ -141,6 +147,8 @@ $(document).ready ->
 			$.each(m.tags, (c,t) -> tem = true if t.urlized == tag)
 			m.setMap null unless tem
 		)
+		window.marcadas = []
+		window.marcadas.push tag unless $.inArray(tag, window.marcadas)>-1
 		window.abre($('.abre.aberto.go')) if $('.abre.aberto.go').attr("fechado")=="0"		
 		
 		$('.tag>input').attr("checked", false)
@@ -152,23 +160,23 @@ $(document).ready ->
 	$('.tag>span').click ->
 		$(this).prev().click()
 
-	marcadas = []
+	window.marcadas = []
 	$.each($('.tag>input'), (i,t) ->
 		tag = $(t).attr("id").replace("tag-", "")
-		marcadas.push tag
+		window.marcadas.push tag
 	)
 	$('.tag>input').on('change', ->
 		input = $(this)
 		tag = input.attr("id").replace("tag-", "")
 		
 		if input.attr("checked")
-			marcadas.push tag
+			window.marcadas.push tag unless $.inArray(tag, window.marcadas)>-1
 		else
-			marcadas.splice(marcadas.indexOf(tag), 1)
+			window.marcadas.splice(window.marcadas.indexOf(tag), 1)
 
 		$.each(marcadores, (i,m) ->
 			tem = false
-			$.each(m.tags, (c,t) -> tem = true if $.inArray(t.urlized, marcadas)>-1)			
+			$.each(m.tags, (c,t) -> tem = true if $.inArray(t.urlized, window.marcadas)>-1)
 			if tem
 				m.setMap map
 			else
@@ -177,30 +185,18 @@ $(document).ready ->
 		window.abre($('.abre.aberto.go')) if $('.abre.aberto.go').attr("fechado")=="0"
 	)
 
-	$('#selectAll').click(
-		-> 
-			marcadas = []
+	$('#selectAll').click -> 
+			window.marcadas = []
 			$('.tag>input').attr("checked", true)
 			$.each($('.tag>input'), (i,t) ->
 				tag = $(t).attr("id").replace("tag-", "")
-				marcadas.push tag
+				window.marcadas.push tag
 			)
 			$.each(marcadores, (i,m) -> 
 				m.setMap map				
 			)
-		)
-	
 
-	$('#deselectAll').click(
-		-> 
-			marcadas = []
+	$('#deselectAll').click -> 
+			window.marcadas = []
 			$('.tag>input').attr("checked", false)
 			$.each(marcadores, (i,m) -> m.setMap null)
-	)
-
-	$("#street").click ->
-		panorama = map.getStreetView()
-		panorama.setPosition(window.new_marcador.position)
-		panorama.setVisible(true)
-
-
