@@ -9,8 +9,9 @@ window.abre = (id) ->
 		seta.rotate({animateTo:0})
 
 $ ->
- 	alert("O Internet Explorer, seu navegador, não cumpre com os modernos padrões abertos exigidos para a correta visualização do site. Recomendamos o Google Chrome ou o Mozilla Firefox.") if $.browser.msie
-	$("iframe").load -> $(this).fadeIn(600)
+ 	if $.browser.msie
+ 		alert("O Internet Explorer, seu navegador, não cumpre com os modernos padrões abertos exigidos para a correta visualização do site. Recomendamos o Google Chrome ou o Mozilla Firefox.")
+
 	$('.box-head').hover(
 		-> 
 			$(this).children().css("color", "#fe8a2d")

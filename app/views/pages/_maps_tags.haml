@@ -1,0 +1,15 @@
+.caixa.menor.wdg_tags
+	#maps_tags
+		- tags = @tags_privadas
+		- tags.each do |t|
+			.tag
+				%input{:type=>"checkbox", :checked=>true, :id=>"tag-#{t.urlized}"}
+					%span.branco= t.name
+
+	%input{:type=>"text", :placeholder=>"Buscar", :id=>"autotags"}
+	%br
+	%br
+	= link_to "marcar", "#", :class=>"liame", :id=>"selectAll"
+	%span /
+	= link_to "desmarcar tudo", "#", :class=>"liame", :id=>"deselectAll"
+		

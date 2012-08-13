@@ -1,12 +1,10 @@
-class TagsController < ApplicationController
-  # GET /tags
-  # GET /tags.json
-  def index
-    @tags = Tag.all
+class TagsController < ApplicationController  
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @tags }
+  def index
+    if !request.xhr?
+      redirect_to root_path
+    else
+      render json: Tag.select("urlized, name as value").all.to_json
     end
   end
 

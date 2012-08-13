@@ -1,11 +1,18 @@
 $(document).ready ->
-
+	$("iframe").load -> $(this).fadeIn(600)
 	$("#wdg_logo").css("left", "65px")
 
 	myOptions =
 		center: new google.maps.LatLng(-23.5687, -46.5705)
 		zoom: 12
 		mapTypeId: google.maps.MapTypeId.ROADMAP
+		streetViewControl: false
+		overviewMapControl: true
+		mapTypeControl: true
+		mapTypeControlOptions: {
+			style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
+			position: google.maps.ControlPosition.TOP_CENTER
+		}
 	map = new google.maps.Map(document.getElementById("mapa"), myOptions)
 
 	marcadores = []
@@ -68,7 +75,6 @@ $(document).ready ->
 				map: map
 				icon: "/assets/markers/user_p.png"
 			)
-			map.setCenter(marker.position)
 			new_marcador = marker
 			window.new_marcador = marker
 			$("#marker").hide()		
@@ -165,15 +171,20 @@ $(document).ready ->
 				alert "Não há StreetView nessa área."
 		)		
 
+	closePanorama = -> 
+		panorama = map.getStreetView()
+		panorama.setVisible(false) if panorama.getVisible()
+
 	$('#cancel-street').click ->
+		closePanorama()
 		window.use_streetview = false
 		panorama = map.getStreetView()
-		panorama.setVisible(false)
 		new_marcador.position = window.position
 		new_marcador.setMap map
 		$(this).fadeOut()
 
 	filtra = (tag) ->
+		closePanorama()
 		$.each(marcadores, (i,m) ->
 			tem = false
 			$.each(m.tags, (c,t) -> tem = true if t.urlized == tag)
@@ -196,7 +207,8 @@ $(document).ready ->
 		tag = $(t).attr("id").replace("tag-", "")
 		window.marcadas.push tag
 	)
-	$('.tag>input').on('change', ->
+	$('.tag>input').live('change', ->
+		closePanorama()
 		input = $(this)
 		tag = input.attr("id").replace("tag-", "")
 		
@@ -216,7 +228,33 @@ $(document).ready ->
 		window.abre($('.abre.aberto.go')) if $('.abre.aberto.go').attr("fechado")=="0"
 	)
 
-	$('#selectAll').click -> 
+	$('a.goToStreet').live('click', ->
+		panorama = map.getStreetView()
+		panorama.setPosition new google.maps.LatLng($(this).attr("lat"), $(this).attr("long"))
+		panorama.setPov({
+		    heading: parseFloat($(this).attr("heading"))
+		    pitch: parseFloat($(this).attr("pitch"))
+		    zoom: parseFloat($(this).attr("zoom"))
+		  }
+		)
+		panorama.setVisible(true) unless panorama.getVisible()
+	)
+	
+	# tags autocomplete
+	$.get("/tags", (data) ->
+		$("#autotags").autocomplete({ source: data },
+			select: (e, ui) ->
+				id = ui.item.urlized
+				if $("#tag-#{id}").length == 0					
+					label = ui.item.label
+					$("#autotags").val("")
+					$("#maps_tags").append($('<div/>').addClass('tag').attr('public', true).append("<input id='tag-#{id}' type='checkbox'>").append($("<span/>").addClass("branco").text(" #{label}")))
+					$("#tag-#{id}").click()
+		)
+	)
+
+	$('#selectAll').click ->
+			closePanorama()
 			window.marcadas = []
 			$('.tag>input').attr("checked", true)
 			$.each($('.tag>input'), (i,t) ->
@@ -227,7 +265,9 @@ $(document).ready ->
 				m.setMap map				
 			)
 
-	$('#deselectAll').click -> 
+	$('#deselectAll').click ->
+			closePanorama() 
 			window.marcadas = []
 			$('.tag>input').attr("checked", false)
+			$('.tag[public]').remove()
 			$.each(marcadores, (i,m) -> m.setMap null)

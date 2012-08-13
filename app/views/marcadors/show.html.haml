@@ -23,12 +23,13 @@
 		%p= simple_format m.info
 		%br
 		- if m.publico?
-			%p.caixa Adicionado por #{link_to m.autor, m.autor_url}
+			%p.caixa Adicionado por #{link_to m.autor, m.autor_url, :target=>"_blank"}
 %br
 %span.left{:style=>"font-size: 13px; padding-bottom: 10px;"}
 	%br
-	tags:
-	- tags = m.tags
-	- tags.each do |t|
-		= link_to t.name, "#", :class=>"link", :tag=>t.urlized
-		= ", " if tags.last != t
+	- if m.tags.length>0
+		tags:
+		- tags = m.tags
+		- tags.each do |t|
+			= link_to t.name, "#", :class=>"link", :tag=>t.urlized
+			= ", " if tags.last != t

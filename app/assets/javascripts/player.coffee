@@ -1,4 +1,5 @@
 $ ->
+	$("iframe").load -> $(this).fadeIn(600)
 	v = Popcorn.youtube('#video', $("#video").attr("video"))
 	
 	l = $("#lateral")
