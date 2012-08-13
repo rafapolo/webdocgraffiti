@@ -10,6 +10,7 @@ $(document).ready ->
 
 	marcadores = []
 	last_marcador = ''
+	window.use_streetview = false
 
 	getMarkerById = (id) ->
 		este = ''
@@ -70,9 +71,8 @@ $(document).ready ->
 			map.setCenter(marker.position)
 			new_marcador = marker
 			window.new_marcador = marker
-			$("#marker").hide()
-			$('#marcador_lat').val event.latLng.lat()
-			$('#marcador_long').val event.latLng.lng()
+			$("#marker").hide()		
+			window.position = event.latLng		
 			$("#passo-3").slideToggle()
 			$("#marcador-titulo").focus()
 			$(document).off("mousemove")
@@ -86,7 +86,7 @@ $(document).ready ->
 			$("#marcador_tags").val("")
 			$("#create-marker").slideToggle()
 			$('#save-marker').slideToggle()
-			$(document).mousemove((e)->	
+			$(document).mousemove((e) ->	
 				$("#marker").css("top", e.pageY - 40)
 				$("#marker").css("left", e.pageX - 22)
 			)
@@ -105,6 +105,11 @@ $(document).ready ->
 				$("#status").text(msg)
 				$.each(marcadores, (i,e) -> e.setMap null)
 				new_marcador.setMap null
+				window.position = null
+				window.pov = null
+				new_marcador = null
+				panorama = map.getStreetView()
+				panorama.setVisible(false) if panorama.getVisible() == true
 				loadMarkers()
 			else
 				$("#status").text("Erro. Dados incompletos")
@@ -119,9 +124,15 @@ $(document).ready ->
 		$("#passo-3").slideToggle()
 	)
 
-	$("#save-btn").click(->
+	$("#save-btn").click ->		
+		$('#marcador_long').val window.position.lng()
+		$('#marcador_lat').val window.position.lat()
+		$('#marcador_use_streetview').val window.use_streetview
+		if window.use_streetview && window.pov
+			$('#marcador_heading').val window.pov.heading
+			$('#marcador_zoom').val window.pov.zoom
+			$('#marcador_pitch').val window.pov.pitch		
 		$("#new_marcador").submit()
-	)
 
 	$("#voltar-btn").click(->
 		if $("#status").text() == "Ok. Marcador adicionado."
@@ -135,11 +146,32 @@ $(document).ready ->
 		$('#save-marker').slideToggle()
 	)
 
-	$("#street").click ->
-		panorama = map.getStreetView()
-		panorama.setPosition(window.new_marcador.position)
-		panorama.setVisible(true)
+	google.maps.event.addListener(map.getStreetView(), 'position_changed', -> window.position = map.getStreetView().getPosition())
+	google.maps.event.addListener(map.getStreetView(), 'pov_changed', -> window.pov = map.getStreetView().getPov())
 
+	$("#street").click ->		
+		sv = new google.maps.StreetViewService()
+		sv.getPanoramaByLocation(window.position, 50, (data, status) ->
+			if status == "OK"
+				panorama = map.getStreetView()				
+				pos = if window.position then window.position else window.new_marcador.position
+				panorama.setPosition(pos)
+				panorama.setPov(window.pov) if window.pov
+				panorama.setVisible(true)
+				new_marcador.setMap null
+				window.use_streetview = true
+				$('#cancel-street').fadeIn()
+			else				
+				alert "Não há StreetView nessa área."
+		)		
+
+	$('#cancel-street').click ->
+		window.use_streetview = false
+		panorama = map.getStreetView()
+		panorama.setVisible(false)
+		new_marcador.position = window.position
+		new_marcador.setMap map
+		$(this).fadeOut()
 
 	filtra = (tag) ->
 		$.each(marcadores, (i,m) ->
@@ -149,8 +181,7 @@ $(document).ready ->
 		)
 		window.marcadas = []
 		window.marcadas.push tag unless $.inArray(tag, window.marcadas)>-1
-		window.abre($('.abre.aberto.go')) if $('.abre.aberto.go').attr("fechado")=="0"		
-		
+		window.abre($('.abre.aberto.go')) if $('.abre.aberto.go').attr("fechado")=="0"				
 		$('.tag>input').attr("checked", false)
 		$("#tag-#{tag}").attr("checked", true)
 

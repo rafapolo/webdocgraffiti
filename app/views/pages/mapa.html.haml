@@ -68,7 +68,7 @@
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
 						%img.abre{:id=>"marca", :src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".add-marcador", :fechado=>"0", :auth=>@auth}		
 			.box.in{:style=>"border-top: 0px; width: 386px; height: inherit; padding-bottom: 8px"}
-				.add-marcador{:style=>"padding: 5px"}
+				.add-marcador{:style=>"padding: 15px"}
 					%p.caixa
 						%img{:src=>"/assets/markers/user_p.png", :id=>"marker"}
 						- if !@me
@@ -91,6 +91,10 @@
 								= form_for Marcador.new do |f|
 									= f.hidden_field :long
 									= f.hidden_field :lat
+									= f.hidden_field :heading
+									= f.hidden_field :pitch
+									= f.hidden_field :zoom
+									= f.hidden_field :use_streetview
 									= f.hidden_field :autor, :value=>@me["name"]
 									= f.hidden_field :autor_url, :value=>@me["link"]
 									%p.caixa{:id=>"passo-3"}
@@ -112,15 +116,17 @@
 										%br
 										6. Tags (separadas por vírgulas)
 										%br
-										= f.text_field :tags
+										= f.text_field :tags, :style=>"width: 238px"
 										%br
 									%p.caixa
 										%br
 										7. Imagem
 										%br
 										= link_to "Selecionar do StreetView", "#", :id=>"street"
+										= link_to "[ Cancelar ]", "#", :id=>"cancel-street"
+
 										%br
-										Arquivo:
+										Ou de arquivo:
 										= f.file_field :image
 										
 									%br				
