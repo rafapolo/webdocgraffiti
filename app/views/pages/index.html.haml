@@ -3,10 +3,14 @@
 - content_for :head do
 	= javascript_include_tag "index"
 
+%noscript
+	%h1
+		Habilite o Javascript!	
+
 .container
 	.logo
 		= image_tag "/assets/logos/wdg_logo_home.gif"
-	
+
 	- if p=@prev
 		%img.nav.esq{:src=>"/assets/setas/seta_e.png", :nav=>p}
 	
