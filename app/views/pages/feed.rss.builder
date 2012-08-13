@@ -8,6 +8,7 @@ xml.rss :version => "2.0" do
     for video in @videos
       xml.item do
         xml.title video.titulo
+        xml.author "WDG"
         xml.description video.sinopse
         xml.pubDate video.updated_at.to_s(:rfc822)
         xml.link "http://webdocgrafiiti.com.br/#{video.episodio.urlized}/#{video.urlized}"
