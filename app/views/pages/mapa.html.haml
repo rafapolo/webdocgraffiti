@@ -1,17 +1,17 @@
 - content_for :head do
-	= stylesheet_link_tag "lightbox"
+	= stylesheet_link_tag "lightbox", "jquery-autocomplete"
 	= javascript_include_tag "jquery.rotate", "mapa", "ajaxform", "lightbox", "jquery-ui-autocomplete.min"
 	= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyBwG0qBPx1M89Waoit_jg8TbJL2wcvQKts&sensor=false"
 
 #fb-root
-= javascript_include_tag "http://connect.facebook.net/pt_BR/all.js#xfbml=1&appId=380422978692298"
+	= javascript_include_tag "http://connect.facebook.net/pt_BR/all.js#xfbml=1&appId=380422978692298"
+
+%noscript
+	%h1.red
+		Habilite o Javascript!
 
 %a{:href=>"/"}
 	%img{:src=>"/assets/logos/wdg_logo_wdg.gif", :id=>"wdg_logo"}
-
-%noscript
-	%h1
-		Habilite o Javascript!
 
 .full
 	#mapa	
@@ -37,25 +37,8 @@
 						%img.abre.aberto.go{:id=>"wdg_tags", :src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".wdg_tags", :fechado=>"1"}	
 
 			.box.in{:style=>"border-top: 0px; width: 386px; display: block"}
-				.caixa.menor.wdg_tags
-					- tags = @tags_privadas
-					%table{:width=>"100%"}
-						%tr
-							- c = 0
-							- tags.each do |t|
-								%td{:style=>"width: 50%"}
-									.tag
-										%input{:type=>"checkbox", :checked=>true, :id=>"tag-#{t.urlized}"}
-											%span.branco= t.name
-								- c+=1
-								- if c % 2 == 0
-									%tr
-					%br
-					// %input{:type=>"text", :placeholder=>"Buscar outras", :style=>"margin-left: 80px; font-size:13px; width: 190px"}
-					= link_to "marcar", "#", :class=>"liame", :id=>"selectAll"
-					%span /
-					= link_to "desmarcar tudo", "#", :class=>"liame", :id=>"deselectAll"
-		
+				= render :partial => "maps_tags"
+
 			.box.lista{:style=>"width: 386px"}
 				.box-head
 					.boxr.item{:style=>"width: 355px"} COMENTÁRIOS
@@ -73,74 +56,6 @@
 						%img.abre{:id=>"marca", :src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".add-marcador", :fechado=>"0", :auth=>@auth}		
 			.box.in{:style=>"border-top: 0px; width: 386px; height: inherit; padding-bottom: 8px"}
 				.add-marcador{:style=>"padding: 15px"}
-					%p.caixa
-						%img{:src=>"/assets/markers/user_p.png", :id=>"marker"}
-						- if !@me
-							Autentique-se para adicionar um novo marcador
-							%a{:href=>"https://www.facebook.com/dialog/oauth?client_id=380422978692298&redirect_uri=http://#{site}/oauth/&scope=publish_stream&response_type=token"}			
-								%img{:src=>"/assets/connect_facebook.png", :align=>"center"}
-						- else
-							%img{:src=>"#{@pic}"}
-							#{@me["name"]},
-							%br
-							%br
-							#create-marker
-								%p.caixa 1. Mova e aproxime o mapa até a localização desejada. 
-								%br
-								%p.caixa 
-									2. Clique
-									%a{:href=>"#", :id=>"habilita-marker"}aqui
-									para criar o novo marcador.
-							#save-marker{:style=>"display:none"}
-								= form_for Marcador.new do |f|
-									= f.hidden_field :long
-									= f.hidden_field :lat
-									= f.hidden_field :heading
-									= f.hidden_field :pitch
-									= f.hidden_field :zoom
-									= f.hidden_field :use_streetview
-									= f.hidden_field :autor, :value=>@me["name"]
-									= f.hidden_field :autor_url, :value=>@me["link"]
-									%p.caixa{:id=>"passo-3"}
-										3. Selecione o local no mapa.
-										%br
-										%br
-									%p.caixa
-										4. Título
-										%br
-										= f.text_field :titulo
-										%br
-									%p.caixa
-										%br
-										5. Descrição
-										%br
-										= f.text_area :info, :class=>"area"
-										%br										
-									%p.caixa
-										%br
-										6. Tags (separadas por vírgulas)
-										%br
-										= f.text_field :tags, :style=>"width: 238px"
-										%br
-									%p.caixa
-										%br
-										7. Imagem
-										%br
-										= link_to "Selecionar do StreetView", "#", :id=>"street"
-										= link_to "[ Cancelar ]", "#", :id=>"cancel-street"
-
-										%br
-										Ou de arquivo:
-										= f.file_field :image
-										
-									%br				
-									- f.submit 'Save'									
-								%a{:id=>"save-btn", :href=>"#"}Salvar
-								%a{:id=>"cancel-btn", :href=>"#"}Cancelar			
-							%p.caixa{:id=>"status"}		
-								#back-btn
-									%br
-									%p.caixa
-										%a{:id=>"voltar-btn", :href=>"#"}Voltar
+					= render :partial => "pages/add_marcador"
 
 = render :partial=>"pages/toggle"

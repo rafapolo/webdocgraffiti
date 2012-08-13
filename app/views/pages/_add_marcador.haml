@@ -1,0 +1,69 @@
+%p.caixa
+	%img{:src=>"/assets/markers/user_p.png", :id=>"marker"}
+	- if !@me
+		Autentique-se para adicionar um novo marcador
+		%a{:href=>"https://www.facebook.com/dialog/oauth?client_id=380422978692298&redirect_uri=http://#{site}/oauth/&scope=publish_stream&response_type=token"}			
+			%img{:src=>"/assets/connect_facebook.png", :align=>"center"}
+	- else
+		%img{:src=>"#{@pic}"}
+		#{@me["name"]},
+		%br
+		%br
+		#create-marker
+			%p.caixa 1. Mova e aproxime o mapa até a localização desejada. 
+			%br
+			%p.caixa 
+				2. Clique
+				%a{:href=>"#", :id=>"habilita-marker"}aqui
+				para criar o novo marcador.
+		#save-marker{:style=>"display:none"}
+			= form_for Marcador.new do |f|
+				= f.hidden_field :long
+				= f.hidden_field :lat
+				= f.hidden_field :heading
+				= f.hidden_field :pitch
+				= f.hidden_field :zoom
+				= f.hidden_field :use_streetview
+				= f.hidden_field :autor, :value=>@me["name"]
+				= f.hidden_field :autor_url, :value=>@me["link"]
+				%p.caixa{:id=>"passo-3"}
+					3. Selecione o local no mapa.
+					%br
+					%br
+				%p.caixa
+					4. Título
+					%br
+					= f.text_field :titulo
+					%br
+				%p.caixa
+					%br
+					5. Descrição
+					%br
+					= f.text_area :info, :class=>"area"
+					%br										
+				%p.caixa
+					%br
+					6. Tags (separadas por vírgulas)
+					%br
+					= f.text_field :tags, :style=>"width: 238px"
+					%br
+				%p.caixa
+					%br
+					7. Imagem
+					%br
+					= link_to "Selecionar do StreetView", "#", :id=>"street"
+					= link_to "[ Cancelar ]", "#", :id=>"cancel-street"
+
+					%br
+					Ou de arquivo:
+					= f.file_field :image
+					
+				%br				
+				- f.submit 'Save'									
+			%a{:id=>"save-btn", :href=>"#"}Salvar
+			%a{:id=>"cancel-btn", :href=>"#"}Cancelar			
+		%p.caixa{:id=>"status"}		
+			#back-btn
+				%br
+				%p.caixa
+					%a{:id=>"voltar-btn", :href=>"#"}Voltar

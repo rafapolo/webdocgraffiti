@@ -7,7 +7,7 @@ outrasTagsTambem = (checked, tags) ->
 	)
 	ok
 
-$(document).ready ->
+$(document).ready ->	
 	$('.container').fadeIn(500)
 	$('.box').css("height", "")
 	$('.box.in').css("height", "")	
