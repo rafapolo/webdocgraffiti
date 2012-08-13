@@ -1,7 +1,7 @@
 class Marcador < ActiveRecord::Base
 	default_scope :order => 'created_at DESC'
 	validates_presence_of :titulo, :info, :lat, :long
-	validates_presence_of :image_file_name, :if => Proc.new { |m| !m.bloco_id? }
+	validates_presence_of :image_file_name, :if => Proc.new { |m| !m.bloco_id? && !m.use_streetview }
 	has_and_belongs_to_many :tags
 	belongs_to :bloco
 
