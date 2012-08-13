@@ -1,6 +1,6 @@
 - content_for :head do
 	= stylesheet_link_tag "lightbox"
-	= javascript_include_tag "jquery.rotate", "mapa", "ajaxform", "lightbox"
+	= javascript_include_tag "jquery.rotate", "mapa", "ajaxform", "lightbox", "jquery-ui-autocomplete.min"
 	= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyBwG0qBPx1M89Waoit_jg8TbJL2wcvQKts&sensor=false"
 
 #fb-root
@@ -9,8 +9,12 @@
 %a{:href=>"/"}
 	%img{:src=>"/assets/logos/wdg_logo_wdg.gif", :id=>"wdg_logo"}
 
+%noscript
+	%h1
+		Habilite o Javascript!
+
 .full
-	#mapa
+	#mapa	
 
 #lateral
 	#opaco
