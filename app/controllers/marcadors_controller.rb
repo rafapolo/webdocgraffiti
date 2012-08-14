@@ -49,6 +49,15 @@ class MarcadorsController < AdminController
       tags.split(",").each do |t|
         @marcador.tags << Tag.find_or_create_by_name(t.strip)          
       end
+      begin
+        msg = "Criei um novo marcador #{@marcador.titulo} em http://webdocgraffiti.com.br/mapa/marcador/#{@marcador.id}"
+        graph = Koala::Facebook::API.new(session[:token])
+        @me = graph.get_object("me")
+        puts msg
+        graph.put_wall_post(msg)
+      rescue Koala::Facebook::APIError
+        @me = false
+      end     
       render :text=> '200'
     else
       render :text=> '500'
