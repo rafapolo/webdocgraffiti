@@ -4,10 +4,9 @@
 	= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyBwG0qBPx1M89Waoit_jg8TbJL2wcvQKts&sensor=false"
 	- if @marcador
 		- image = @marcador.use_streetview? ? streetview_image(@marcador) : @marcador.image.url(:thumb)
-		%meta{:property=>"og:image", :content=>image}		
+		%meta{:property=>"og:image", :content=>"http://webdocgraffiti.com.br/#{image}"}	
 		%meta{:property=>"og:title", :content=>"WEBDOC GRAFFITI | #{@marcador.titulo.upcase}"}
 		%meta{:property => "og:url", :content => "http://webdocgraffiti.com.br/mapa/marcador/#{@marcador.id}"}
-        
 
 #fb-root
 	= javascript_include_tag "http://connect.facebook.net/pt_BR/all.js#xfbml=1&appId=380422978692298"
