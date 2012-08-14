@@ -11,7 +11,7 @@ class EpisodiosController < ApplicationController
 
   def show
      e = Episodio.find_by_position(params[:id])
-     b = Bloco.next
+     b = e.blocos.first
      ensaio = e.ensaio? ? "#{e.urlized}/#{e.blocos.last.urlized}" : false
      render :json => { :title=> e.titulo, :href=>"#{e.urlized}/#{b.urlized}", :last=>Episodio.count, :capa=>e.capa.url, :ensaio=>ensaio}
   end
