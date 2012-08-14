@@ -239,7 +239,7 @@ $(document).ready ->
 		)
 		panorama.setVisible(true) unless panorama.getVisible()
 	)
-	
+
 	# tags autocomplete
 	$.get("/tags", (data) ->
 		$("#autotags").autocomplete({ source: data },
@@ -247,7 +247,6 @@ $(document).ready ->
 				id = ui.item.urlized
 				if $("#tag-#{id}").length == 0					
 					label = ui.item.label
-					$("#autotags").val("")
 					$("#maps_tags").append($('<div/>').addClass('tag').attr('public', true).append("<input id='tag-#{id}' type='checkbox'>").append($("<span/>").addClass("branco").text(" #{label}")))
 					$("#tag-#{id}").click()
 		)
