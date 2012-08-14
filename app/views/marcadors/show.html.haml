@@ -1,17 +1,12 @@
 - m = @marcador
 %p
 	.left{:style=>"width:50%"}	
-		
-		- if m.bloco
-			%a{:rel=>"lightbox", :href => m.bloco.image.url(:full)}
-				= image_tag m.bloco.image.url(:thumb)
-		- else			
-			- if m.use_streetview?			
-				%a.goToStreet{:href=>"#", :heading=>m.heading, :zoom=>m.zoom, :pitch=>m.pitch, :lat=>m.lat, :long=>m.long}
-					= image_tag streetview_image(m)
-			- else
-				%a{:href=>m.image.url(:full), :rel=>"lightbox"}
-					= image_tag m.image.url(:thumb)
+		- if m.use_streetview?			
+			%a.goToStreet{:href=>"#", :heading=>m.heading, :zoom=>m.zoom, :pitch=>m.pitch, :lat=>m.lat, :long=>m.long}
+				= image_tag streetview_image(m)
+		- else
+			%a{:href=>m.image.url(:full), :rel=>"lightbox"}
+				= image_tag m.image.url(:thumb)
 		%br
 		- if m.publico?
 			= m.titulo
