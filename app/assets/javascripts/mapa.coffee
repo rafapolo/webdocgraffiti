@@ -174,17 +174,15 @@ $(document).ready ->
 
 	closePanorama = -> 
 		panorama = map.getStreetView()
-		if panorama.getVisible()
-			panorama.setVisible(false)
+		if panorama.getVisible()			
 			$('#close-pano').fadeOut()
+			$('#cancel-street').fadeOut()
+			panorama.setVisible(false)
+			window.use_streetview = false
+			new_marcador.position = window.position
+			new_marcador.setMap map			
 
-	$('#cancel-street').click ->
-		closePanorama()
-		window.use_streetview = false
-		panorama = map.getStreetView()
-		new_marcador.position = window.position
-		new_marcador.setMap map
-		$(this).fadeOut()
+	$('#cancel-street').click -> closePanorama()
 
 	filtra = (tag) ->
 		closePanorama()
