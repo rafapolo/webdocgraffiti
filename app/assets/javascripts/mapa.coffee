@@ -115,7 +115,7 @@ $(document).ready ->
 				window.pov = null
 				new_marcador = null
 				panorama = map.getStreetView()
-				panorama.setVisible(false) if panorama.getVisible() == true
+				closePanorama()
 				loadMarkers()
 			else
 				$("#status").text("Erro. Dados incompletos")
@@ -164,6 +164,7 @@ $(document).ready ->
 				panorama.setPosition(pos)
 				panorama.setPov(window.pov) if window.pov
 				panorama.setVisible(true)
+				$('#close-pano').fadeIn()
 				new_marcador.setMap null
 				window.use_streetview = true
 				$('#cancel-street').fadeIn()
@@ -173,7 +174,9 @@ $(document).ready ->
 
 	closePanorama = -> 
 		panorama = map.getStreetView()
-		panorama.setVisible(false) if panorama.getVisible()
+		if panorama.getVisible()
+			panorama.setVisible(false)
+			$('#close-pano').fadeOut()
 
 	$('#cancel-street').click ->
 		closePanorama()
@@ -237,8 +240,12 @@ $(document).ready ->
 		    zoom: parseFloat($(this).attr("zoom"))
 		  }
 		)
-		panorama.setVisible(true) unless panorama.getVisible()
+		unless panorama.getVisible()
+			panorama.setVisible(true) 
+			$('#close-pano').fadeIn()
 	)
+
+	$('#close-pano').click -> closePanorama()
 
 	# tags autocomplete
 	$.get("/tags", (data) ->

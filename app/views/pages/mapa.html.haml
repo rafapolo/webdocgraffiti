@@ -2,6 +2,9 @@
 	= stylesheet_link_tag "lightbox", "jquery-autocomplete"
 	= javascript_include_tag "jquery.rotate", "mapa", "ajaxform", "lightbox", "jquery-ui-autocomplete.min"
 	= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyBwG0qBPx1M89Waoit_jg8TbJL2wcvQKts&sensor=false"
+	- if @marcador
+		%meta{:property=>"og:image", :content=>@marcacor.image.url(:thumb)}		
+		%meta{:property=>"og:title", :content=>"WEBDOC GRAFFITI | #{@marcador.titulo.upcase}"}
 
 #fb-root
 	= javascript_include_tag "http://connect.facebook.net/pt_BR/all.js#xfbml=1&appId=380422978692298"
@@ -15,6 +18,8 @@
 
 .full
 	#mapa	
+	#close-pano
+		[x] Fechar StreetView
 
 #lateral
 	#opaco
@@ -57,5 +62,6 @@
 			.box.in{:style=>"border-top: 0px; width: 386px; height: inherit; padding-bottom: 8px"}
 				.add-marcador{:style=>"padding: 15px"}
 					= render :partial => "pages/add_marcador"
+
 
 = render :partial=>"pages/toggle"
