@@ -3,7 +3,7 @@
 	= javascript_include_tag "jquery.rotate", "mapa", "ajaxform", "lightbox", "jquery-ui-autocomplete.min"
 	= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyBwG0qBPx1M89Waoit_jg8TbJL2wcvQKts&sensor=false"
 	- if @marcador
-		- image = @marcador.use_streetview? ? streetview_image(m) : @marcacor.image.url(:thumb)
+		- image = @marcador.use_streetview? ? streetview_image(@marcador) : @marcador.image.url(:thumb)
 		%meta{:property=>"og:image", :content=>image}		
 		%meta{:property=>"og:title", :content=>"WEBDOC GRAFFITI | #{@marcador.titulo.upcase}"}
 
@@ -33,7 +33,7 @@
 					.boxr{:style=>"border-right: 0px; width: 15px;"}
 						%img.abre.dadosgo{:src=>"/assets/setas/seta_pqn_menu.png", :toggle=>".dados", :fechado=>"0"}
 			.box.in{:style=>"border-top: 0px; width: 386px; height: inherit"}
-				%p.caixa.menor.dados{:marcador=>@marcador}
+				%p.caixa.menor.dados{:marcador=>@marcador.id}
 					selecione um marcador no mapa
 
 			.box.lista{:style=>"width: 386px"}
