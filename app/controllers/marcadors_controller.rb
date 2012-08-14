@@ -62,7 +62,7 @@ class MarcadorsController < AdminController
     else
       render :text=> '500'
     end
-  end
+    end
 
   def update
     @marcador = Marcador.find(params[:id])
