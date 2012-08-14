@@ -3,7 +3,8 @@
 	= javascript_include_tag "jquery.rotate", "mapa", "ajaxform", "lightbox", "jquery-ui-autocomplete.min"
 	= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyBwG0qBPx1M89Waoit_jg8TbJL2wcvQKts&sensor=false"
 	- if @marcador
-		%meta{:property=>"og:image", :content=>@marcacor.image.url(:thumb)}		
+		- image = @marcador.use_streetview? ? streetview_image(m) : @marcacor.image.url(:thumb)
+		%meta{:property=>"og:image", :content=>image}		
 		%meta{:property=>"og:title", :content=>"WEBDOC GRAFFITI | #{@marcador.titulo.upcase}"}
 
 #fb-root
