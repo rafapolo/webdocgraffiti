@@ -1,7 +1,7 @@
 %p.caixa
 	%img{:src=>"/assets/markers/user_p.png", :id=>"marker"}
 	- if !@me
-		Autentique-se para adicionar um novo marcador
+		Autentique-se para adicionar um novo marcador: 
 		%a{:href=>"https://www.facebook.com/dialog/oauth?client_id=380422978692298&redirect_uri=http://#{site}/oauth/&scope=publish_stream&response_type=token"}			
 			%img{:src=>"/assets/connect_facebook.png", :align=>"center"}
 	- else
