@@ -60,7 +60,11 @@ $(document).ready ->
 		$(this).css("height", $(e).actual("height"))
 	)
 
-	$('img').load(-> $('.ensaio').height($('.ensaio').parent().height()))
+	$(e).actual("height"))
+
+	$('img').load -> 
+		$.each($(".ensaio"), (i, e) ->
+			$(this).height($(this).parent().height())
 
 	$('#selectAll').click(
 		-> 
