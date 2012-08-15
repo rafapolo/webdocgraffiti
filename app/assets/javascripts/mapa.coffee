@@ -64,6 +64,9 @@ $(document).ready ->
 			)
 			if selected_marcador = parseInt($('.dados').attr("marcador"))
 				google.maps.event.trigger(getMarkerById(selected_marcador), 'click')
+			if selected_tag = $('#maps_tags').attr("tag")
+				filtra(selected_tag)
+				console.log selected_tag
 		)
 	loadMarkers()
 

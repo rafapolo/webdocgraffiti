@@ -26,6 +26,7 @@ class PagesController < ApplicationController
   		session[:mapa] = true
   		@titulo = "MAPA"
   		@marcador = Marcador.find(params[:id]) if params[:id]
+  		@tag = Tag.find_by_urlized(params[:tag]) if params[:tag]
   		@tags_privadas = Tag.privadas.uniq
 	    begin
 	      graph = Koala::Facebook::API.new(session[:token])
