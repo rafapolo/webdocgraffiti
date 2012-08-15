@@ -2,7 +2,7 @@
 
 - exec = ''
 - @bloco.hiperbalons.each do |h|
-	- exec << "v.footnote({start: #{h.in}, end: #{h.out}, text: \\\"<a target='_blank' href='#{h.url}'><img class='hiper' src='#{h.image.url(:thumb)}' style='float:left; padding-right:10px'/></a>\\\", target: 'hiperbalon', effect: 'applyclass', applyclass: 'hiperbalon'}); "	
+	- exec << "window.player.footnote({start: #{h.in}, end: #{h.out}, text: \\\"<a target='_blank' href='#{h.url}'><img class='hiper' src='#{h.image.url(:thumb)}' style='float:left; padding-right:10px'/></a>\\\", target: 'hiperbalon', effect: 'applyclass', applyclass: 'hiperbalon'}); "	
 
 :javascript
 	$(document).ready(function(){ eval("#{exec}") });

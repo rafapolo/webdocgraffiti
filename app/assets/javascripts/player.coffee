@@ -1,6 +1,7 @@
 $ ->
 	$("iframe").load -> $(this).fadeIn(600)
 	v = Popcorn.youtube('#video', $("#video").attr("video"))
+	window.player = v
 	
 	l = $("#lateral")
 	v.on "play", -> $("#togglao").click() if l.is(":visible")
