@@ -1,5 +1,5 @@
 .caixa.menor.wdg_tags
-	#maps_tags{:tag=>@tag.urlized}
+	#maps_tags{:tag=> @tag ? @tag.urlized : false}
 		- tags = @tags_privadas
 		- tags.each do |t|
 			.tag
