@@ -13,7 +13,7 @@
       %tbody
         - @marcadores_wdg.each do |e|
           %tr
-            %td{:style=>"width:150px"}= image_tag e.bloco.image.url(:thumb)
+            %td{:style=>"width:150px"}= image_tag e.image.url(:thumb)
             %td= e.id
             %td= e.titulo            
             %td= csv_tags e
@@ -34,7 +34,7 @@
       %tbody
         - @marcadores.each do |e|
           %tr
-            %td{:style=>"width:150px"}= image_tag e.image.url(:thumb)
+            %td{:style=>"width:150px"}= image_tag e.use_streetview ? streetview_image(e) : e.image.url(:thumb)
             %td= e.titulo            
             %td= csv_tags e
             %td= link_to e.autor, e.autor_url, :target=>"_blank" if e.autor
