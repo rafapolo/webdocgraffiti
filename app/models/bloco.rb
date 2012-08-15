@@ -5,7 +5,9 @@ class Bloco < ActiveRecord::Base
 	has_many :hiperbalons, :dependent => :destroy 
 	has_and_belongs_to_many :tags
 
-	has_attached_file :image, :styles => {:thumb=> "173x122!", :full=> "900x"}
+	has_attached_file :image, :styles => {:thumb=> "173x122!", :full=> "900x"},
+		:url => "/system/:class/:id/:style/:basename.:extension",
+		:path => ":rails_root/public/system/:class/:id/:style/:basename.:extension"
 
 	validates_format_of :video_url, :with => URI::regexp(%w(http https))
 	validates_presence_of :sinopse, :episodio_id, :video_url, :titulo, :image_file_name
