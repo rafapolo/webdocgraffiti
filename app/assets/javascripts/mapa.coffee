@@ -248,15 +248,21 @@ $(document).ready ->
 
 	$('#close-pano').click -> closePanorama()
 
+	
 	# tags autocomplete
+
 	$.get("/tags", (data) ->
 		$("#autotags").autocomplete({ source: data },
 			select: (e, ui) ->
 				id = ui.item.urlized
-				if $("#tag-#{id}").length == 0					
+				tag = $("#tag-#{id}")
+				if tag.length == 0					
 					label = ui.item.label
-					$("#maps_tags").append($('<div/>').addClass('tag').attr('public', true).append("<input id='tag-#{id}' type='checkbox'>").append($("<span/>").addClass("branco").text(" #{label}")))
+					$("#maps_tags").prepend($('<div/>').addClass('tag').attr('public', true).append("<input id='tag-#{id}' type='checkbox'>").append($("<span/>").addClass("branco").text(" #{label}")))
 					$("#tag-#{id}").click()
+				else
+					tag.click() unless tag.is(':checked')
+
 		)
 	)
 
