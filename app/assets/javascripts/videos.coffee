@@ -56,13 +56,12 @@ $(document).ready ->
 		-> $(this).next().removeClass "ativo"
 	)
 	
-	$.each($(".box.in"), (i, e) -> $(this).css("height", $(e).actual("height")))
+	$.each($(".box.in"), (i, e) ->
+		$(e).css("height", $(e).actual("height"))
+	)
 
-
-	$('img').load -> 
-		$.each( $(".box.in"), (i, e) -> 
-			$('.ensaio').height($('.ensaio').parent().height())
-		)
+	$('img').load ->
+		$.each($('.ensaio'), (i, e) -> $(e).height($(e).parent().height()))
 
 	$('#selectAll').click(
 		-> 
