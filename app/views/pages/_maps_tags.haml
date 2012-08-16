@@ -1,13 +1,13 @@
 .caixa.menor.wdg_tags
+	%input{:type=>"text", :placeholder=>"Buscar", :id=>"autotags"}
+	%br
+	%br
 	#maps_tags{:tag=> @tag ? @tag.urlized : false}
 		- tags = @tags_privadas
 		- tags.each do |t|
 			.tag
 				%input{:type=>"checkbox", :checked=>true, :id=>"tag-#{t.urlized}"}
 					%span.branco= t.name
-
-	%input{:type=>"text", :placeholder=>"Buscar", :id=>"autotags"}
-	%br
 	%br
 	= link_to "marcar", "#", :class=>"liame", :id=>"selectAll"
 	%span /
