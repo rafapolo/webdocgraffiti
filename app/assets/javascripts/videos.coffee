@@ -58,9 +58,7 @@ $(document).ready ->
 	
 	$.each($(".box.in"), (i, e) ->
 		$(this).css("height", $(e).actual("height"))
-	)
-
-	$(e).actual("height"))
+	)	
 
 	$('img').load -> 
 		$.each($(".ensaio"), (i, e) ->
