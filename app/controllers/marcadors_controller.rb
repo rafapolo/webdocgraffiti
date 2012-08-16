@@ -50,7 +50,7 @@ class MarcadorsController < AdminController
         @marcador.tags << Tag.find_or_create_by_name(t.strip)          
       end
       begin
-        msg = "Criei um novo marcador #{@marcador.titulo} em http://webdocgraffiti.com.br/mapa/marcador/#{@marcador.id}"
+        msg = "#{@marcador.titulo}: #{@marcador.info} em http://webdocgraffiti.com.br/mapa/marcador/#{@marcador.id}"
         graph = Koala::Facebook::API.new(session[:token])
         @me = graph.get_object("me")
         puts msg
