@@ -8,7 +8,7 @@ $ ->
 	v.on "pause", -> $("#togglao").click() if !l.is(":visible")
 	v.on "ended", -> v.pause(0)
 
-	$('.hiper').click -> v.pause()
+	$('.hiper').click -> window.player.pause()
 	
 	$('.video>img').hover(
 		-> $(this).next().css("color", "#fe8a2d")
