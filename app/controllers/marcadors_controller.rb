@@ -53,8 +53,8 @@ class MarcadorsController < AdminController
         msg = "#{@marcador.titulo}: #{@marcador.info} em http://webdocgraffiti.com.br/mapa/marcador/#{@marcador.id}"
         graph = Koala::Facebook::API.new(session[:token])
         @me = graph.get_object("me")
-        puts msg
-        graph.put_wall_post(msg)
+        img = @marcador.use_streetview? ? streetview_image(@marcador) : @marcador.image.url(:thumb)
+        graph.put_wall_post(msg, :picture=>"http://webdocgraffiti.com.br" + img)
       rescue Koala::Facebook::APIError
         @me = false
       end     
