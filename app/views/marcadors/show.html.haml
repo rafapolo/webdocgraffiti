@@ -1,7 +1,12 @@
 - m = @marcador
+
+- content_for :head do
+	- img = m.use_streetview? ? streetview_image(m) : m.image.url(:thumb)
+	%meta{:property=>"og:image", :content=>"http://webdocgraffiti.com.br/assets#{img}"}
+
 %p
 	.left{:style=>"width:50%"}	
-		- if m.use_streetview?			
+		- if m.use_streetview?
 			%a.goToStreet{:href=>"#", :heading=>m.heading, :zoom=>m.zoom, :pitch=>m.pitch, :lat=>m.lat, :long=>m.long}
 				= image_tag streetview_image(m)
 		- else
@@ -28,3 +33,4 @@
 		- tags.each do |t|
 			= link_to t.name, "#", :class=>"link", :tag=>t.urlized
 			= ", " if tags.last != t
+
