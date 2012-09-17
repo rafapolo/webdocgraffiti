@@ -6,7 +6,7 @@
 		- tags = @tags_privadas
 		- tags.each do |t|
 			.tag
-				%input{:type=>"checkbox", :checked=>true, :id=>"tag-#{t.urlized}"}
+				%input{:type=>"checkbox", :checked=>false, :id=>"tag-#{t.urlized}"}
 					%span.branco= t.name
 	%br
 	= link_to "marcar", "#", :class=>"liame", :id=>"selectAll"
