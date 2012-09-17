@@ -2,7 +2,9 @@
 log/*.log
 */.DS_Store
 *.DS_Store
+public/system/*
 tmp/
 .sass-cache/
-
 *.jpg
+
+public/.DS_Store
