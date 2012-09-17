@@ -4,7 +4,7 @@ $(document).ready ->
 
 	myOptions =
 		center: new google.maps.LatLng(-23.5687, -46.5705)
-		zoom: 12
+		zoom: 11
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 		streetViewControl: false
 		overviewMapControl: true
@@ -188,7 +188,7 @@ $(document).ready ->
 	$('#cancel-street').click -> closePanorama()
 
 	filtra = (tag) ->
-		closePanorama()
+		closePanorama()		
 		$.each(marcadores, (i,m) ->
 			tem = false
 			$.each(m.tags, (c,t) -> tem = true if t.urlized == tag)
@@ -201,7 +201,15 @@ $(document).ready ->
 		$("#tag-#{tag}").attr("checked", true)
 
 
-	$('.link').live('click', -> filtra($(this).attr("tag")))
+	# click em tag do box de marcador
+	$('.link').live('click', -> 
+		box = $('.abre[toggle=".dados"]')
+		box.click()
+		id = $(this).attr("tag")
+		label = $(this).text()
+		$("#maps_tags").prepend($('<div/>').addClass('tag').attr('public', true).append("<input id='tag-#{id}' type='checkbox'>").append($("<span/>").addClass("branco").text(" #{label}")))
+		filtra(id)
+	)
 
 	$('.tag>span').click ->
 		$(this).prev().click()
@@ -212,8 +220,18 @@ $(document).ready ->
 		window.marcadas.push tag
 	)
 	$('.tag>input').live('change', ->
-		closePanorama()
-		input = $(this)
+		closePanorama()		
+		
+		input = $(this)		
+		checked = $(this).attr("checked") == "checked"
+		
+		# first click
+		if $('input[type=checkbox]:checked').size() == 1
+			window.marcadas = []
+			$('.tag>input').attr("checked", false)
+			$.each(marcadores, (i,m) -> m.setMap null)
+
+		$(this).attr("checked", checked)
 		tag = input.attr("id").replace("tag-", "")
 		
 		if input.attr("checked")
@@ -247,10 +265,8 @@ $(document).ready ->
 	)
 
 	$('#close-pano').click -> closePanorama()
-
 	
 	# tags autocomplete
-
 	$.get("/tags", (data) ->
 		$("#autotags").autocomplete({ source: data },
 			select: (e, ui) ->
