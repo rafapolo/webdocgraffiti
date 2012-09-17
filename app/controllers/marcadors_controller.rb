@@ -71,7 +71,7 @@ class MarcadorsController < AdminController
     marcador.delete(:tags)
     respond_to do |format|
       if @marcador.update_attributes(params[:marcador])
-        @marcador.tags.destroy_all
+        @marcador.tags = []
         tags.split(",").each do |t|
           @marcador.tags << Tag.find_or_create_by_name(t.strip)          
         end
