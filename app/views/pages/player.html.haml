@@ -1,3 +1,6 @@
+- content_for :head do
+	%meta{:property=>"og:image", :content=>@bloco.image.url(:thumb)}
+
 = javascript_include_tag "jquery.rotate", "actualHeight", "player", "popcorn.min"
 
 - exec = ''
