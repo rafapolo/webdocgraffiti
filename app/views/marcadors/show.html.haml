@@ -1,7 +1,7 @@
 - m = @marcador
 
 - content_for :head do
-	- img = m.use_streetview? ? streetview_image(m) : m.image.url(:thumb)
+	- img = m.use_streetview? ? streetview_image(m) : m.image.url(:full)
 	%meta{:property=>"og:image", :content=>"http://webdocgraffiti.com.br/#{img}"}
 
 %p
