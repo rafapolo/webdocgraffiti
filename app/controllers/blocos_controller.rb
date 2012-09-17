@@ -39,11 +39,10 @@ class BlocosController < ApplicationController
       tags = bloco[:tags]
       bloco.delete(:tags)
       if @bloco.update_attributes(params[:bloco])
-        @bloco.tags.destroy_all
+        @bloco.tags = []
         tags.split(",").each do |t|
           @bloco.tags << Tag.find_or_create_by_name(t.strip)          
         end
-        Tag.all.each{|t| t.destroy if t.blocos.empty?} # remove as sem uso
         format.html { redirect_to "/episodios/#{@bloco.episodio.id}/edit", notice: 'Bloco atualizado.' }
       else
         flash[:error] = true

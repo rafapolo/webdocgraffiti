@@ -12,7 +12,7 @@ class Bloco < ActiveRecord::Base
 	validates_format_of :video_url, :with => URI::regexp(%w(http https))
 	validates_presence_of :sinopse, :episodio_id, :video_url, :titulo, :image_file_name
 	validates_uniqueness_of :titulo
-
+	
 	before_save :urlize
 	def urlize
 		self.urlized = self.titulo.urlize
@@ -36,7 +36,8 @@ class Bloco < ActiveRecord::Base
 		Episodio.first && Episodio.first.blocos.count == 5 ? Episodio.first.blocos.last : false
 	end
 
-	before_destroy :limpa_tags
+	after_save :limpa_tags
+	after_destroy :limpa_tags
 	def limpa_tags
 		Tag.limpa
 	end

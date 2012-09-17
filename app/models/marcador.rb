@@ -9,7 +9,8 @@ class Marcador < ActiveRecord::Base
 		:url => "/system/:class/:id/:style/:basename.:extension",
 		:path => ":rails_root/public/system/:class/:id/:style/:basename.:extension"
 
-	before_save :limpa_tags
+	after_destroy :limpa_tags
+	after_save :limpa_tags
 	def limpa_tags
 		Tag.limpa
 	end
