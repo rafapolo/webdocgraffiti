@@ -1,5 +1,5 @@
 - content_for :head do
-	%meta{:property=>"og:image", :content=>@bloco.image.url(:thumb)}
+	%meta{:property=>"og:image", :content=>"http://webdocgraffiti.com.br" + @bloco.image.url(:thumb)}
 
 = javascript_include_tag "jquery.rotate", "actualHeight", "player", "popcorn.min"
 
