@@ -22,5 +22,4 @@ group :development do
 	gem 'pry-nav'
 	gem 'capistrano'
   	gem "rails-erd"
-  	gem 'rails-erd'
 end	
