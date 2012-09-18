@@ -1,9 +1,5 @@
 - m = @marcador
 
-- content_for :head do
-	- img = m.use_streetview? ? streetview_image(m) : "http://webdocgraffiti.com.br/" + m.image.url(:full)
-	%meta{:property=>"og:image", :content=>img}
-
 %p
 	.left{:style=>"width:50%"}	
 		- if m.use_streetview?

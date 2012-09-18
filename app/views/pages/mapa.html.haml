@@ -2,11 +2,11 @@
 	= stylesheet_link_tag "lightbox", "jquery-autocomplete"
 	= javascript_include_tag "jquery.rotate", "mapa", "ajaxform", "lightbox", "jquery-ui-autocomplete.min"
 	= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyBwG0qBPx1M89Waoit_jg8TbJL2wcvQKts&sensor=false"
-	- if @marcador
-		- image = @marcador.use_streetview? ? streetview_image(@marcador) : @marcador.image.url(:thumb)
-		%meta{:property=>"og:image", :content=>"http://webdocgraffiti.com.br/#{image}"}	
-		%meta{:property=>"og:title", :content=>"WEBDOC GRAFFITI | #{@marcador.titulo.upcase}"}
-		%meta{:property => "og:url", :content => "http://webdocgraffiti.com.br/mapa/marcador/#{@marcador.id}"}
+	- if m = @marcador
+		%meta{:property=>"og:title", :content=>"WEBDOC GRAFFITI | #{m.titulo.upcase}"}
+		%meta{:property => "og:url", :content => "http://webdocgraffiti.com.br/mapa/marcador/#{m.id}"}
+		- img = m.use_streetview? ? streetview_image(m) : "http://webdocgraffiti.com.br/" + m.image.url(:full)
+		%meta{:property=>"og:image", :content=>img}	
 
 #fb-root
 	= javascript_include_tag "http://connect.facebook.net/pt_BR/all.js#xfbml=1&appId=380422978692298"
