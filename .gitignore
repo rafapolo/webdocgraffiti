@@ -6,5 +6,5 @@ public/system/*
 tmp/
 .sass-cache/
 *.jpg
-deploy.rb
+*/deploy.rb
 public/.DS_Store
