@@ -1,10 +1,7 @@
 .bundle
-log/*.log
-*/.DS_Store
+*.log
 *.DS_Store
-public/system/*
 tmp/
 .sass-cache/
-*.jpg
 */deploy.rb
 public/.DS_Store

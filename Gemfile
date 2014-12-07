@@ -13,7 +13,7 @@ gem 'omniauth-facebook'
 gem 'koala'
 
 gem 'paperclip'
-gem 'therubyracer'
+#gem 'therubyracer'
 gem 'uglifier'
 
 group :development do
